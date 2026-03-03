@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inquiry | Khushana Sovereignty</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --royal-emerald: #022b24;
+            --deep-gold: #b8860b;
+            --midnight: #0a0a0a;
+            --input-bg: #1a1a1a;
+        }
+
+        body {
+            margin: 0;
+            background: var(--midnight);
+            color: #fff;
+            font-family: 'Montserrat', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .booking-card {
+            background: #111;
+            width: 100%;
+            max-width: 600px;
+            padding: 50px;
+            border: 1px solid #222;
+            border-top: 5px solid var(--deep-gold);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
+
+        h2 {
+            font-family: 'Cinzel', serif;
+            color: var(--deep-gold);
+            text-align: center;
+            letter-spacing: 5px;
+            margin-bottom: 40px;
+        }
+
+        .form-group { margin-bottom: 25px; }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #888;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 15px;
+            background: var(--input-bg);
+            border: 1px solid #333;
+            color: white;
+            font-family: 'Montserrat', sans-serif;
+            box-sizing: border-box;
+        }
+
+        input:focus, select:focus {
+            border-color: var(--deep-gold);
+            outline: none;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 20px;
+            background: var(--deep-gold);
+            color: var(--midnight);
+            border: none;
+            font-family: 'Cinzel', serif;
+            font-weight: bold;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: 0.3s;
+            letter-spacing: 2px;
+        }
+
+        .submit-btn:hover {
+            background: #fff;
+            transform: translateY(-3px);
+        }
+
+        .nav-home {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #555;
+            text-decoration: none;
+            font-size: 0.8rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="booking-card">
+        <h2>Consultation Request</h2>
+        <form action="#">
+            <div class="form-group">
+                <label>Full Name</label>
+                <input type="text" placeholder="Enter your name" required>
+            </div>
+
+            <div class="form-group">
+                <label>Select Your Interest</label>
+                <select id="service-type">
+                    <option value="studio">Khushana Makeup Studio (Beauty)</option>
+                    <option value="digital">Khushana Digital Info (Tech)</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Desired Service</label>
+                <select>
+                    <option>Nail Art / Manicure</option>
+                    <option>Facial / Bridal Makeup</option>
+                    <option>Website Development</option>
+                    <option>Digital Marketing Strategy</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Message / Requirements</label>
+                <textarea rows="4" placeholder="How can we assist your vision?"></textarea>
+            </div>
+
+            <button type="submit" class="submit-btn">Send Inquiry</button>
+        </form>
+        <a href="index.html" class="nav-home">BACK TO PORTAL</a>
+    </div>
+
+</body>
+</html>
