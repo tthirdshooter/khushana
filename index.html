@@ -6,22 +6,25 @@
     <title>Khushana | Welcome</title>
     <style>
         :root {
-            --studio-color: #2c2c2c;
-            --info-color: #ffffff;
-            --accent: #d4af37;
+            --chic-black: #1a1a1a;
+            --info-white: #ffffff;
+            --satin-gold: #c9a050;
+            --text-gray: #555;
         }
 
         body, html {
             height: 100%;
             margin: 0;
-            font-family: 'Arial', sans-serif;
-            overflow: hidden;
+            padding: 0;
+            font-family: 'Montserrat', sans-serif;
+            overflow-x: hidden;
         }
 
         .container {
             display: flex;
             height: 100vh;
             width: 100vw;
+            flex-direction: row; /* Default side-by-side for desktop */
         }
 
         .split {
@@ -30,56 +33,88 @@
             align-items: center;
             justify-content: center;
             flex-direction: column;
-            transition: all 0.5s ease-in-out;
+            transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
             text-decoration: none;
             position: relative;
+            text-align: center;
+            padding: 20px;
         }
 
         /* Left Side: Makeup Studio */
         .left {
-            background-color: var(--studio-color);
+            background-color: var(--chic-black);
             color: white;
-            border-right: 2px solid var(--accent);
+            border-right: 2px solid var(--satin-gold);
         }
 
         /* Right Side: Digital Info */
         .right {
-            background-color: var(--info-color);
-            color: var(--studio-color);
+            background-color: var(--info-white);
+            color: var(--chic-black);
         }
 
-        .split:hover {
-            flex: 1.5;
+        /* Hover Effect for Desktop */
+        @media (min-width: 769px) {
+            .split:hover {
+                flex: 1.4;
+            }
         }
 
         .split h1 {
-            font-size: 3rem;
+            font-size: clamp(1.8rem, 5vw, 3rem); /* Dynamic text size */
             text-transform: uppercase;
-            letter-spacing: 5px;
-            margin-bottom: 20px;
+            letter-spacing: 4px;
+            margin-bottom: 10px;
+            font-family: 'Cormorant Garamond', serif;
         }
 
         .split p {
-            font-size: 1.2rem;
-            opacity: 0.8;
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-bottom: 25px;
+            font-weight: 300;
+            letter-spacing: 1px;
         }
 
         .btn {
-            margin-top: 20px;
-            padding: 15px 30px;
+            padding: 12px 35px;
             border: 2px solid;
             text-transform: uppercase;
+            font-size: 0.8rem;
             font-weight: bold;
-            cursor: pointer;
-            transition: 0.3s;
+            letter-spacing: 2px;
+            transition: 0.3s ease;
         }
 
-        .left .btn { border-color: var(--accent); color: var(--accent); }
-        .right .btn { border-color: #333; color: #333; }
+        .left .btn { border-color: var(--satin-gold); color: var(--satin-gold); }
+        .right .btn { border-color: var(--chic-black); color: var(--chic-black); }
 
-        .left .btn:hover { background: var(--accent); color: white; }
-        .right .btn:hover { background: #333; color: white; }
+        .left .btn:hover { background: var(--satin-gold); color: white; }
+        .right .btn:hover { background: var(--chic-black); color: white; }
+
+        /* --- MOBILE RESPONSIVE UPDATES --- */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column; /* Stack vertically on phones */
+            }
+
+            .left {
+                border-right: none;
+                border-bottom: 2px solid var(--satin-gold);
+            }
+
+            .split h1 {
+                font-size: 2.2rem;
+                margin-bottom: 5px;
+            }
+
+            .split p {
+                font-size: 0.9rem;
+                margin-bottom: 15px;
+            }
+        }
     </style>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Montserrat:wght@300;600&display=swap" rel="stylesheet">
 </head>
 <body>
 
