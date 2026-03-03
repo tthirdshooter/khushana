@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Khushana | Welcome</title>
+    <style>
+        :root {
+            --studio-color: #2c2c2c;
+            --info-color: #ffffff;
+            --accent: #d4af37;
+        }
+
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+        }
+
+        .container {
+            display: flex;
+            height: 100vh;
+            width: 100vw;
+        }
+
+        .split {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            transition: all 0.5s ease-in-out;
+            text-decoration: none;
+            position: relative;
+        }
+
+        /* Left Side: Makeup Studio */
+        .left {
+            background-color: var(--studio-color);
+            color: white;
+            border-right: 2px solid var(--accent);
+        }
+
+        /* Right Side: Digital Info */
+        .right {
+            background-color: var(--info-color);
+            color: var(--studio-color);
+        }
+
+        .split:hover {
+            flex: 1.5;
+        }
+
+        .split h1 {
+            font-size: 3rem;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            margin-bottom: 20px;
+        }
+
+        .split p {
+            font-size: 1.2rem;
+            opacity: 0.8;
+        }
+
+        .btn {
+            margin-top: 20px;
+            padding: 15px 30px;
+            border: 2px solid;
+            text-transform: uppercase;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .left .btn { border-color: var(--accent); color: var(--accent); }
+        .right .btn { border-color: #333; color: #333; }
+
+        .left .btn:hover { background: var(--accent); color: white; }
+        .right .btn:hover { background: #333; color: white; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <a href="studio.html" class="split left">
+            <h1>Makeup Studio</h1>
+            <p>Nails • Facial • Beauty</p>
+            <div class="btn">Enter Studio</div>
+        </a>
+
+        <a href="info.html" class="split right">
+            <h1>Khushana Info</h1>
+            <p>Web Dev • Design • Marketing</p>
+            <div class="btn">Explore Services</div>
+        </a>
+    </div>
+
+</body>
+</html>
