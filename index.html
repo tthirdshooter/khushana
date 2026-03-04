@@ -140,6 +140,27 @@
         .left { border-right: none; border-bottom: 1px solid var(--satin-gold); }
         .split h1 { font-size: 2rem; }
     }
+
+/* Enable 3D space for the container */
+.container {
+    perspective: 1000px; 
+}
+
+.split {
+    /* Smooth transition out when mouse leaves */
+    transition: transform 0.2s ease-out, flex 0.8s cubic-bezier(0.77, 0, 0.175, 1);
+    transform-style: preserve-3d;
+    will-change: transform;
+}
+
+/* Ensure content stays readable and pops out slightly */
+.content-wrapper {
+    pointer-events: none; /* Let mouse events hit the parent .split */
+    transform: translateZ(50px); /* Lifts text off the background */
+}
+
+
+      
 </style>
 
 <body>
@@ -244,8 +265,44 @@
         initParticles();
         animate();
     </script>
+
+
+const cards = document.querySelectorAll('.split');
+
+cards.forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        
+        // Calculate mouse position relative to the center of the card
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        
+        // Degree of tilt (adjust '10' to make it more or less dramatic)
+        const rotateX = (centerY - y) / 15; 
+        const rotateY = (x - centerX) / 15;
+
+        card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+    });
+
+    // Reset position when mouse leaves
+    card.addEventListener('mouseleave', () => {
+        card.style.transform = `rotateX(0deg) rotateY(0deg)`;
+    });
+});
+
+
+
+
+
+
+
+    
 </body>
 </html>
+
 
 
 
