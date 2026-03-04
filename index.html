@@ -191,6 +191,11 @@
         <div class="progress-bar"><div class="progress-fill"></div></div>
     </div>
 </div>
+
+<audio id="bgMusic" loop>
+    <source src="https://www.bensound.com/bensound-music/bensound-slowmotion.mp3" type="audio/mpeg">
+</audio>
+    
     <div class="container">
         <a href="studio.html" class="split left" id="studio-side">
             <canvas id="particleCanvas"></canvas>
@@ -226,6 +231,58 @@
         .left h1 {
             text-shadow: 0 0 15px rgba(201, 160, 80, 0.4);
         }
+/* --- LOADER STYLES --- */
+#loader {
+    position: fixed;
+    inset: 0;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+    transition: opacity 1s ease, visibility 1s;
+}
+
+.shimmer {
+    color: #c9a050;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3rem;
+    letter-spacing: 10px;
+    background: linear-gradient(90deg, #1a1a1a, #fff, #1a1a1a);
+    background-size: 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shimmer 3s infinite linear;
+}
+
+.progress-bar {
+    width: 200px;
+    height: 2px;
+    background: #333;
+    margin-top: 20px;
+}
+
+.progress-fill {
+    width: 0;
+    height: 100%;
+    background: #c9a050;
+    animation: fillProgress 2s forwards ease-in-out;
+}
+
+@keyframes shimmer {
+    0% { background-position: -200%; }
+    100% { background-position: 200%; }
+}
+
+@keyframes fillProgress {
+    to { width: 100%; }
+}
+
+/* Hide content until loader is gone */
+.container { opacity: 0; transition: opacity 1.5s ease; }
+.loaded .container { opacity: 1; }
+
+        
     </style>
 
     <script>
@@ -291,6 +348,25 @@
 
         initParticles();
         animate();
+        window.addEventListener('load', () => {
+    const loader = document.getElementById('loader');
+    
+    // Smoothly remove loader after 2 seconds
+    setTimeout(() => {
+        loader.style.opacity = '0';
+        loader.style.visibility = 'hidden';
+        document.body.classList.add('loaded');
+    }, 2500);
+});
+
+// Start music on first interaction (professional standard)
+document.addEventListener('click', () => {
+    const audio = document.getElementById('bgMusic');
+    if (audio.paused) {
+        audio.volume = 0.3; // Low ambient volume
+        audio.play();
+    }
+}, { once: true }); // Only triggers on the first click
     </script>
 
 
@@ -355,6 +431,7 @@ function createSparkle(x, y) {
     
 </body>
 </html>
+
 
 
 
