@@ -159,7 +159,28 @@
     transform: translateZ(50px); /* Lifts text off the background */
 }
 
+.sparkle {
+    position: fixed;
+    width: 6px;
+    height: 6px;
+    background: var(--satin-gold);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    box-shadow: 0 0 10px var(--satin-gold), 0 0 20px #fff;
+    animation: sparkle-fade 0.8s linear forwards;
+}
 
+@keyframes sparkle-fade {
+    0% {
+        transform: scale(1) translateY(0);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(0) translateY(20px);
+        opacity: 0;
+    }
+}
       
 </style>
 
@@ -294,7 +315,33 @@ cards.forEach(card => {
     });
 });
 
+const studioSide = document.querySelector('.left');
 
+studioSide.addEventListener('mousemove', (e) => {
+    createSparkle(e.clientX, e.clientY);
+});
+
+function createSparkle(x, y) {
+    const sparkle = document.createElement('div');
+    sparkle.className = 'sparkle';
+    
+    // Center the sparkle on the cursor
+    sparkle.style.left = (x - 3) + 'px';
+    sparkle.style.top = (y - 3) + 'px';
+    
+    // Add a slight random offset for a organic feel
+    const randomX = (Math.random() - 0.5) * 15;
+    const randomY = (Math.random() - 0.5) * 15;
+    sparkle.style.marginLeft = randomX + 'px';
+    sparkle.style.marginTop = randomY + 'px';
+    
+    document.body.appendChild(sparkle);
+    
+    // Remove element after animation ends to keep DOM clean
+    setTimeout(() => {
+        sparkle.remove();
+    }, 800);
+}
 
 
 
@@ -303,6 +350,7 @@ cards.forEach(card => {
     
 </body>
 </html>
+
 
 
 
