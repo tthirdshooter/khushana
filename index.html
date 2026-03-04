@@ -4,180 +4,167 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Khushana | Welcome</title>
-    <style>
-        :root {
-            --chic-black: #1a1a1a;
-            --info-white: #ffffff;
-            --satin-gold: #c9a050;
-            --text-gray: #555;
+  <style>
+    :root {
+        --chic-black: #1a1a1a;
+        --info-white: #ffffff;
+        --satin-gold: #c9a050;
+        --text-gray: #555;
+    }
+
+    body, html {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        font-family: 'Montserrat', sans-serif;
+        overflow: hidden; /* Prevents bounce on animations */
+    }
+
+    .container {
+        display: flex;
+        height: 100vh;
+        width: 100vw;
+        flex-direction: row;
+    }
+
+    .split {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        transition: all 0.8s cubic-bezier(0.77, 0, 0.175, 1);
+        text-decoration: none;
+        position: relative;
+        text-align: center;
+        padding: 20px;
+        overflow: hidden;
+    }
+
+    /* --- Left Side (Dark/Gold) --- */
+    .left {
+        background: linear-gradient(-45deg, #1a1a1a, #2c2c2c, #1a1a1a);
+        background-size: 400% 400%;
+        animation: gradientBG 15s ease infinite;
+        color: white;
+        border-right: 1px solid rgba(201, 160, 80, 0.3);
+    }
+
+    /* --- Right Side (Light/Minimal) --- */
+    .right {
+        background: linear-gradient(-45deg, #ffffff, #f9f9f9, #ffffff);
+        background-size: 400% 400%;
+        animation: gradientBG 15s ease infinite;
+        color: var(--chic-black);
+    }
+
+    @keyframes gradientBG {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
+
+    /* Professional Hover Expansion */
+    @media (min-width: 769px) {
+        .split:hover { flex: 1.6; }
+        .left:hover { box-shadow: inset -50px 0 100px rgba(201, 160, 80, 0.1); }
+        .right:hover { box-shadow: inset 50px 0 100px rgba(0, 0, 0, 0.05); }
+    }
+
+    /* Text Animation Logic */
+    .content-wrapper {
+        opacity: 0;
+        transform: translateY(30px);
+        animation: fadeInUp 1s forwards cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    .left .content-wrapper { animation-delay: 0.3s; }
+    .right .content-wrapper { animation-delay: 0.6s; }
+
+    @keyframes fadeInUp {
+        to {
+            opacity: 1;
+            transform: translateY(0);
         }
+    }
 
-        body, html {
-            height: 100%;
-            margin: 0;
-            padding: 0;
-            font-family: 'Montserrat', sans-serif;
-            overflow-x: hidden;
-        }
+    .split h1 {
+        font-size: clamp(1.8rem, 5vw, 3.5rem);
+        text-transform: uppercase;
+        letter-spacing: 6px;
+        margin-bottom: 15px;
+        font-family: 'Cormorant Garamond', serif;
+    }
 
-        .container {
-            display: flex;
-            height: 100vh;
-            width: 100vw;
-            flex-direction: row; /* Default side-by-side for desktop */
-        }
+    .split p {
+        font-size: 1rem;
+        text-transform: uppercase;
+        letter-spacing: 3px;
+        margin-bottom: 30px;
+        font-weight: 300;
+        opacity: 0.8;
+    }
 
-        .split {
-            flex: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
-            text-decoration: none;
-            position: relative;
-            text-align: center;
-            padding: 20px;
-        }
+    /* Modern Button Styling */
+    .btn {
+        position: relative;
+        padding: 15px 40px;
+        text-transform: uppercase;
+        font-size: 0.75rem;
+        font-weight: 600;
+        letter-spacing: 2px;
+        transition: 0.4s;
+        border: 1px solid;
+        z-index: 1;
+    }
 
-        /* Left Side: Makeup Studio */
-        .left {
-            background-color: var(--chic-black);
-            color: white;
-            border-right: 2px solid var(--satin-gold);
-        }
+    .left .btn { border-color: var(--satin-gold); color: var(--satin-gold); }
+    .right .btn { border-color: var(--chic-black); color: var(--chic-black); }
 
-        /* Right Side: Digital Info */
-        .right {
-            background-color: var(--info-white);
-            color: var(--chic-black);
-        }
+    .btn::before {
+        content: '';
+        position: absolute;
+        top: 0; left: 0; width: 0; height: 100%;
+        transition: 0.4s;
+        z-index: -1;
+    }
 
-        /* Hover Effect for Desktop */
-        @media (min-width: 769px) {
-            .split:hover {
-                flex: 1.4;
-            }
-        }
+    .left .btn:hover::before { width: 100%; background: var(--satin-gold); }
+    .right .btn:hover::before { width: 100%; background: var(--chic-black); }
 
-        .split h1 {
-            font-size: clamp(1.8rem, 5vw, 3rem); /* Dynamic text size */
-            text-transform: uppercase;
-            letter-spacing: 4px;
-            margin-bottom: 10px;
-            font-family: 'Cormorant Garamond', serif;
-        }
+    .btn:hover { color: white !important; }
 
-        .split p {
-            font-size: 1.1rem;
-            opacity: 0.9;
-            margin-bottom: 25px;
-            font-weight: 300;
-            letter-spacing: 1px;
-        }
+    /* Mobile Adjustments */
+    @media (max-width: 768px) {
+        .container { flex-direction: column; }
+        .left { border-right: none; border-bottom: 1px solid var(--satin-gold); }
+        .split h1 { font-size: 2rem; }
+    }
+</style>
 
-        .btn {
-            padding: 12px 35px;
-            border: 2px solid;
-            text-transform: uppercase;
-            font-size: 0.8rem;
-            font-weight: bold;
-            letter-spacing: 2px;
-            transition: 0.3s ease;
-        }
-
-        .left .btn { border-color: var(--satin-gold); color: var(--satin-gold); }
-        .right .btn { border-color: var(--chic-black); color: var(--chic-black); }
-
-        .left .btn:hover { background: var(--satin-gold); color: white; }
-        .right .btn:hover { background: var(--chic-black); color: white; }
-
-        /* --- MOBILE RESPONSIVE UPDATES --- */
-        @media (max-width: 768px) {
-            .container {
-                flex-direction: column; /* Stack vertically on phones */
-            }
-
-            .left {
-                border-right: none;
-                border-bottom: 2px solid var(--satin-gold);
-            }
-
-            .split h1 {
-                font-size: 2.2rem;
-                margin-bottom: 5px;
-            }
-
-            .split p {
-                font-size: 0.9rem;
-                margin-bottom: 15px;
-            }
-        }
-
- /* Enable 3D space for the container */
-.container {
-    perspective: 1000px; 
-}
-
-.split {
-    /* Smooth transition out when mouse leaves */
-    transition: transform 0.2s ease-out, flex 0.8s cubic-bezier(0.77, 0, 0.175, 1);
-    transform-style: preserve-3d;
-    will-change: transform;
-}
-
-/* Ensure content stays readable and pops out slightly */
-.content-wrapper {
-    pointer-events: none; /* Let mouse events hit the parent .split */
-    transform: translateZ(50px); /* Lifts text off the background */
-}
-        
-    </style>
-
-   
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Montserrat:wght@300;600&display=swap" rel="stylesheet">
-</head>
 <body>
 
     <div class="container">
         <a href="studio.html" class="split left">
-            <h1>Makeup Studio</h1>
-            <p>Nails • Facial • Beauty</p>
-            <div class="btn">Enter Studio</div>
+            <div class="content-wrapper">
+                <h1>Makeup Studio</h1>
+                <p>Artistry • Elegance • Beauty</p>
+                <div class="btn">Enter Studio</div>
+            </div>
         </a>
 
         <a href="info.html" class="split right">
-            <h1>Khushana Info</h1>
-            <p>Web Dev • Design • Marketing</p>
-            <div class="btn">Explore Services</div>
+            <div class="content-wrapper">
+                <h1>Khushana Digital</h1>
+                <p>Design • Dev • Strategy</p>
+                <div class="btn">Explore Services</div>
+            </div>
         </a>
     </div>
-const cards = document.querySelectorAll('.split');
 
-cards.forEach(card => {
-    card.addEventListener('mousemove', (e) => {
-        const rect = card.getBoundingClientRect();
-        
-        // Calculate mouse position relative to the center of the card
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
-        
-        // Degree of tilt (adjust '10' to make it more or less dramatic)
-        const rotateX = (centerY - y) / 15; 
-        const rotateY = (x - centerX) / 15;
 
-        card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-    });
-
-    // Reset position when mouse leaves
-    card.addEventListener('mouseleave', () => {
-        card.style.transform = `rotateX(0deg) rotateY(0deg)`;
-    });
-});
 </body>
 </html>
+
 
 
