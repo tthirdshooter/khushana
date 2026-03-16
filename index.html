@@ -4,189 +4,223 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Khushana | Welcome</title>
-  <style>
-    :root {
-        --chic-black: #1a1a1a;
-        --info-white: #ffffff;
-        --satin-gold: #c9a050;
-        --text-gray: #555;
-    }
-
-    body, html {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-        font-family: 'Montserrat', sans-serif;
-        overflow: hidden; /* Prevents bounce on animations */
-    }
-
-    .container {
-        display: flex;
-        height: 100vh;
-        width: 100vw;
-        flex-direction: row;
-    }
-
-    .split {
-        flex: 1;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-        transition: all 0.8s cubic-bezier(0.77, 0, 0.175, 1);
-        text-decoration: none;
-        position: relative;
-        text-align: center;
-        padding: 20px;
-        overflow: hidden;
-    }
-
-    /* --- Left Side (Dark/Gold) --- */
-    .left {
-        background: linear-gradient(-45deg, #1a1a1a, #2c2c2c, #1a1a1a);
-        background-size: 400% 400%;
-        animation: gradientBG 15s ease infinite;
-        color: white;
-        border-right: 1px solid rgba(201, 160, 80, 0.3);
-    }
-
-    /* --- Right Side (Light/Minimal) --- */
-    .right {
-        background: linear-gradient(-45deg, #ffffff, #f9f9f9, #ffffff);
-        background-size: 400% 400%;
-        animation: gradientBG 15s ease infinite;
-        color: var(--chic-black);
-    }
-
-    @keyframes gradientBG {
-        0% { background-position: 0% 50%; }
-        50% { background-position: 100% 50%; }
-        100% { background-position: 0% 50%; }
-    }
-
-    /* Professional Hover Expansion */
-    @media (min-width: 769px) {
-        .split:hover { flex: 1.6; }
-        .left:hover { box-shadow: inset -50px 0 100px rgba(201, 160, 80, 0.1); }
-        .right:hover { box-shadow: inset 50px 0 100px rgba(0, 0, 0, 0.05); }
-    }
-
-    /* Text Animation Logic */
-    .content-wrapper {
-        opacity: 0;
-        transform: translateY(30px);
-        animation: fadeInUp 1s forwards cubic-bezier(0.2, 0.8, 0.2, 1);
-    }
-
-    .left .content-wrapper { animation-delay: 0.3s; }
-    .right .content-wrapper { animation-delay: 0.6s; }
-
-    @keyframes fadeInUp {
-        to {
-            opacity: 1;
-            transform: translateY(0);
+    <link href="https://raw.githubusercontent.com/tthirdshooter/khushana/main/images/logo1.jpeg" rel="stylesheet">
+    <style>
+        :root {
+            --chic-black: #1a1a1a;
+            --info-white: #ffffff;
+            --satin-gold: #c9a050;
+            --text-gray: #555;
         }
-    }
 
-    .split h1 {
-        font-size: clamp(1.8rem, 5vw, 3.5rem);
-        text-transform: uppercase;
-        letter-spacing: 6px;
-        margin-bottom: 15px;
-        font-family: 'Cormorant Garamond', serif;
-    }
+        body, html {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: 'Montserrat', sans-serif;
+            overflow: hidden;
+            background-color: #000;
+        }
 
-    .split p {
-        font-size: 1rem;
-        text-transform: uppercase;
-        letter-spacing: 3px;
-        margin-bottom: 30px;
-        font-weight: 300;
-        opacity: 0.8;
-    }
+        /* --- LOADER STYLES --- */
+        #loader {
+            position: fixed;
+            inset: 0;
+            background: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            transition: opacity 1s ease, visibility 1s;
+        }
 
-    /* Modern Button Styling */
-    .btn {
-        position: relative;
-        padding: 15px 40px;
-        text-transform: uppercase;
-        font-size: 0.75rem;
-        font-weight: 600;
-        letter-spacing: 2px;
-        transition: 0.4s;
-        border: 1px solid;
-        z-index: 1;
-    }
+        .loader-content {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
 
-    .left .btn { border-color: var(--satin-gold); color: var(--satin-gold); }
-    .right .btn { border-color: var(--chic-black); color: var(--chic-black); }
+        .loader-logo {
+            width: 120px;
+            margin-bottom: 20px;
+            filter: drop-shadow(0 0 10px rgba(201, 160, 80, 0.5));
+            animation: pulse 2s infinite ease-in-out;
+        }
 
-    .btn::before {
-        content: '';
-        position: absolute;
-        top: 0; left: 0; width: 0; height: 100%;
-        transition: 0.4s;
-        z-index: -1;
-    }
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.05); opacity: 1; }
+            100% { transform: scale(1); opacity: 0.8; }
+        }
 
-    .left .btn:hover::before { width: 100%; background: var(--satin-gold); }
-    .right .btn:hover::before { width: 100%; background: var(--chic-black); }
+        .shimmer {
+            color: var(--satin-gold);
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2rem, 8vw, 3.5rem);
+            letter-spacing: 10px;
+            background: linear-gradient(90deg, #1a1a1a, #fff, #1a1a1a);
+            background-size: 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shimmer 3s infinite linear;
+            margin: 0;
+        }
 
-    .btn:hover { color: white !important; }
+        .progress-bar {
+            width: 200px;
+            height: 2px;
+            background: #333;
+            margin-top: 25px;
+            border-radius: 2px;
+            overflow: hidden;
+        }
 
-    /* Mobile Adjustments */
-    @media (max-width: 768px) {
-        .container { flex-direction: column; }
-        .left { border-right: none; border-bottom: 1px solid var(--satin-gold); }
-        .split h1 { font-size: 2rem; }
-    }
+        .progress-fill {
+            width: 0;
+            height: 100%;
+            background: var(--satin-gold);
+            animation: fillProgress 2.5s forwards ease-in-out;
+        }
 
-/* Enable 3D space for the container */
-.container {
-    perspective: 1000px; 
-}
+        @keyframes shimmer {
+            0% { background-position: -200%; }
+            100% { background-position: 200%; }
+        }
 
-.split {
-    /* Smooth transition out when mouse leaves */
-    transition: transform 0.2s ease-out, flex 0.8s cubic-bezier(0.77, 0, 0.175, 1);
-    transform-style: preserve-3d;
-    will-change: transform;
-}
+        @keyframes fillProgress { to { width: 100%; } }
 
-/* Ensure content stays readable and pops out slightly */
-.content-wrapper {
-    pointer-events: none; /* Let mouse events hit the parent .split */
-    transform: translateZ(50px); /* Lifts text off the background */
-}
+        /* --- MAIN CONTAINER --- */
+        .container {
+            display: flex;
+            height: 100vh;
+            width: 100vw;
+            flex-direction: row;
+            perspective: 1000px;
+            opacity: 0;
+            transition: opacity 1.5s ease;
+        }
 
-.sparkle {
-    position: fixed;
-    width: 6px;
-    height: 6px;
-    background: var(--satin-gold);
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 9999;
-    box-shadow: 0 0 10px var(--satin-gold), 0 0 20px #fff;
-    animation: sparkle-fade 0.8s linear forwards;
-}
+        .loaded .container { opacity: 1; }
 
-@keyframes sparkle-fade {
-    0% {
-        transform: scale(1) translateY(0);
-        opacity: 1;
-    }
-    100% {
-        transform: scale(0) translateY(20px);
-        opacity: 0;
-    }
-}
-      
-</style>
+        .split {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            transition: transform 0.2s ease-out, flex 0.8s cubic-bezier(0.77, 0, 0.175, 1);
+            text-decoration: none;
+            position: relative;
+            text-align: center;
+            padding: 20px;
+            overflow: hidden;
+            transform-style: preserve-3d;
+        }
 
+        .left {
+            background: linear-gradient(-45deg, #1a1a1a, #2c2c2c, #1a1a1a);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            color: white;
+            border-right: 1px solid rgba(201, 160, 80, 0.2);
+        }
+
+        .right {
+            background: linear-gradient(-45deg, #ffffff, #f9f9f9, #ffffff);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            color: var(--chic-black);
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @media (min-width: 769px) {
+            .split:hover { flex: 1.4; }
+        }
+
+        .content-wrapper {
+            pointer-events: none;
+            transform: translateZ(60px);
+            z-index: 2;
+        }
+
+        .studio-logo {
+            width: 150px;
+            margin-bottom: 20px;
+            filter: drop-shadow(0 0 10px rgba(0,0,0,0.5));
+        }
+
+        .split h1 {
+            font-size: clamp(1.5rem, 4vw, 3rem);
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            margin: 5px 0;
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        .split p {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 30px;
+            font-weight: 300;
+            opacity: 0.8;
+        }
+
+        .btn {
+            padding: 15px 40px;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            transition: 0.4s;
+            border: 1px solid;
+        }
+
+        .left .btn { border-color: var(--satin-gold); color: var(--satin-gold); }
+        .right .btn { border-color: var(--chic-black); color: var(--chic-black); }
+
+        .btn:hover { background: var(--satin-gold); color: white; border-color: var(--satin-gold); }
+        .right .btn:hover { background: var(--chic-black); color: white; }
+
+        #particleCanvas {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            opacity: 0.4;
+        }
+
+        .sparkle {
+            position: fixed;
+            width: 4px; height: 4px;
+            background: var(--satin-gold);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            box-shadow: 0 0 10px var(--satin-gold);
+            animation: sparkle-fade 0.8s linear forwards;
+        }
+
+        @keyframes sparkle-fade {
+            to { transform: scale(0) translateY(20px); opacity: 0; }
+        }
+
+        @media (max-width: 768px) {
+            .container { flex-direction: column; }
+            .split { flex: 1; }
+        }
+    </style>
+</head>
 <body>
+
 <div id="loader">
     <div class="loader-content">
+        <img src="https://raw.githubusercontent.com/tthirdshooter/khushana/main/images/logo1.jpeg" class="loader-logo" alt="Khushana Logo">
         <h2 class="shimmer">KHUSHANA</h2>
         <div class="progress-bar"><div class="progress-fill"></div></div>
     </div>
@@ -195,249 +229,113 @@
 <audio id="bgMusic" loop>
     <source src="https://www.bensound.com/bensound-music/bensound-slowmotion.mp3" type="audio/mpeg">
 </audio>
-    
-    <div class="container">
-        <a href="home.html" class="split left" id="studio-side">
-            <canvas id="particleCanvas"></canvas>
-            <div class="content-wrapper" style="position: relative; z-index: 2;">
-                <h1>KHUSHANA</h1>
-                <h1>Makeup Studio</h1>
-                <p>Artistry • Elegance • Beauty</p>
-                <div class="btn">Enter Studio</div>
-            </div>
-        </a>
 
-        <a href="info.html" class="split right">
-            <div class="content-wrapper">
-                <h1>Khushana Digital</h1>
-                <p>Design • Dev • Strategy</p>
-                <div class="btn">Explore Services</div>
-            </div>
-        </a>
-    </div>
+<div class="container">
+    <a href="studio.html" class="split left" id="studio-side">
+        <canvas id="particleCanvas"></canvas>
+        <div class="content-wrapper">
+          
+            <h1>KHUSHANA</h1>
+            <h1>Makeup Studio</h1>
+            <p>Artistry • Elegance • Beauty</p>
+            <div class="btn">Enter Studio</div>
+        </div>
+    </a>
 
-    <style>
-        #particleCanvas {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none; /* Allows clicks to pass through to the link */
-            opacity: 0.6;
+    <a href="info.html" class="split right">
+        <div class="content-wrapper">
+            <h1>Khushana Digital</h1>
+            <p>Design • Dev • Strategy</p>
+            <div class="btn">Explore Services</div>
+        </div>
+    </a>
+</div>
+
+<script>
+    // 1. Loader Logic
+    window.addEventListener('load', () => {
+        setTimeout(() => {
+            document.getElementById('loader').style.opacity = '0';
+            document.getElementById('loader').style.visibility = 'hidden';
+            document.body.classList.add('loaded');
+        }, 2500);
+    });
+
+    // 2. Audio Logic
+    document.addEventListener('click', () => {
+        const audio = document.getElementById('bgMusic');
+        if (audio.paused) {
+            audio.volume = 0.2;
+            audio.play().catch(() => {});
         }
+    }, { once: true });
 
-        /* Subtle glow for the left side text */
-        .left h1 {
-            text-shadow: 0 0 15px rgba(201, 160, 80, 0.4);
-        }
-/* --- LOADER STYLES --- */
-#loader {
-    position: fixed;
-    inset: 0;
-    background: #000;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 10000;
-    transition: opacity 1s ease, visibility 1s;
-}
-
-.shimmer {
-    color: #c9a050;
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 3rem;
-    letter-spacing: 10px;
-    background: linear-gradient(90deg, #1a1a1a, #fff, #1a1a1a);
-    background-size: 200%;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: shimmer 3s infinite linear;
-}
-
-.progress-bar {
-    width: 200px;
-    height: 2px;
-    background: #333;
-    margin-top: 20px;
-}
-
-.progress-fill {
-    width: 0;
-    height: 100%;
-    background: #c9a050;
-    animation: fillProgress 2s forwards ease-in-out;
-}
-
-@keyframes shimmer {
-    0% { background-position: -200%; }
-    100% { background-position: 200%; }
-}
-
-@keyframes fillProgress {
-    to { width: 100%; }
-}
-
-/* Hide content until loader is gone */
-.container { opacity: 0; transition: opacity 1.5s ease; }
-.loaded .container { opacity: 1; }
-
-        
-    </style>
-
-    <script>
-        const canvas = document.getElementById('particleCanvas');
-        const ctx = canvas.getContext('2d');
-        let particles = [];
-
-        function resize() {
-            canvas.width = document.getElementById('studio-side').offsetWidth;
-            canvas.height = document.getElementById('studio-side').offsetHeight;
-        }
-
-        window.addEventListener('resize', resize);
-        resize();
-
-        class Particle {
-            constructor() {
-                this.init();
-            }
-
-            init() {
-                this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height;
-                this.size = Math.random() * 2 + 0.5;
-                this.speedX = Math.random() * 0.5 - 0.25;
-                this.speedY = Math.random() * -0.5 - 0.2; // Slowly float upwards
-                this.color = 'rgba(201, 160, 80, ' + (Math.random() * 0.5 + 0.2) + ')';
-            }
-
-            update() {
-                this.x += this.speedX;
-                this.y += this.speedY;
-
-                // Reset particle if it goes off screen
-                if (this.y < 0) {
-                    this.y = canvas.height;
-                    this.x = Math.random() * canvas.width;
-                }
-            }
-
-            draw() {
-                ctx.fillStyle = this.color;
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fill();
-            }
-        }
-
-        function initParticles() {
-            for (let i = 0; i < 60; i++) {
-                particles.push(new Particle());
-            }
-        }
-
-        function animate() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            particles.forEach(p => {
-                p.update();
-                p.draw();
-            });
-            requestAnimationFrame(animate);
-        }
-
-        initParticles();
-        animate();
-        window.addEventListener('load', () => {
-    const loader = document.getElementById('loader');
-    
-    // Smoothly remove loader after 2 seconds
-    setTimeout(() => {
-        loader.style.opacity = '0';
-        loader.style.visibility = 'hidden';
-        document.body.classList.add('loaded');
-    }, 2500);
-});
-
-// Start music on first interaction (professional standard)
-document.addEventListener('click', () => {
-    const audio = document.getElementById('bgMusic');
-    if (audio.paused) {
-        audio.volume = 0.3; // Low ambient volume
-        audio.play();
+    // 3. Particle System
+    const canvas = document.getElementById('particleCanvas');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+    function resize() {
+        canvas.width = document.getElementById('studio-side').offsetWidth;
+        canvas.height = document.getElementById('studio-side').offsetHeight;
     }
-}, { once: true }); // Only triggers on the first click
-    </script>
+    window.addEventListener('resize', resize);
+    resize();
 
+    class Particle {
+        constructor() { this.init(); }
+        init() {
+            this.x = Math.random() * canvas.width;
+            this.y = Math.random() * canvas.height;
+            this.size = Math.random() * 2;
+            this.speedY = Math.random() * -0.5 - 0.1;
+            this.color = 'rgba(201, 160, 80, ' + (Math.random() * 0.5) + ')';
+        }
+        update() {
+            this.y += this.speedY;
+            if (this.y < 0) this.y = canvas.height;
+        }
+        draw() {
+            ctx.fillStyle = this.color;
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            ctx.fill();
+        }
+    }
 
-const cards = document.querySelectorAll('.split');
+    for (let i = 0; i < 50; i++) particles.push(new Particle());
+    function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        particles.forEach(p => { p.update(); p.draw(); });
+        requestAnimationFrame(animate);
+    }
+    animate();
 
-cards.forEach(card => {
-    card.addEventListener('mousemove', (e) => {
-        const rect = card.getBoundingClientRect();
-        
-        // Calculate mouse position relative to the center of the card
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
-        
-        // Degree of tilt (adjust '10' to make it more or less dramatic)
-        const rotateX = (centerY - y) / 15; 
-        const rotateY = (x - centerX) / 15;
-
-        card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+    // 4. 3D Tilt Effect
+    const cards = document.querySelectorAll('.split');
+    cards.forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            const rotateX = (rect.height / 2 - y) / 20;
+            const rotateY = (x - rect.width / 2) / 20;
+            card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+        });
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = `rotateX(0deg) rotateY(0deg)`;
+        });
     });
 
-    // Reset position when mouse leaves
-    card.addEventListener('mouseleave', () => {
-        card.style.transform = `rotateX(0deg) rotateY(0deg)`;
+    // 5. Sparkle Effect
+    const studioSide = document.getElementById('studio-side');
+    studioSide.addEventListener('mousemove', (e) => {
+        const sparkle = document.createElement('div');
+        sparkle.className = 'sparkle';
+        sparkle.style.left = e.clientX + 'px';
+        sparkle.style.top = e.clientY + 'px';
+        document.body.appendChild(sparkle);
+        setTimeout(() => sparkle.remove(), 800);
     });
-});
+</script>
 
-const studioSide = document.querySelector('.left');
-
-studioSide.addEventListener('mousemove', (e) => {
-    createSparkle(e.clientX, e.clientY);
-});
-
-function createSparkle(x, y) {
-    const sparkle = document.createElement('div');
-    sparkle.className = 'sparkle';
-    
-    // Center the sparkle on the cursor
-    sparkle.style.left = (x - 3) + 'px';
-    sparkle.style.top = (y - 3) + 'px';
-    
-    // Add a slight random offset for a organic feel
-    const randomX = (Math.random() - 0.5) * 15;
-    const randomY = (Math.random() - 0.5) * 15;
-    sparkle.style.marginLeft = randomX + 'px';
-    sparkle.style.marginTop = randomY + 'px';
-    
-    document.body.appendChild(sparkle);
-    
-    // Remove element after animation ends to keep DOM clean
-    setTimeout(() => {
-        sparkle.remove();
-    }, 800);
-}
-
-
-
-
-
-    
 </body>
-</html>
-
-
-
-
-
-
-
-
-
-
