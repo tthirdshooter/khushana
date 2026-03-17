@@ -33,6 +33,17 @@
             border: 1px solid #222;
             border-top: 5px solid var(--deep-gold);
             box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            position: relative;
+        }
+
+        /* Logo Styling */
+        .logo-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .logo-container img {
+            height: 80px;
+            width: auto;
         }
 
         h2 {
@@ -88,6 +99,18 @@
             transform: translateY(-3px);
         }
 
+        /* Success Message Styling */
+        #success-message {
+            display: none;
+            text-align: center;
+            padding: 40px 0;
+        }
+        #success-message h3 {
+            color: var(--deep-gold);
+            font-family: 'Cinzel', serif;
+            letter-spacing: 3px;
+        }
+
         .nav-home {
             display: block;
             text-align: center;
@@ -96,47 +119,103 @@
             text-decoration: none;
             font-size: 0.8rem;
         }
+
+        .fade-out {
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
     </style>
 </head>
 <body>
 
     <div class="booking-card">
-        <h2>Consultation Request</h2>
-        <form action="#">
-            <div class="form-group">
-                <label>Full Name</label>
-                <input type="text" placeholder="Enter your name" required>
-            </div>
+        <div class="logo-container">
+            <img src="logo1.png" alt="Khushana Logo">
+        </div>
 
-            <div class="form-group">
-                <label>Select Your Interest</label>
-                <select id="service-type">
-                    <option value="studio">Khushana Makeup Studio (Beauty)</option>
-                    <option value="digital">Khushana Digital Info (Tech)</option>
-                </select>
-            </div>
+        <div id="form-container">
+            <h2>Consultation Request</h2>
+            <form id="whatsappForm">
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" id="userName" placeholder="Enter your name" required>
+                </div>
 
-            <div class="form-group">
-                <label>Desired Service</label>
-                <select>
-                    <option>Nail Art / Manicure</option>
-                    <option>Facial / Bridal Makeup</option>
-                    <option>Haircut </option>
-                    <option>Haircolor </option>
-                    <option>Website Development</option>
-                    <option>Digital Marketing Strategy</option>
-                </select>
-            </div>
+                <div class="form-group">
+                    <label>Select Your Interest</label>
+                    <select id="interest">
+                        <option value="Khushana Makeup Studio (Beauty)">Khushana Makeup Studio (Beauty)</option>
+                        <option value="Khushana Digital Info (Tech)">Khushana Digital Info (Tech)</option>
+                    </select>
+                </div>
 
-            <div class="form-group">
-                <label>Message / Requirements</label>
-                <textarea rows="4" placeholder="How can we assist your vision?"></textarea>
-            </div>
+                <div class="form-group">
+                    <label>Desired Service</label>
+                    <select id="service">
+                        <option>Nail Art / Manicure</option>
+                        <option>Facial / Bridal Makeup</option>
+                        <option>Haircut </option>
+                        <option>Haircolor </option>
+                        <option>Website Development</option>
+                        <option>Digital Marketing Strategy</option>
+                    </select>
+                </div>
 
-            <button type="submit" class="submit-btn">Send Inquiry</button>
-        </form>
+                <div class="form-group">
+                    <label>Message / Requirements</label>
+                    <textarea id="userMsg" rows="4" placeholder="How can we assist your vision?"></textarea>
+                </div>
+
+                <button type="submit" class="submit-btn">Send via WhatsApp</button>
+            </form>
+        </div>
+
+        <div id="success-message">
+            <h3>Request Sent!</h3>
+            <p style="color: #888; margin-bottom: 30px;">Redirecting you to WhatsApp to complete your booking...</p>
+            <button onclick="location.reload()" class="submit-btn" style="padding: 10px; width: auto; font-size: 0.7rem;">SEND ANOTHER</button>
+        </div>
+
         <a href="index.html" class="nav-home">BACK TO PORTAL</a>
     </div>
+
+    <script>
+        document.getElementById('whatsappForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // --- CONFIGURATION ---
+            const myPhoneNumber = "919149509617"; // <--- REPLACE WITH YOUR NUMBER (e.g. 919876543210)
+            // ---------------------
+
+            const name = document.getElementById('userName').value;
+            const interest = document.getElementById('interest').value;
+            const service = document.getElementById('service').value;
+            const message = document.getElementById('userMsg').value;
+
+            // Prepare WhatsApp String
+            const whatsappMessage = `*New Inquiry from Website*%0A%0A` +
+                `*Name:* ${encodeURIComponent(name)}%0A` +
+                `*Interest:* ${encodeURIComponent(interest)}%0A` +
+                `*Service:* ${encodeURIComponent(service)}%0A` +
+                `*Message:* ${encodeURIComponent(message)}`;
+
+            const url = `https://wa.me/${myPhoneNumber}?text=${whatsappMessage}`;
+
+            // Visual UI Transition
+            const formContainer = document.getElementById('form-container');
+            const successMsg = document.getElementById('success-message');
+
+            formContainer.classList.add('fade-out');
+            
+            setTimeout(() => {
+                formContainer.style.display = 'none';
+                successMsg.style.display = 'block';
+                
+                // Open WhatsApp
+                window.open(url, '_blank');
+            }, 500);
+        });
+    </script>
 
 </body>
 </html>
