@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Khushana | The Sovereign Brand</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Playfair+Display:ital,wght@1,500&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Playfair+Display:ital,wght@1,500&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    
     <style>
         :root {
             --royal-emerald: #022b24;
@@ -18,33 +20,54 @@
             background: var(--midnight);
             color: var(--silk-white);
             font-family: 'Montserrat', sans-serif;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* --- LOGO HEADER --- */
+        .logo-header {
+            padding: 40px 0 20px 0;
             text-align: center;
         }
 
+        .logo-header img {
+            height: 60px;
+            width: auto;
+            transition: transform 0.4s ease, opacity 0.3s ease;
+        }
+
+        .logo-header a:hover img {
+            transform: scale(1.1);
+            opacity: 0.8;
+        }
+
+        /* --- CONTENT CONTAINER --- */
         .about-container {
             max-width: 900px;
             margin: 0 auto;
-            padding: 100px 20px;
+            padding: 20px 20px 100px 20px;
+            text-align: center;
         }
 
         .crown-icon {
             color: var(--deep-gold);
-            font-size: 3rem;
-            margin-bottom: 20px;
+            font-size: 2.5rem;
+            margin-bottom: 15px;
         }
 
         h1 {
             font-family: 'Cinzel', serif;
-            font-size: 3.5rem;
+            font-size: clamp(2rem, 5vw, 3.5rem);
             letter-spacing: 10px;
             color: var(--deep-gold);
             text-transform: uppercase;
+            margin-top: 0;
         }
 
         .philosophy-text {
             font-family: 'Playfair Display', serif;
             font-style: italic;
-            font-size: 1.6rem;
+            font-size: clamp(1.1rem, 3vw, 1.6rem);
             margin: 40px 0;
             line-height: 1.4;
             color: #ddd;
@@ -52,15 +75,58 @@
 
         .story-section {
             line-height: 2;
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             color: #bbb;
             text-align: justify;
             columns: 2;
             column-gap: 50px;
             border-top: 1px solid #333;
             padding-top: 50px;
+            margin-bottom: 60px;
         }
 
+        /* --- DIRECTOR PROFILE --- */
+        .director-profile {
+            margin-top: 80px;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(184, 134, 11, 0.2);
+            position: relative;
+            text-align: left;
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        .director-line {
+            width: 50px;
+            height: 2px;
+            background: var(--deep-gold);
+            margin-bottom: 20px;
+        }
+
+        .director-content h3 {
+            font-family: 'Cinzel', serif;
+            color: var(--deep-gold);
+            margin: 0;
+            font-size: 1.8rem;
+            letter-spacing: 3px;
+        }
+
+        .director-title {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: #888;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .director-bio {
+            font-size: 0.95rem;
+            line-height: 1.8;
+            color: #ccc;
+        }
+
+        /* --- NAVIGATION BUTTON --- */
         .back-home {
             display: inline-block;
             margin-top: 60px;
@@ -69,6 +135,9 @@
             font-family: 'Cinzel', serif;
             border: 1px solid var(--deep-gold);
             padding: 15px 40px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-size: 0.8rem;
             transition: 0.3s;
         }
 
@@ -77,13 +146,27 @@
             color: var(--midnight);
         }
 
+        /* --- RESPONSIVE ADJUSTMENTS --- */
         @media (max-width: 768px) {
-            .story-section { columns: 1; }
-            h1 { font-size: 2.2rem; }
+            .story-section { columns: 1; text-align: center; }
+            .director-profile { padding: 30px; text-align: center; }
+            .director-line { margin: 0 auto 20px auto; }
+            h1 { letter-spacing: 5px; }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
 <body>
+
+    <div class="logo-header">
+        <a href="studio.html" title="Visit Studio">
+            <img src="https://raw.githubusercontent.com/tthirdshooter/khushana/main/images/logo1.png" alt="Khushana Logo">
+        </a>
+    </div>
 
     <div class="about-container">
         <div class="crown-icon">⚜</div>
@@ -100,6 +183,17 @@
             <p>
                 As the world shifted toward the digital horizon, our vision expanded. We realized that the same meticulous attention to detail required for a bridal transformation was the secret ingredient to building world-class digital interfaces. Today, Khushana stands as a dual-force agency: defining physical beauty and building digital empires.
             </p>
+        </div>
+
+        <div class="director-profile">
+            <div class="director-line"></div>
+            <div class="director-content">
+                <h3>Ankur Kumar</h3>
+                <p class="director-title">Creative Director & IT Educator</p>
+                <p class="director-bio">
+                    With a foundation in Computer Science and a passion for aesthetic mastery, Ankur Kumar embodies the Khushana philosophy. By day, he shapes the digital minds of tomorrow; by night, he crafts the visual legacies of Jammu’s elite. His dual expertise ensures that every project—whether a bridal transformation or a digital architecture—is executed with academic precision and artistic soul.
+                </p>
+            </div>
         </div>
 
         <a href="index.html" class="back-home">Return to Choice</a>
