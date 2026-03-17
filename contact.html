@@ -7,7 +7,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --royal-emerald: #022b24;
             --deep-gold: #b8860b;
             --midnight: #0a0a0a;
             --input-bg: #1a1a1a;
@@ -29,20 +28,18 @@
             background: #111;
             width: 100%;
             max-width: 600px;
-            padding: 50px;
+            padding: 40px;
             border: 1px solid #222;
             border-top: 5px solid var(--deep-gold);
             box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-            position: relative;
         }
 
-        /* Logo Styling */
         .logo-container {
             text-align: center;
             margin-bottom: 20px;
         }
         .logo-container img {
-            height: 80px;
+            height: 70px;
             width: auto;
         }
 
@@ -50,16 +47,17 @@
             font-family: 'Cinzel', serif;
             color: var(--deep-gold);
             text-align: center;
-            letter-spacing: 5px;
-            margin-bottom: 40px;
+            letter-spacing: 4px;
+            margin-bottom: 30px;
+            font-size: 1.4rem;
         }
 
-        .form-group { margin-bottom: 25px; }
+        .form-group { margin-bottom: 20px; }
 
         label {
             display: block;
             margin-bottom: 8px;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             text-transform: uppercase;
             letter-spacing: 2px;
             color: #888;
@@ -82,13 +80,13 @@
 
         .submit-btn {
             width: 100%;
-            padding: 20px;
+            padding: 18px;
             background: var(--deep-gold);
             color: var(--midnight);
             border: none;
             font-family: 'Cinzel', serif;
             font-weight: bold;
-            font-size: 1rem;
+            font-size: 0.9rem;
             cursor: pointer;
             transition: 0.3s;
             letter-spacing: 2px;
@@ -96,34 +94,56 @@
 
         .submit-btn:hover {
             background: #fff;
-            transform: translateY(-3px);
+            transform: translateY(-2px);
         }
 
-        /* Success Message Styling */
+        .call-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            padding: 14px;
+            margin-top: 15px;
+            background: transparent;
+            color: var(--deep-gold);
+            border: 1px solid var(--deep-gold);
+            font-family: 'Cinzel', serif;
+            font-size: 0.8rem;
+            text-decoration: none;
+            transition: 0.3s;
+            letter-spacing: 1px;
+            box-sizing: border-box;
+        }
+
+        .call-btn:hover { background: rgba(184, 134, 11, 0.1); color: #fff; border-color: #fff; }
+
         #success-message {
             display: none;
             text-align: center;
-            padding: 40px 0;
+            padding: 30px 0;
         }
-        #success-message h3 {
-            color: var(--deep-gold);
-            font-family: 'Cinzel', serif;
-            letter-spacing: 3px;
+
+        .business-hours {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #222;
+            text-align: center;
+            color: #666;
+            font-size: 0.75rem;
+            line-height: 1.6;
         }
 
         .nav-home {
             display: block;
             text-align: center;
             margin-top: 20px;
-            color: #555;
+            color: #444;
             text-decoration: none;
-            font-size: 0.8rem;
+            font-size: 0.7rem;
+            letter-spacing: 1px;
         }
 
-        .fade-out {
-            opacity: 0;
-            transition: opacity 0.5s ease;
-        }
+        .fade-out { opacity: 0; transition: opacity 0.4s ease; }
     </style>
 </head>
 <body>
@@ -138,42 +158,49 @@
             <form id="whatsappForm">
                 <div class="form-group">
                     <label>Full Name</label>
-                    <input type="text" id="userName" placeholder="Enter your name" required>
+                    <input type="text" id="userName" placeholder="Your Name" required>
                 </div>
 
                 <div class="form-group">
-                    <label>Select Your Interest</label>
+                    <label>Interest</label>
                     <select id="interest">
-                        <option value="Khushana Makeup Studio (Beauty)">Khushana Makeup Studio (Beauty)</option>
-                        <option value="Khushana Digital Info (Tech)">Khushana Digital Info (Tech)</option>
+                        <option value="Beauty">Khushana Makeup Studio (Beauty)</option>
+                        <option value="Tech">Khushana Digital Info (Tech)</option>
                     </select>
                 </div>
 
                 <div class="form-group">
                     <label>Desired Service</label>
                     <select id="service">
+                        <option>Bridal Makeup</option>
                         <option>Nail Art / Manicure</option>
-                        <option>Facial / Bridal Makeup</option>
-                        <option>Haircut </option>
-                        <option>Haircolor </option>
+                        <option>Haircut / Styling</option>
                         <option>Website Development</option>
-                        <option>Digital Marketing Strategy</option>
+                        <option>Digital Marketing</option>
                     </select>
                 </div>
 
                 <div class="form-group">
-                    <label>Message / Requirements</label>
-                    <textarea id="userMsg" rows="4" placeholder="How can we assist your vision?"></textarea>
+                    <label>Message</label>
+                    <textarea id="userMsg" rows="3" placeholder="How can we help?"></textarea>
                 </div>
 
-                <button type="submit" class="submit-btn">Send via WhatsApp</button>
+                <button type="submit" class="submit-btn">SEND WHATSAPP INQUIRY</button>
             </form>
+            
+            <a href="tel:+91XXXXXXXXXX" class="call-btn">📞 DIRECT CALL</a>
         </div>
 
         <div id="success-message">
-            <h3>Request Sent!</h3>
-            <p style="color: #888; margin-bottom: 30px;">Redirecting you to WhatsApp to complete your booking...</p>
-            <button onclick="location.reload()" class="submit-btn" style="padding: 10px; width: auto; font-size: 0.7rem;">SEND ANOTHER</button>
+            <h3 style="font-family: 'Cinzel'; color: var(--deep-gold);">Request Initiated</h3>
+            <p>Redirecting to WhatsApp...</p>
+            <button onclick="location.reload()" class="nav-home" style="border:none; background:none; cursor:pointer; width:100%;">Click here to reset form</button>
+        </div>
+
+        <div class="business-hours">
+            <strong>BUSINESS HOURS</strong><br>
+            Monday – Saturday: 10:00 AM – 8:00 PM<br>
+            Sunday: By Appointment Only
         </div>
 
         <a href="index.html" class="nav-home">BACK TO PORTAL</a>
@@ -183,17 +210,15 @@
         document.getElementById('whatsappForm').addEventListener('submit', function(e) {
             e.preventDefault();
 
-            // --- CONFIGURATION ---
-            const myPhoneNumber = "917889425218"; // <--- REPLACE WITH YOUR NUMBER (e.g. 919876543210)
-            // ---------------------
+            // CONFIG: Replace with your 10-digit number (include country code, no +)
+            const myPhoneNumber = "91XXXXXXXXXX"; 
 
             const name = document.getElementById('userName').value;
             const interest = document.getElementById('interest').value;
             const service = document.getElementById('service').value;
             const message = document.getElementById('userMsg').value;
 
-            // Prepare WhatsApp String
-            const whatsappMessage = `*New Inquiry from Website*%0A%0A` +
+            const whatsappMessage = `*New Website Inquiry*%0A%0A` +
                 `*Name:* ${encodeURIComponent(name)}%0A` +
                 `*Interest:* ${encodeURIComponent(interest)}%0A` +
                 `*Service:* ${encodeURIComponent(service)}%0A` +
@@ -201,7 +226,6 @@
 
             const url = `https://wa.me/${myPhoneNumber}?text=${whatsappMessage}`;
 
-            // Visual UI Transition
             const formContainer = document.getElementById('form-container');
             const successMsg = document.getElementById('success-message');
 
@@ -210,10 +234,8 @@
             setTimeout(() => {
                 formContainer.style.display = 'none';
                 successMsg.style.display = 'block';
-                
-                // Open WhatsApp
                 window.open(url, '_blank');
-            }, 500);
+            }, 400);
         });
     </script>
 
