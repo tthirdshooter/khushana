@@ -4,41 +4,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Khushana Makeup Studio | Luxury Beauty Artistry</title>
-    <style>
-        /* Import Professional Serif and Sans-Serif Fonts */
-        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Montserrat:wght@300;400;600&display=swap');
+    
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Montserrat:wght@300;400;600&family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
 
+    <style>
         :root {
-            /* PROFESSIONAL COLOR PALETTE: QUIET LUXURY */
-            --chic-black: #1a1a1a;       /* Rich, deep black for text and backgrounds */
-            --satin-gold: #c9a050;       /* Refined, metallic gold for accents */
-            --gold-hover: #e4c98e;       /* Lighter gold for interaction */
-            --luminous-ivory: #fffbf5;  /* Soft, warm off-white for main backgrounds */
-            --soft-cream: #f4e1d2;      /* Gentle peach-cream for contrast sections */
-            --text-main: #333333;       /* Deep charcoal for main readability */
-            --text-light: #ffffff;      /* Pure white for dark backgrounds */
+            --chic-black: #1a1a1a;
+            --satin-gold: #c9a050;
+            --gold-hover: #e4c98e;
+            --luminous-ivory: #fffbf5;
+            --soft-cream: #f4e1d2;
+            --text-main: #333333;
+            --text-light: #ffffff;
         }
 
         body {
             margin: 0;
             padding: 0;
-            font-family: 'Montserrat', sans-serif; /* Clean sans-serif for body */
+            font-family: 'Montserrat', sans-serif;
             background-color: var(--luminous-ivory);
             color: var(--text-main);
             overflow-x: hidden;
             line-height: 1.8;
         }
 
-        /* --- Header / Navigation --- */
-        header {
-            background-color: var(--chic-black);
-            padding: 20px 50px;
+        /* --- STICKY NAVIGATION --- */
+        .main-navbar {
+            background: rgba(10, 10, 10, 0.98);
+            padding: 10px 50px;
             position: fixed;
             width: 100%;
             top: 0;
-            z-index: 1000;
-            box-sizing: border-box;
+            z-index: 10000;
             border-bottom: 2px solid var(--satin-gold);
+            box-sizing: border-box;
         }
 
         .nav-container {
@@ -49,36 +48,53 @@
             margin: 0 auto;
         }
 
-        .logo {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 2.2rem;
-            font-weight: 700;
-            color: var(--satin-gold);
-            text-decoration: none;
-            letter-spacing: 2px;
-            text-transform: uppercase;
+        .logo img {
+            height: 50px;
+            width: auto;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover img {
+            transform: scale(1.05);
         }
 
         .nav-links {
             display: flex;
-            gap: 35px;
+            gap: 30px;
         }
 
         .nav-links a {
+            color: #fff;
             text-decoration: none;
-            color: var(--text-light);
-            text-transform: uppercase;
-            font-size: 0.85rem;
-            font-weight: 600;
+            font-size: 0.8rem;
             letter-spacing: 2px;
-            transition: color 0.3s ease;
+            font-weight: 600;
+            text-transform: uppercase;
+            transition: 0.3s;
         }
 
         .nav-links a:hover {
             color: var(--satin-gold);
         }
 
-        /* --- Hero Section --- */
+        /* --- MOBILE MENU ICON --- */
+        .mobile-menu-icon {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            cursor: pointer;
+        }
+
+        .mobile-menu-icon span {
+            display: block;
+            width: 25px;
+            height: 2px;
+            background-color: var(--satin-gold);
+            transition: 0.3s;
+        }
+
+        /* --- HERO SECTION --- */
         .hero {
             position: relative;
             height: 100vh;
@@ -86,17 +102,13 @@
             align-items: center;
             justify-content: center;
             color: var(--text-light);
-            margin-top: 80px; /* Offset for fixed header */
+            text-align: center;
         }
 
-        /* Background Image: Ensure image_0.png is in the same folder */
         .hero-bg {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.8)), url('image_0.png');
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.8)), url('image_0.png');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -106,324 +118,209 @@
         .hero-content {
             position: relative;
             z-index: 10;
-            text-align: center;
             max-width: 800px;
             padding: 20px;
-            animation: fadeInOpacity 2s ease-in;
+            animation: fadeIn 1.5s ease-out;
         }
 
         .hero h1 {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 5rem;
+            font-size: 4.5rem;
             margin: 0;
-            color: var(--text-light);
-            line-height: 1.1;
             font-weight: 600;
+            line-height: 1.1;
         }
 
-        .hero h1 span {
-            color: var(--satin-gold);
-        }
+        .hero h1 span { color: var(--satin-gold); }
 
         .hero p {
-            font-size: 1.4rem;
+            font-size: 1.2rem;
             margin-top: 20px;
+            letter-spacing: 2px;
             font-weight: 300;
-            letter-spacing: 1px;
         }
 
-        /* --- Global Section Styling --- */
-        section {
-            padding: 100px 10%;
-        }
+        /* --- SERVICES --- */
+        section { padding: 100px 10%; }
 
         .section-title {
             font-family: 'Cormorant Garamond', serif;
             font-size: 3rem;
-            color: var(--chic-black);
             text-align: center;
             margin-bottom: 10px;
-            font-weight: 700;
         }
 
         .section-subtitle {
-            font-size: 1.1rem;
-            color: var(--satin-gold);
             text-align: center;
-            margin-bottom: 60px;
-            text-transform: uppercase;
+            color: var(--satin-gold);
             letter-spacing: 3px;
-            font-weight: 600;
-        }
-
-        /* --- Services Section (IVORY BACKGROUND) --- */
-        .services {
-            background-color: var(--luminous-ivory);
+            text-transform: uppercase;
+            margin-bottom: 60px;
+            font-size: 0.9rem;
         }
 
         .service-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-            max-width: 1400px;
-            margin: 0 auto;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
         }
 
         .service-card {
-            background: #ffffff;
-            padding: 50px;
-            border-radius: 5px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.05);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: 1px solid #f0f0f0;
+            background: white;
+            padding: 40px;
             text-align: center;
+            border: 1px solid #eee;
+            transition: 0.3s;
         }
 
         .service-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 15px 50px rgba(201, 160, 80, 0.2);
             border-color: var(--satin-gold);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
         }
 
-        .service-icon {
-            font-size: 2.5rem;
-            color: var(--satin-gold);
-            margin-bottom: 25px;
-        }
+        .service-icon { font-size: 2rem; color: var(--satin-gold); margin-bottom: 20px; }
 
-        .service-card h3 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.8rem;
-            color: var(--chic-black);
-            margin-bottom: 15px;
-            font-weight: 600;
-        }
-
-        /* --- Portfolio Section (CREAM BACKGROUND) --- */
-        .portfolio {
-            background-color: var(--soft-cream);
-        }
-
-        .portfolio-text {
-            max-width: 700px;
-            margin: 0 auto 50px auto;
-            text-align: center;
-            font-size: 1.1rem;
-            color: var(--text-main);
-        }
-
-        /* --- Call to Action Button --- */
-        .cta-container {
-            text-align: center;
-            margin-top: 60px;
-        }
-
+        /* --- BUTTONS --- */
         .cta-btn {
             display: inline-block;
-            padding: 18px 45px;
-            background-color: var(--chic-black);
+            padding: 15px 40px;
+            background: var(--chic-black);
             color: var(--satin-gold);
             text-decoration: none;
-            text-transform: uppercase;
-            font-weight: 600;
             letter-spacing: 2px;
-            border-radius: 5px;
-            font-size: 0.9rem;
-            transition: background 0.3s ease, color 0.3s ease, transform 0.2s ease;
+            font-weight: 600;
             border: 2px solid var(--chic-black);
+            transition: 0.3s;
+            margin-top: 30px;
         }
 
         .cta-btn:hover {
-            background-color: transparent;
+            background: transparent;
             color: var(--chic-black);
-            transform: scale(1.03);
         }
 
-        /* --- Footer --- */
+        /* --- FOOTER --- */
         footer {
-            background-color: var(--chic-black);
-            color: #b0b0b0;
-            padding: 60px 10%;
+            background: var(--chic-black);
+            color: #888;
+            padding: 60px 20px;
             text-align: center;
-            border-top: 2px solid var(--satin-gold);
+            border-top: 3px solid var(--satin-gold);
         }
 
-        .footer-logo {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 2rem;
-            color: var(--satin-gold);
-            margin-bottom: 15px;
-            display: block;
-        }
+        .footer-logo img { height: 60px; margin-bottom: 20px; }
+        footer p { font-size: 0.9rem; margin: 5px 0; }
+        footer a { color: var(--satin-gold); text-decoration: none; }
 
-        footer p { margin: 8px 0; font-size: 0.9rem; }
-
-        /* --- Animations --- */
-        @keyframes fadeInOpacity {
-            0% { opacity: 0; transform: translateY(20px); }
-            100% { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Responsive Adjustments */
-        @media (max-width: 992px) {
-            .hero h1 { font-size: 3.5rem; }
-            section { padding: 80px 5%; }
-        }
-
-        @media (max-width: 768px) {
-            .nav-links { display: none; } /* Simplified mobile menu required */
+        /* --- RESPONSIVE DESIGN --- */
+        @media (max-width: 850px) {
+            .main-navbar { padding: 10px 20px; }
+            .mobile-menu-icon { display: flex; }
+            .nav-links {
+                position: absolute;
+                top: 72px; left: 0; width: 100%;
+                background: #0a0a0a;
+                flex-direction: column;
+                padding: 40px 0;
+                gap: 25px;
+                text-align: center;
+                transform: translateY(-150%);
+                transition: 0.4s ease-in-out;
+            }
+            .nav-links.active { transform: translateY(0); }
             .hero h1 { font-size: 2.8rem; }
-            .hero p { font-size: 1.1rem; }
         }
 
-
-
-        footer {
-    text-align: center;
-    padding: 40px 20px;
-    background-color: #f9f9f9; /* Or your brand color */
-    color: #333;
-    font-family: 'Arial', sans-serif;
-}
-
-.footer-logo img {
-    max-width: 150px; /* Adjust this based on your logo shape */
-    height: auto;
-    margin-bottom: 20px;
-}
-
-footer p {
-    margin: 8px 0;
-    font-size: 0.9rem;
-    line-height: 1.5;
-}
-
-footer a {
-    color: inherit;
-    text-decoration: none;
-}
-
-.copyright {
-    margin-top: 25px;
-    font-size: 0.8rem;
-    opacity: 0.7;
-}
-.logo img {
-    height: 50px; /* Adjust this value to fit your header height */
-    width: auto;  /* Maintains the aspect ratio */
-    display: block;
-}
-
-.nav-container {
-    display: flex;
-    align-items: center; /* Keeps logo and links vertically centered */
-    justify-content: space-between;
-    padding: 10px 20px;
-}
-
-
-        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
     </style>
 </head>
 <body>
-<nav style="background: rgba(10,10,10,0.95); padding: 15px 50px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #333; position: sticky; top: 0; z-index: 9999;">
-    <a href="index.html" style="color: #b8860b; text-decoration: none; font-family: 'Cinzel', serif; font-weight: bold; font-size: 1.2rem;">KHUSHANA</a>
-    <div style="display: flex; gap: 30px;">
-         <a href="aboutus.html" style="color: #fff; text-decoration: none; font-size: 0.8rem; letter-spacing: 2px; font-weight: 600;">ABOUT US</a>
-         <a href="contact.html" style="color: #b8860b; text-decoration: none; font-size: 0.8rem; letter-spacing: 2px; font-weight: 600;">BOOKING/INQUIRY</a>
-        <a href="studio.html" style="color: #fff; text-decoration: none; font-size: 0.8rem; letter-spacing: 2px; font-weight: 600;">STUDIO</a>
-        <a href="kgallery.html" style="color: #fff; text-decoration: none; font-size: 0.8rem; letter-spacing: 2px; font-weight: 600;">GALLERY</a>
-        <a href="info.html" style="color: #fff; text-decoration: none; font-size: 0.8rem; letter-spacing: 2px; font-weight: 600;">DIGITAL</a>
-       
-    </div>
-</nav>
-    <header>
-    <div class="nav-container">
-        <a href="index.html" class="logo">
-            <img src="https://raw.githubusercontent.com/tthirdshooter/khushana/main/images/logo1.png" alt="Khushana Make Up Studio">
-        </a>
-        <div class="nav-links">
-            <a href="aboutus.html">About</a>
-            <a href="#services">Services</a>
-            <a href="kgallery.html">Portfolio</a>
-            <a href="contact.html">Contact</a>
+
+    <nav class="main-navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <img src="https://raw.githubusercontent.com/tthirdshooter/khushana/main/images/logo1.png" alt="Khushana Logo">
+            </a>
+
+            <div class="mobile-menu-icon" id="menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+
+            <div class="nav-links" id="nav-menu">
+                <a href="aboutus.html">About Us</a>
+                <a href="contact.html">Booking</a>
+                <a href="studio.html">Studio</a>
+                <a href="kgallery.html">Gallery</a>
+                <a href="info.html">Digital</a>
+            </div>
         </div>
-    </div>
-</header>
+    </nav>
 
     <div class="hero">
         <div class="hero-bg"></div>
         <div class="hero-content">
             <h1>Experience <span>Luxury</span> Beauty Artistry</h1>
-            <p>Masterful Makeup. Precision Nail Art. Exclusive Products.</p>
-            <div class="cta-container">
-                <a href="#contact" class="cta-btn">Opening Shortly</a>
-            </div>
+            <p>Masterful Makeup • Precision Nail Art • Bespoke Styling</p>
+            <a href="contact.html" class="cta-btn" style="background: var(--satin-gold); color: white; border-color: var(--satin-gold);">BOOK CONSULTATION</a>
         </div>
     </div>
 
-    <section id="services" class="services">
+    <section id="services">
         <h2 class="section-title">Our Signature Services</h2>
-        <p class="section-subtitle">Excellence Defined</p>
+        <p class="section-subtitle">Defining Modern Elegance</p>
         
         <div class="service-grid">
             <div class="service-card">
                 <div class="service-icon">✦</div>
                 <h3>Facial Makeup</h3>
-                <p>From HD bridal glamour to sophisticated editorial looks, our artistry is tailored to enhance your definitive features.</p>
+                <p>From HD bridal glamour to sophisticated editorial looks, tailored to your features.</p>
             </div>
             <div class="service-card">
                 <div class="service-icon">✦</div>
                 <h3>Nail Artistry</h3>
-                <p>Precision manicures, structural gel extensions, and bespoke 3D nail art designed for lasting impact.</p>
+                <p>Precision manicures and structural gel extensions designed for lasting impact.</p>
             </div>
             <div class="service-card">
                 <div class="service-icon">✦</div>
-                <h3>Beauty Products</h3>
-                <p>A curated boutique of professional-grade pigments, serums, and tools used by our elite artists.</p>
-            </div>
-             <div class="service-card">
-                <div class="service-icon">✦</div>
-                <h3>Hair Cuts</h3>
-                <p>A stylish hair cutting by our elite artists.</p>
+                <h3>Elite Styling</h3>
+                <p>Curated hair cutting and styling services by our master artists.</p>
             </div>
         </div>
     </section>
 
-    <section id="portfolio" class="portfolio">
-        <h2 class="section-title">The Master's Portfolio</h2>
-        <p class="section-subtitle">A Vision of Elegance</p>
-        
-        <p class="portfolio-text">Explore our gallery of transformative looks, showcasing the seamless blend of technical precision and creative vision that defines the Khushana signature.</p>
-
-        <div class="cta-container">
-            <a href="kgallery.html" class="cta-btn">View the Gallery</a>
-        </div>
-    </section>
-
-  <footer>
-    <div class="footer-container">
+    <footer>
         <div class="footer-logo">
             <img src="https://raw.githubusercontent.com/tthirdshooter/khushana/main/images/logo1.png" alt="Khushana Logo">
         </div>
-
         <p><strong>The Beauty Collective</strong> | Sector E, Sainik Colony, Jammu</p>
-        
-        <p>
-            Inquiries: <a href="mailto:khushanaa@hotmail.com">khushanaa@hotmail.com</a> | 
-            +91-788-942-5218, +91-914-950-9617
-        </p>
+        <p>Inquiries: <a href="mailto:khushanaa@hotmail.com">khushanaa@hotmail.com</a></p>
+        <p>+91-788-942-5218 | +91-914-950-9617</p>
+        <p style="margin-top:20px; opacity:0.5;">&copy; 2026 Khushana Makeup Studio. All Rights Reserved.</p>
+    </footer>
 
-        <p class="copyright">&copy; 2026 Khushana Makeup Studio. All Rights Reserved.</p>
-    </div>
-</footer>
+    <script>
+        const menuToggle = document.getElementById('menu-toggle');
+        const navMenu = document.getElementById('nav-menu');
 
+        menuToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            // Animate hamburger to X
+            const spans = menuToggle.getElementsByTagName('span');
+            menuToggle.classList.toggle('open');
+            if(menuToggle.classList.contains('open')) {
+                spans[0].style.transform = "translateY(8px) rotate(45deg)";
+                spans[1].style.opacity = "0";
+                spans[2].style.transform = "translateY(-8px) rotate(-45deg)";
+            } else {
+                spans[0].style.transform = "none";
+                spans[1].style.opacity = "1";
+                spans[2].style.transform = "none";
+            }
+        });
+    </script>
 </body>
 </html>
-
-
-
-
-
-
-
