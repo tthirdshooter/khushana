@@ -34,14 +34,27 @@
             box-shadow: 0 20px 50px rgba(0,0,0,0.5);
         }
 
-        .logo-container {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        .logo-container img {
-            height: 70px;
-            width: auto;
-        }
+.logo-container a {
+    display: inline-block;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    text-decoration: none;
+}
+
+.logo-container a:hover {
+    transform: scale(1.08); /* Sophisticated slight zoom */
+    opacity: 0.9;            /* Subtle visual feedback */
+}
+
+/* Ensure the image itself doesn't have a default link border */
+.logo-container img {
+    border: none;
+    outline: none;
+}
+
+
+
+        
+  
 
         h2 {
             font-family: 'Cinzel', serif;
@@ -149,9 +162,15 @@
 <body>
 
     <div class="booking-card">
-        <div class="logo-container">
-            <img src="https://raw.githubusercontent.com/tthirdshooter/khushana/main/images/logo1.jpeg" alt="Khushana Logo">
-        </div>
+
+<div class="logo-container">
+    <a href="studio.html" title="Visit Studio">
+        <img src="https://raw.githubusercontent.com/tthirdshooter/khushana/main/images/logo1.jpeg" alt="Khushana Logo">
+    </a>
+</div>
+
+       
+        
 
         <div id="form-container">
             <h2>Consultation Request</h2>
