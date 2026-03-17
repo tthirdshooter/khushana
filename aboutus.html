@@ -9,7 +9,6 @@
     
     <style>
         :root {
-            --royal-emerald: #022b24;
             --deep-gold: #b8860b;
             --midnight: #0a0a0a;
             --silk-white: #f4f4f4;
@@ -24,7 +23,6 @@
             line-height: 1.6;
         }
 
-        /* --- LOGO HEADER --- */
         .logo-header {
             padding: 40px 0 20px 0;
             text-align: center;
@@ -33,17 +31,15 @@
         .logo-header img {
             height: 60px;
             width: auto;
-            transition: transform 0.4s ease, opacity 0.3s ease;
+            transition: 0.4s ease;
         }
 
         .logo-header a:hover img {
             transform: scale(1.1);
-            opacity: 0.8;
         }
 
-        /* --- CONTENT CONTAINER --- */
         .about-container {
-            max-width: 900px;
+            max-width: 1000px;
             margin: 0 auto;
             padding: 20px 20px 100px 20px;
             text-align: center;
@@ -61,7 +57,7 @@
             letter-spacing: 10px;
             color: var(--deep-gold);
             text-transform: uppercase;
-            margin-top: 0;
+            margin: 0;
         }
 
         .philosophy-text {
@@ -69,7 +65,6 @@
             font-style: italic;
             font-size: clamp(1.1rem, 3vw, 1.6rem);
             margin: 40px 0;
-            line-height: 1.4;
             color: #ddd;
         }
 
@@ -85,19 +80,41 @@
             margin-bottom: 60px;
         }
 
-        /* --- DIRECTOR PROFILE --- */
+        /* --- LEADERSHIP GRID --- */
+        .leadership-title {
+            font-family: 'Cinzel', serif;
+            color: var(--deep-gold);
+            margin-top: 100px;
+            letter-spacing: 5px;
+            font-size: 1.5rem;
+            text-transform: uppercase;
+        }
+
+        .leadership-grid {
+            display: flex;
+            gap: 30px;
+            margin-top: 40px;
+            text-align: left;
+        }
+
         .director-profile {
-            margin-top: 80px;
+            flex: 1;
             padding: 40px;
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid rgba(184, 134, 11, 0.2);
-            position: relative;
-            text-align: left;
-            animation: fadeIn 1.5s ease-out;
+            transition: 0.3s;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .director-profile:hover {
+            background: rgba(184, 134, 11, 0.05);
+            border-color: var(--deep-gold);
         }
 
         .director-line {
-            width: 50px;
+            width: 40px;
             height: 2px;
             background: var(--deep-gold);
             margin-bottom: 20px;
@@ -107,29 +124,51 @@
             font-family: 'Cinzel', serif;
             color: var(--deep-gold);
             margin: 0;
-            font-size: 1.8rem;
-            letter-spacing: 3px;
+            font-size: 1.5rem;
+            letter-spacing: 2px;
         }
 
         .director-title {
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             text-transform: uppercase;
-            letter-spacing: 4px;
+            letter-spacing: 3px;
             color: #888;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             font-weight: 600;
         }
 
         .director-bio {
-            font-size: 0.95rem;
-            line-height: 1.8;
+            font-size: 0.9rem;
+            line-height: 1.7;
             color: #ccc;
+            margin-bottom: 25px;
         }
 
-        /* --- NAVIGATION BUTTON --- */
+        /* --- SOCIAL LINKS --- */
+        .social-links {
+            display: flex;
+            gap: 15px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 20px;
+        }
+
+        .social-links a {
+            color: var(--deep-gold);
+            text-decoration: none;
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .social-links a:hover {
+            color: #fff;
+        }
+
         .back-home {
             display: inline-block;
-            margin-top: 60px;
+            margin-top: 80px;
             color: var(--deep-gold);
             text-decoration: none;
             font-family: 'Cinzel', serif;
@@ -146,17 +185,10 @@
             color: var(--midnight);
         }
 
-        /* --- RESPONSIVE ADJUSTMENTS --- */
-        @media (max-width: 768px) {
+        @media (max-width: 850px) {
+            .leadership-grid { flex-direction: column; }
             .story-section { columns: 1; text-align: center; }
-            .director-profile { padding: 30px; text-align: center; }
-            .director-line { margin: 0 auto 20px auto; }
             h1 { letter-spacing: 5px; }
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
@@ -185,14 +217,41 @@
             </p>
         </div>
 
-        <div class="director-profile">
-            <div class="director-line"></div>
-            <div class="director-content">
-                <h3>Pankaj Malhotra</h3>
-                <p class="director-title">Creative Director & IT Educator</p>
-                <p class="director-bio">
-                    With a foundation in Computer Science and a passion for aesthetic mastery, Ankur Kumar embodies the Khushana philosophy. By day, he shapes the digital minds of tomorrow; by night, he crafts the visual legacies of Jammu’s elite. His dual expertise ensures that every project—whether a bridal transformation or a digital architecture—is executed with academic precision and artistic soul.
-                </p>
+        <h2 class="leadership-title">Leadership</h2>
+        
+        <div class="leadership-grid">
+            <div class="director-profile">
+                <div>
+                    <div class="director-line"></div>
+                    <div class="director-content">
+                        <h3>Ankur Kumar</h3>
+                        <p class="director-title">Creative Director & IT Educator</p>
+                        <p class="director-bio">
+                            With a foundation in Computer Science and a passion for aesthetic mastery, Ankur embodies the Khushana philosophy. His dual expertise ensures that every project—whether digital architecture or a visual transformation—is executed with academic precision and artistic soul.
+                        </p>
+                    </div>
+                </div>
+                <div class="social-links">
+                    <a href="#">Instagram</a>
+                    <a href="#">LinkedIn</a>
+                </div>
+            </div>
+
+            <div class="director-profile">
+                <div>
+                    <div class="director-line"></div>
+                    <div class="director-content">
+                        <h3>Priya Malhotra</h3>
+                        <p class="director-title">Managing Director & Lead Artist</p>
+                        <p class="director-bio">
+                            The operational heart of Khushana, Priya brings unrivaled expertise in high-definition beauty makeup and structural nail artistry. As Managing Director, she ensures the studio maintains its elite standards, blending technical skill with a deep understanding of luxury client management.
+                        </p>
+                    </div>
+                </div>
+                <div class="social-links">
+                    <a href="#">Instagram</a>
+                    <a href="#">Portfolio</a>
+                </div>
             </div>
         </div>
 
