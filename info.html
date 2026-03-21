@@ -12,198 +12,522 @@
             --soft-gold: #d4af37;
             --midnight: #0a0a0a;
             --silk-white: #f4f4f4;
-            --card-bg: #111111;
+            --card-bg: rgba(20, 20, 20, 0.9);
+            --transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
+
+        * { box-sizing: border-box; }
 
         body {
             font-family: 'Montserrat', sans-serif;
             margin: 0;
             background: var(--midnight);
             color: var(--silk-white);
-            line-height: 1.6;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
         }
 
-        /* --- Royal Header --- */
+        /* --- Custom Scrollbar --- */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--midnight); }
+        ::-webkit-scrollbar-thumb { background: var(--deep-gold); }
+
+        /* --- Navigation --- */
+        nav {
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(184, 134, 11, 0.2);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-logo {
+            color: var(--deep-gold);
+            text-decoration: none;
+            font-family: 'Cinzel', serif;
+            font-weight: bold;
+            font-size: 1.6rem;
+            letter-spacing: 4px;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            font-weight: 600;
+            margin-left: 30px;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover { color: var(--soft-gold); }
+
+        /* --- Hero Header --- */
         .header {
-            padding: 120px 20px;
+            height: 90vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             text-align: center;
-            background: radial-gradient(circle, var(--royal-emerald) 0%, var(--midnight) 100%);
-            border-bottom: 2px solid var(--deep-gold);
+            background: linear-gradient(rgba(2, 43, 36, 0.6), rgba(10, 10, 10, 1)), 
+                        url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1600&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            padding: 0 20px;
         }
 
         .header h1 {
             font-family: 'Cinzel', serif;
-            font-size: clamp(2.5rem, 8vw, 4rem);
+            font-size: clamp(3rem, 10vw, 7rem);
             color: var(--soft-gold);
             margin: 0;
-            letter-spacing: 8px;
+            letter-spacing: 18px;
+            text-shadow: 0 10px 30px rgba(0,0,0,0.7);
         }
 
-        /* --- Main Services Grid --- */
+        .header p {
+            font-size: clamp(1rem, 3vw, 1.4rem);
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            margin-top: 15px;
+            color: rgba(255,255,255,0.9);
+        }
+
+        /* --- Custom Service Graphics --- */
+        .services-section {
+            padding: 120px 5%;
+            background: #080808;
+        }
+
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            padding: 60px 10%;
+            gap: 50px;
             max-width: 1400px;
             margin: 0 auto;
         }
 
         .card {
             background: var(--card-bg);
-            padding: 40px;
-            border-top: 3px solid var(--deep-gold);
-            text-align: center;
-            transition: 0.4s;
+            border: 1px solid rgba(184, 134, 11, 0.15);
+            transition: var(--transition);
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            flex-direction: column;
         }
 
         .card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 30px rgba(184, 134, 11, 0.2);
+            transform: translateY(-15px);
+            border-color: var(--soft-gold);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
         }
 
-        /* --- Royal Portfolio Section --- */
-        .portfolio-section {
-            padding: 80px 10%;
-            background-color: #050505;
+        .card-graphic {
+            width: 100%;
+            height: 250px; /* Consistent height for graphics */
+            background-size: cover;
+            background-position: center;
+            border-bottom: 2px solid var(--deep-gold);
         }
 
-        .portfolio-header {
+        .card-content {
+            padding: 40px 30px;
             text-align: center;
-            margin-bottom: 50px;
+            flex-grow: 1;
         }
 
-        .portfolio-header h2 {
+        .card h3 {
             font-family: 'Cinzel', serif;
             color: var(--soft-gold);
-            font-size: 2.5rem;
+            font-size: 1.6rem;
+            margin-bottom: 15px;
+            margin-top: 0;
+        }
+
+        .card p {
+            font-size: 0.9rem;
+            color: #ccc;
+            margin: 0;
+            line-height: 1.8;
+        }
+
+        /* --- Portfolio --- */
+        .portfolio-section {
+            padding: 120px 5%;
+            background: var(--midnight);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .section-header h2 {
+            font-family: 'Cinzel', serif;
+            color: var(--soft-gold);
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            margin: 0;
+            letter-spacing: 5px;
         }
 
         .portfolio-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 30px;
+            max-width: 1400px;
+            margin: 0 auto;
         }
 
         .portfolio-item {
             position: relative;
-            height: 250px;
-            background: #1a1a1a;
-            border: 1px solid #333;
+            height: 450px;
             overflow: hidden;
-            display: flex;
-            align-items: flex-end;
-            padding: 20px;
-            transition: 0.3s;
+            cursor: pointer;
+            border: 1px solid #1a1a1a;
         }
 
-        .portfolio-item:hover {
-            border-color: var(--soft-gold);
+        .portfolio-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 1.2s ease;
         }
 
-        .portfolio-item::before {
-            content: "";
+        .portfolio-item:hover .portfolio-img {
+            transform: scale(1.1) rotate(1deg);
+        }
+
+        .portfolio-overlay {
             position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
-            z-index: 1;
+            bottom: 0; left: 0; width: 100%;
+            padding: 50px;
+            background: linear-gradient(transparent 10%, rgba(0,0,0,0.95) 80%);
+            z-index: 2;
+            transform: translateY(20px);
+            transition: var(--transition);
         }
 
-        .portfolio-info {
-            position: relative;
-            z-index: 2;
+        .portfolio-item:hover .portfolio-overlay {
+            transform: translateY(0);
         }
 
         .portfolio-info h4 {
             margin: 0;
             color: var(--soft-gold);
             font-family: 'Cinzel', serif;
-        }
-
-        .portfolio-info p {
-            font-size: 0.8rem;
-            margin: 5px 0 0;
-            color: #ccc;
-        }
-
-        .back-link {
-            display: block;
-            text-align: center;
-            padding: 50px;
-            color: var(--soft-gold);
-            text-decoration: none;
-            font-family: 'Cinzel', serif;
+            font-size: 1.6rem;
             letter-spacing: 2px;
         }
 
+        .portfolio-info p {
+            color: #aaa;
+            margin: 10px 0 0;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+        }
+
+        /* --- Testimonials --- */
+        .testimonials-section {
+            padding: 120px 5%;
+            background: #080808;
+        }
+
+        .testimonial-container {
+            display: flex;
+            overflow-x: auto;
+            gap: 30px;
+            padding-bottom: 30px;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .testimonial-card {
+            min-width: 320px;
+            flex: 1;
+            background: #111;
+            padding: 50px;
+            border-left: 3px solid var(--deep-gold);
+            scroll-snap-align: start;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .testimonial-card p {
+            font-style: italic;
+            color: #ddd;
+            line-height: 1.8;
+            font-size: 0.95rem;
+        }
+
+        .testimonial-author {
+            font-family: 'Cinzel', serif;
+            color: var(--soft-gold);
+            margin-top: 25px;
+            margin-bottom: 5px;
+            font-size: 1.1rem;
+        }
+
+        .testimonial-title {
+            font-size: 0.75rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: #888;
+        }
+
+        /* --- Inquiry Form --- */
+        .contact-section {
+            padding: 120px 5%;
+            background: var(--midnight);
+        }
+
+        .form-box {
+            max-width: 850px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            padding: 70px;
+            border: 1px solid rgba(184, 134, 11, 0.2);
+            position: relative;
+        }
+
+        .form-box::after {
+            content: ""; position: absolute; bottom: 0; right: 0; width: 50px; height: 50px;
+            border-right: 2px solid var(--deep-gold); border-bottom: 2px solid var(--deep-gold);
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid #333;
+            color: white;
+            padding: 15px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            border-color: var(--soft-gold);
+        }
+
+        .submit-btn {
+            grid-column: 1 / -1;
+            background: linear-gradient(45deg, var(--deep-gold), var(--soft-gold));
+            color: white;
+            border: none;
+            padding: 20px;
+            font-family: 'Cinzel', serif;
+            font-size: 1rem;
+            letter-spacing: 4px;
+            cursor: pointer;
+            transition: 0.4s;
+            margin-top: 30px;
+            font-weight: bold;
+        }
+
+        .submit-btn:hover {
+            box-shadow: 0 10px 20px rgba(184, 134, 11, 0.4);
+            transform: translateY(-3px);
+        }
+
+        /* --- Footer --- */
+        .footer {
+            text-align: center;
+            padding: 80px 5%;
+            background: #050505;
+            border-top: 1px solid #1a1a1a;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: var(--soft-gold);
+            text-decoration: none;
+            font-family: 'Cinzel', serif;
+            letter-spacing: 3px;
+            border: 1px solid var(--soft-gold);
+            padding: 15px 45px;
+            transition: var(--transition);
+            font-size: 0.9rem;
+        }
+
+        .back-link:hover {
+            background: var(--soft-gold);
+            color: var(--midnight);
+        }
+
+        /* --- Responsive Queries --- */
+        @media (max-width: 992px) {
+            .nav-links { display: none; } /* Simplified menu for tablets */
+            .grid { gap: 30px; }
+            .portfolio-grid { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+            .form-box { padding: 50px; }
+        }
+
         @media (max-width: 768px) {
-            .portfolio-grid { grid-template-columns: 1fr; }
+            .header { height: 70vh; }
+            .form-grid { grid-template-columns: 1fr; }
+            .portfolio-item { height: 350px; }
+            .testimonial-card { padding: 30px; }
         }
     </style>
 </head>
 <body>
-<nav style="background: rgba(10,10,10,0.95); padding: 15px 50px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #333; position: sticky; top: 0; z-index: 9999;">
-    <a href="index.html" style="color: #b8860b; text-decoration: none; font-family: 'Cinzel', serif; font-weight: bold; font-size: 1.2rem;">KHUSHANA</a>
-    <div style="display: flex; gap: 30px;">
-          <a href="aboutus.html" style="color: #fff; text-decoration: none; font-size: 0.8rem; letter-spacing: 2px; font-weight: 600;">ABOUT US</a>
-        <a href="studio.html" style="color: #fff; text-decoration: none; font-size: 0.8rem; letter-spacing: 2px; font-weight: 600;">STUDIO</a>
-        <a href="info.html" style="color: #fff; text-decoration: none; font-size: 0.8rem; letter-spacing: 2px; font-weight: 600;">DIGITAL</a>
-        <a href="contact.html" style="color: #b8860b; text-decoration: none; font-size: 0.8rem; letter-spacing: 2px; font-weight: 600;">INQUIRY</a>
+
+<nav>
+    <a href="index.html" class="nav-logo">KHUSHANA</a>
+    <div class="nav-links">
+        <a href="aboutus.html">ABOUT US</a>
+        <a href="studio.html">STUDIO</a>
+        <a href="info.html">DIGITAL</a>
+        <a href="#contact" style="color: var(--soft-gold);">INQUIRY</a>
     </div>
 </nav>
-    <div class="header">
-        <h1>Khushana</h1>
-        <p>Prestige Digital Architecture</p>
-    </div>
 
+<div class="header">
+    <h1>KHUSHANA</h1>
+    <p>Prestige Digital Architecture</p>
+</div>
+
+<section class="services-section">
     <div class="grid">
         <div class="card">
-            <h3>Web Development</h3>
-            <p>Scalable, secure, and sovereign code for the digital elite.</p>
+            <div class="card-graphic" style="background-image: url('https://i.imgur.com/8QzXbNf.png');"></div>
+            <div class="card-content">
+                <h3>Web Architecture</h3>
+                <p>Constructing secure, high-performance digital fortresses. Sovereign code for the global elite.</p>
+            </div>
         </div>
+
         <div class="card">
-            <h3>UI/UX Design</h3>
-            <p>Bespoke visual narratives and intuitive user journeys.</p>
+            <div class="card-graphic" style="background-image: url('https://i.imgur.com/L1D6F4J.png');"></div>
+            <div class="card-content">
+                <h3>UI/UX Sovereignty</h3>
+                <p>Bespoke visual narratives and intuitive interfaces designed to command attention and convert.</p>
+            </div>
         </div>
+
         <div class="card">
-            <h3>Marketing</h3>
-            <p>Sovereign strategies for global brand dominance.</p>
+            <div class="card-graphic" style="background-image: url('https://i.imgur.com/V7S7wS5.png');"></div>
+            <div class="card-content">
+                <h3>Brand Dominance</h3>
+                <p>Strategic growth protocols designed for market conquest. Secure your legacy.</p>
+            </div>
         </div>
     </div>
+</section>
 
-    
+<section class="portfolio-section">
+    <div class="section-header">
+        <h2>THE ARCHIVE</h2>
+        <div style="width: 80px; height: 1px; background: var(--soft-gold); margin: 25px auto;"></div>
+    </div>
 
-    <section class="portfolio-section">
-        <div class="portfolio-header">
-            <h2> Portfolio</h2>
-            <div style="width: 60px; height: 2px; background: var(--soft-gold); margin: 10px auto;"></div>
-        </div>
-
-        <div class="portfolio-grid">
-            <div class="portfolio-item">
+    <div class="portfolio-grid">
+        <div class="portfolio-item">
+            <img src="https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&w=800&q=80" alt="Web Project" class="portfolio-img">
+            <div class="portfolio-overlay">
                 <div class="portfolio-info">
-                    <h4>Our Clients</h4>
-                    <p>www.khokhoworld.com • Web Dev</p>
-                </div>
-            </div>
-            <div class="portfolio-item">
-                <div class="portfolio-info">
-                    <h4>Aura Branding</h4>
-                    <p>Luxury UI/UX Design System</p>
-                </div>
-            </div>
-            <div class="portfolio-item">
-                <div class="portfolio-info">
-                    <h4>Empire Analytics</h4>
-                    <p>Custom SaaS Dashboard • Marketing Tech</p>
+                    <h4>Aether Corp</h4>
+                    <p>Web Architecture • khokhoworld.com</p>
                 </div>
             </div>
         </div>
-    </section>
+        <div class="portfolio-item">
+            <img src="https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?auto=format&fit=crop&w=800&q=80" alt="UI Design" class="portfolio-img">
+            <div class="portfolio-overlay">
+                <div class="portfolio-info">
+                    <h4>Luxe Interface</h4>
+                    <p>Luxury Mobile UX System</p>
+                </div>
+            </div>
+        </div>
+        <div class="portfolio-item">
+            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80" alt="Analytics" class="portfolio-img">
+            <div class="portfolio-overlay">
+                <div class="portfolio-info">
+                    <h4>Empire SaaS</h4>
+                    <p>Data Visualization Protocol</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
-    <a href="index.html" class="back-link">← Return to Portal</a>
+<section class="testimonials-section">
+    <div class="section-header">
+        <h2>Chronicles</h2>
+        <p style="letter-spacing: 3px; font-size: 0.8rem; color: var(--soft-gold); margin-top: 10px;">CLIENT TESTIMONIALS</p>
+    </div>
+
+    <div class="testimonial-container">
+        <div class="testimonial-card">
+            <p>"Khushana redefined our digital presence. Their attention to detail in the UI/UX phase was architectural mastery."</p>
+            <h5 class="testimonial-author">Marcus Vane</h5>
+            <span class="testimonial-title">CEO, AETHER LOGISTICS</span>
+        </div>
+        <div class="testimonial-card">
+            <p>"The marketing strategy they implemented led to a 200% increase in global engagement. Absolute dominance."</p>
+            <h5 class="testimonial-author">Elena Rossi</h5>
+            <span class="testimonial-title">DIRECTOR, LUXE WEAR</span>
+        </div>
+        <div class="testimonial-card">
+            <p>"Scalable, secure, and visually stunning. Our SaaS dashboard is now the benchmark for our entire industry."</p>
+            <h5 class="testimonial-author">Julian Thorne</h5>
+            <span class="testimonial-title">FOUNDER, EMPIRE ANALYTICS</span>
+        </div>
+    </div>
+</section>
+
+<section id="contact" class="contact-section">
+    <div class="form-box">
+        <div class="section-header" style="margin-bottom: 50px;">
+            <h2 style="font-size: 2.2rem;">Initiate Protocol</h2>
+            <p style="font-size: 0.9rem; color: #aaa; text-transform: none; letter-spacing: 1px; margin-top: 10px;">Secure your digital legacy today.</p>
+        </div>
+
+        <form class="form-grid">
+            <div class="form-group">
+                <input type="text" placeholder="YOUR NAME" required>
+            </div>
+            <div class="form-group">
+                <input type="email" placeholder="EMAIL ADDRESS" required>
+            </div>
+            <div class="form-group" style="grid-column: 1 / -1;">
+                <select required style="color: #888;">
+                    <option value="" disabled selected>SELECT SERVICE</option>
+                    <option value="web">Web Architecture</option>
+                    <option value="uiux">UI/UX Sovereignty</option>
+                    <option value="brand">Brand Dominance</option>
+                </select>
+            </div>
+            <div class="form-group" style="grid-column: 1 / -1;">
+                <textarea rows="5" placeholder="PROJECT BRIEF (OPTIONAL)" style="resize: none;"></textarea>
+            </div>
+            
+            <button type="submit" class="submit-btn">SEND INQUIRY</button>
+        </form>
+    </div>
+</section>
+
+<footer class="footer">
+    <a href="index.html" class="back-link">RETURN TO PORTAL</a>
+    <p style="font-size: 0.7rem; color: #555; margin-top: 50px; letter-spacing: 1px;">&copy; KHUSHANA DIGITAL. ALL RIGHTS RESERVED.</p>
+</footer>
 
 </body>
 </html>
-
-
