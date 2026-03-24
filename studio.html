@@ -6,6 +6,8 @@
     <title>Khushana Makeup Studio | Luxury Beauty Artistry</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Montserrat:wght@300;400;600&family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
         :root {
@@ -28,12 +30,40 @@
             line-height: 1.8;
         }
 
+        /* --- MARQUEE (NOW AT THE VERY TOP) --- */
+        .marquee-container {
+            background: var(--chic-black);
+            padding: 30px 0; /* Slightly tighter for top placement */
+            overflow: hidden;
+            white-space: nowrap;
+            border-bottom: 2px solid var(--satin-gold);
+        }
+
+        .marquee-content {
+            display: inline-flex;
+            gap: 20px;
+            animation: scroll 35s linear infinite;
+        }
+
+        .marquee-content img {
+            height: 220px; /* Adjusted size for top layout */
+            width: 180px;
+            object-fit: cover;
+            border-radius: 4px;
+            border: 1px solid rgba(201, 160, 80, 0.2);
+            transition: 0.3s;
+        }
+
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
         /* --- STICKY NAVIGATION --- */
         .main-navbar {
             background: rgba(10, 10, 10, 0.98);
             padding: 10px 50px;
-            position: fixed;
-            width: 100%;
+            position: sticky; /* Sticky so it stays after marquee scrolls away */
             top: 0;
             z-index: 10000;
             border-bottom: 2px solid var(--satin-gold);
@@ -48,22 +78,8 @@
             margin: 0 auto;
         }
 
-        .logo img {
-            height: 50px;
-            width: auto;
-            display: block;
-            transition: transform 0.3s ease;
-        }
-
-        .logo:hover img {
-            transform: scale(1.05);
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 30px;
-        }
-
+        .logo img { height: 50px; width: auto; transition: transform 0.3s ease; }
+        .nav-links { display: flex; gap: 30px; }
         .nav-links a {
             color: #fff;
             text-decoration: none;
@@ -73,31 +89,12 @@
             text-transform: uppercase;
             transition: 0.3s;
         }
-
-        .nav-links a:hover {
-            color: var(--satin-gold);
-        }
-
-        /* --- MOBILE MENU ICON --- */
-        .mobile-menu-icon {
-            display: none;
-            flex-direction: column;
-            gap: 6px;
-            cursor: pointer;
-        }
-
-        .mobile-menu-icon span {
-            display: block;
-            width: 25px;
-            height: 2px;
-            background-color: var(--satin-gold);
-            transition: 0.3s;
-        }
+        .nav-links a:hover { color: var(--satin-gold); }
 
         /* --- HERO SECTION --- */
         .hero {
             position: relative;
-            height: 100vh;
+            height: 85vh; /* Adjusted height since marquee is above */
             display: flex;
             align-items: center;
             justify-content: center;
@@ -115,147 +112,83 @@
             z-index: 1;
         }
 
-        .hero-content {
-            position: relative;
-            z-index: 10;
-            max-width: 800px;
-            padding: 20px;
-            animation: fadeIn 1.5s ease-out;
-        }
-
-        .hero h1 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 4.5rem;
-            margin: 0;
-            font-weight: 600;
-            line-height: 1.1;
-        }
-
+        .hero-content { position: relative; z-index: 10; max-width: 800px; animation: fadeIn 1.5s ease-out; }
+        .hero h1 { font-family: 'Cormorant Garamond', serif; font-size: 4.5rem; margin: 0; line-height: 1.1; }
         .hero h1 span { color: var(--satin-gold); }
 
-        .hero p {
-            font-size: 1.2rem;
-            margin-top: 20px;
-            letter-spacing: 2px;
-            font-weight: 300;
-        }
+        /* --- SERVICES & BUTTONS --- */
+        section { padding: 80px 10%; }
+        .section-title { font-family: 'Cormorant Garamond', serif; font-size: 3rem; text-align: center; margin-bottom: 10px; }
+        .section-subtitle { text-align: center; color: var(--satin-gold); letter-spacing: 3px; text-transform: uppercase; margin-bottom: 60px; font-size: 0.9rem; }
 
-        /* --- SERVICES --- */
-        section { padding: 100px 10%; }
+        .service-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+        .service-card { background: white; padding: 40px; text-align: center; border: 1px solid #eee; transition: 0.3s; }
+        .service-card:hover { transform: translateY(-10px); border-color: var(--satin-gold); }
 
-        .section-title {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 3rem;
-            text-align: center;
-            margin-bottom: 10px;
-        }
-
-        .section-subtitle {
-            text-align: center;
-            color: var(--satin-gold);
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            margin-bottom: 60px;
-            font-size: 0.9rem;
-        }
-
-        .service-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-        }
-
-        .service-card {
-            background: white;
-            padding: 40px;
-            text-align: center;
-            border: 1px solid #eee;
-            transition: 0.3s;
-        }
-
-        .service-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--satin-gold);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-        }
-
-        .service-icon { font-size: 2rem; color: var(--satin-gold); margin-bottom: 20px; }
-
-        /* --- BUTTONS --- */
         .cta-btn {
-            display: inline-block;
-            padding: 15px 40px;
-            background: var(--chic-black);
-            color: var(--satin-gold);
-            text-decoration: none;
-            letter-spacing: 2px;
-            font-weight: 600;
-            border: 2px solid var(--chic-black);
-            transition: 0.3s;
-            margin-top: 30px;
+            display: inline-block; padding: 15px 40px; background: var(--satin-gold); color: white;
+            text-decoration: none; letter-spacing: 2px; font-weight: 600; border: 2px solid var(--satin-gold);
+            transition: 0.3s; margin-top: 30px;
+        }
+        .cta-btn:hover { background: transparent; color: var(--satin-gold); }
+
+        /* --- TESTIMONIALS --- */
+        .testimonials { background-color: #fff; padding: 100px 10%; text-align: center; }
+        .testimonial-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; margin-top: 50px; }
+        .testimonial-card { padding: 30px; background: var(--luminous-ivory); border: 1px solid #f0f0f0; }
+        .stars { color: var(--satin-gold); margin-bottom: 15px; font-size: 0.9rem; }
+        .testimonial-text { font-style: italic; font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; line-height: 1.6; }
+        .client-name { margin-top: 20px; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; font-size: 0.8rem; color: var(--satin-gold); }
+
+        /* --- SOCIAL & WHATSAPP --- */
+        .social-links { margin-top: 30px; display: flex; justify-content: center; gap: 25px; }
+        .social-links a { color: #fff; font-size: 1.5rem; transition: 0.3s; }
+        .social-links a:hover { color: var(--satin-gold); }
+
+        .whatsapp-float {
+            position: fixed; width: 60px; height: 60px; bottom: 40px; right: 40px;
+            background-color: #25d366; color: #FFF; border-radius: 50px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 30px; box-shadow: 0px 4px 15px rgba(0,0,0,0.3);
+            z-index: 10000; text-decoration: none; transition: 0.3s;
         }
 
-        .cta-btn:hover {
-            background: transparent;
-            color: var(--chic-black);
-        }
+        footer { background: var(--chic-black); color: #888; padding: 60px 20px; text-align: center; border-top: 3px solid var(--satin-gold); }
 
-        /* --- FOOTER --- */
-        footer {
-            background: var(--chic-black);
-            color: #888;
-            padding: 60px 20px;
-            text-align: center;
-            border-top: 3px solid var(--satin-gold);
-        }
-
-        .footer-logo img { height: 60px; margin-bottom: 20px; }
-        footer p { font-size: 0.9rem; margin: 5px 0; }
-        footer a { color: var(--satin-gold); text-decoration: none; }
-
-        /* --- RESPONSIVE DESIGN --- */
         @media (max-width: 850px) {
-            .main-navbar { padding: 10px 20px; }
-            .mobile-menu-icon { display: flex; }
-            .nav-links {
-                position: absolute;
-                top: 72px; left: 0; width: 100%;
-                background: #0a0a0a;
-                flex-direction: column;
-                padding: 40px 0;
-                gap: 25px;
-                text-align: center;
-                transform: translateY(-150%);
-                transition: 0.4s ease-in-out;
-            }
-            .nav-links.active { transform: translateY(0); }
+            .nav-links { display: none; }
             .hero h1 { font-size: 2.8rem; }
+            .marquee-content img { height: 160px; width: 130px; }
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body>
 
+    <div class="marquee-container">
+        <div class="marquee-content">
+            <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=400" alt="Bridal Work">
+            <img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=400" alt="Glamour">
+            <img src="https://images.unsplash.com/photo-1512496015851-a90fb38ba796?w=400" alt="Makeup Detail">
+            <img src="https://images.unsplash.com/photo-1515377905703-c4788e51af15?w=400" alt="Nail Art">
+            <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=400" alt="Styling">
+            <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=400" alt="Work 1">
+            <img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=400" alt="Work 2">
+            <img src="https://images.unsplash.com/photo-1512496015851-a90fb38ba796?w=400" alt="Work 3">
+        </div>
+    </div>
+
     <nav class="main-navbar">
         <div class="nav-container">
-            <a href="index.html" class="logo">
-                <img src="https://raw.githubusercontent.com/tthirdshooter/khushana/main/images/logo1.png" alt="Khushana Logo">
+            <a href="#" class="logo">
+                <img src="https://raw.githubusercontent.com/tthirdshooter/khushana/main/images/logo1.png" alt="Logo">
             </a>
-
-            <div class="mobile-menu-icon" id="menu-toggle">
-                <span></span><span></span><span></span>
-            </div>
-
-            <div class="nav-links" id="nav-menu">
-                <a href="aboutus.html">About Us</a>
-                <a href="contact.html">Booking</a>
-                <a href="studio.html">Studio</a>
-                <a href="kgallery.html">Gallery</a>
-                <a href="digital.html">Digital</a>
+            <div class="nav-links">
+                <a href="#">About</a>
+                <a href="#">Booking</a>
+                <a href="#">Gallery</a>
+                <a href="#">Contact</a>
             </div>
         </div>
     </nav>
@@ -265,62 +198,68 @@
         <div class="hero-content">
             <h1>Experience <span>Luxury</span> Beauty Artistry</h1>
             <p>Masterful Makeup • Precision Nail Art • Bespoke Styling</p>
-            <a href="contact.html" class="cta-btn" style="background: var(--satin-gold); color: white; border-color: var(--satin-gold);">BOOK CONSULTATION</a>
+            <a href="https://wa.me/917889425218" class="cta-btn">BOOK CONSULTATION</a>
         </div>
     </div>
 
-    <section id="services">
-        <h2 class="section-title">Our Signature Services</h2>
+    <section>
+        <h2 class="section-title">Signature Services</h2>
         <p class="section-subtitle">Defining Modern Elegance</p>
-        
         <div class="service-grid">
             <div class="service-card">
-                <div class="service-icon">✦</div>
+                <div style="font-size: 2rem; color: var(--satin-gold);">✦</div>
                 <h3>Facial Makeup</h3>
-                <p>From HD bridal glamour to sophisticated editorial looks, tailored to your features.</p>
+                <p>From HD bridal glamour to sophisticated editorial looks.</p>
             </div>
             <div class="service-card">
-                <div class="service-icon">✦</div>
+                <div style="font-size: 2rem; color: var(--satin-gold);">✦</div>
                 <h3>Nail Artistry</h3>
-                <p>Precision manicures and structural gel extensions designed for lasting impact.</p>
+                <p>Precision manicures and structural gel extensions.</p>
             </div>
             <div class="service-card">
-                <div class="service-icon">✦</div>
+                <div style="font-size: 2rem; color: var(--satin-gold);">✦</div>
                 <h3>Elite Styling</h3>
-                <p>Curated hair cutting and styling services by our master artists.</p>
+                <p>Curated hair cutting and styling by master artists.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials">
+        <h2 class="section-title">Client Stories</h2>
+        <p class="section-subtitle">The Khushana Experience</p>
+        <div class="testimonial-grid">
+            <div class="testimonial-card">
+                <div class="stars">★★★★★</div>
+                <p class="testimonial-text">"Absolutely the best bridal makeup experience in Jammu. The attention to detail is unmatched!"</p>
+                <p class="client-name">— Priya Sharma</p>
+            </div>
+            <div class="testimonial-card">
+                <div class="stars">★★★★★</div>
+                <p class="testimonial-text">"The nail artistry is incredible. My extensions lasted for weeks and looked perfect till the end."</p>
+                <p class="client-name">— Ananya V.</p>
+            </div>
+            <div class="testimonial-card">
+                <div class="stars">★★★★★</div>
+                <p class="testimonial-text">"A truly luxury atmosphere. They listen to what you want and elevate it beyond expectations."</p>
+                <p class="client-name">— Mehak Gupta</p>
             </div>
         </div>
     </section>
 
     <footer>
-        <div class="footer-logo">
-            <img src="https://raw.githubusercontent.com/tthirdshooter/khushana/main/images/logo1.png" alt="Khushana Logo">
+        <p><strong>Khushana Makeup Studio</strong> | Sector E, Sainik Colony, Jammu</p>
+        <p>+91-788-942-5218 | khushanaa@hotmail.com</p>
+        <div class="social-links">
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
         </div>
-        <p><strong>The Beauty Collective</strong> | Sector E, Sainik Colony, Jammu</p>
-        <p>Inquiries: <a href="mailto:khushanaa@hotmail.com">khushanaa@hotmail.com</a></p>
-        <p>+91-788-942-5218 | +91-914-950-9617</p>
-        <p style="margin-top:20px; opacity:0.5;">&copy; 2026 Khushana Makeup Studio. All Rights Reserved.</p>
+        <p style="margin-top:20px; opacity:0.4;">&copy; 2026 Khushana Makeup Studio.</p>
     </footer>
 
-    <script>
-        const menuToggle = document.getElementById('menu-toggle');
-        const navMenu = document.getElementById('nav-menu');
+    <a href="https://wa.me/917889425218" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
 
-        menuToggle.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
-            // Animate hamburger to X
-            const spans = menuToggle.getElementsByTagName('span');
-            menuToggle.classList.toggle('open');
-            if(menuToggle.classList.contains('open')) {
-                spans[0].style.transform = "translateY(8px) rotate(45deg)";
-                spans[1].style.opacity = "0";
-                spans[2].style.transform = "translateY(-8px) rotate(-45deg)";
-            } else {
-                spans[0].style.transform = "none";
-                spans[1].style.opacity = "1";
-                spans[2].style.transform = "none";
-            }
-        });
-    </script>
 </body>
 </html>
