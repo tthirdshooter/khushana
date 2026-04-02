@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Khushana Makeup Studio | Permanent Inventory</title>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+
+    <style>
+        :root { --primary: #720e3d; --accent: #f48fb1; --bg: #fff5f8; }
+        body { font-family: 'Segoe UI', sans-serif; background: var(--bg); margin: 0; padding: 20px; }
+        
+        @media screen {
+            .main-wrapper { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+            .card { background: white; padding: 20px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+            #printReceipt { display: none; }
+        }
+
+        @media print {
+            body * { visibility: hidden; }
+            #printReceipt, #printReceipt * { visibility: visible; }
+            #printReceipt { position: absolute; left: 0; top: 0; width: 100%; display: block !important; padding: 20px; }
+        }
+
+        input, select { width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ddd; border-radius: 5px; }
+        button { width: 100%; padding: 12px; border: none; border-radius: 5px; cursor: pointer; color: white; font-weight: bold; }
+        .btn-add { background: var(--primary); }
+        .btn-print { background: #333; }
+        table { width: 100%; border-collapse: collapse; margin-top: 15px; font-size: 13px; }
+        th, td { text-align: left; padding: 8px; border-bottom: 1px solid #eee; }
+        
+        /* Receipt Styling */
+        .receipt-box { font-family: 'Courier New', Courier, monospace; }
+        .receipt-header { text-align: center; }
+        .row { display: flex; justify-content: space-between; margin: 5px 0; }
+    </style>
+</head>
+<body>
+
+<div class="main-wrapper no-print">
+    <div class="card">
+        <h2>Add Stock (Permanent)</h2>
+        <input type="text" id="itemName" placeholder="Product Name">
+        <input type="number" id="itemPrice" placeholder="Price (₹)">
+        <input type="number" id="itemQty" placeholder="Quantity">
+        <button class="btn-add" onclick="saveToDatabase()">Save to Cloud Database</button>
+
+        <table>
+            <thead>
+                <tr><th>Item</th><th>Price</th><th>Qty</th></tr>
+            </thead>
+            <tbody id="inventoryList"></tbody>
+        </table>
+    </div>
+
+    <div class="card">
+        <h2>Generate Bill</h2>
+        <select id="itemSelect"></select>
+        <input type="number" id="billQty" value="1">
+        <button class="btn-print" onclick="processBill()">Print & Update Stock</button>
+    </div>
+</div>
+
+<div id="printReceipt" class="receipt-box">
+    <div class="receipt-header">
+        <h1>KHUSHANA MAKEUP STUDIO</h1>
+        <p>GSTIN: 09XXXXX1234X1Z1</p>
+        <p id="rDate"></p>
+    </div>
+    <hr>
+    <div id="rItems"></div>
+    <hr>
+    <div class="row"><span>Base:</span><span id="rBase"></span></div>
+    <div class="row"><span>GST (18%):</span><span id="rGst"></span></div>
+    <div class="row" style="font-weight:bold; font-size:1.2em;"><span>Total:</span><span id="rTotal"></span></div>
+</div>
+<!-- 1. Firebase SDKs (Using Compat versions for easier integration with your code) -->
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+
+<script>
+    // 2. Your Firebase Configuration
+    const firebaseConfig = {
+        apiKey: "AIzaSyAWnqBp3OdNg6JGjJ_xGsJsCTeOg_bp_8A",
+        authDomain: "khushanastudio.firebaseapp.com",
+        projectId: "khushanastudio",
+        storageBucket: "khushanastudio.firebasestorage.app",
+        messagingSenderId: "988189434269",
+        appId: "1:988189434269:web:e0afc4deac7c0a21da4f74",
+        measurementId: "G-L4L0G6F6M3"
+    };
+
+    // 3. Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+
+    // 4. Fetch data from Database on load
+    function loadInventory() {
+        db.collection("inventory").orderBy("timestamp", "desc").onSnapshot((querySnapshot) => {
+            const list = document.getElementById('inventoryList');
+            const select = document.getElementById('itemSelect');
+            list.innerHTML = '';
+            select.innerHTML = '<option value="">-- Choose Item --</option>';
+
+            querySnapshot.forEach((doc) => {
+                const item = doc.data();
+                const id = doc.id;
+                
+                list.innerHTML += `<tr><td>${item.name}</td><td>₹${item.price}</td><td>${item.qty}</td></tr>`;
+                if(item.qty > 0) {
+                    select.innerHTML += `<option value="${id}" data-price="${item.price}" data-name="${item.name}" data-qty="${item.qty}">${item.name}</option>`;
+                }
+            });
+        });
+    }
+
+    // 5. Save/Add to Database
+    async function saveToDatabase() {
+        const name = document.getElementById('itemName').value;
+        const price = parseFloat(document.getElementById('itemPrice').value);
+        const qty = parseInt(document.getElementById('itemQty').value);
+
+        if(!name || isNaN(price) || isNaN(qty)) return alert("Please fill all fields correctly");
+
+        try {
+            await db.collection("inventory").add({
+                name: name,
+                price: price,
+                qty: qty,
+                timestamp: firebase.firestore.FieldValue.serverTimestamp()
+            });
+            alert("Saved to Cloud!");
+            document.getElementById('itemName').value = '';
+            document.getElementById('itemPrice').value = '';
+            document.getElementById('itemQty').value = '';
+        } catch (e) {
+            alert("Error: " + e.message);
+        }
+    }
+
+    // 6. Process Bill and Deduct from Database
+    async function processBill() {
+        const select = document.getElementById('itemSelect');
+        const docId = select.value;
+        const qtyToBill = parseInt(document.getElementById('billQty').value);
+
+        if(!docId) return alert("Select item");
+
+        const selectedOption = select.options[select.selectedIndex];
+        const currentQty = parseInt(selectedOption.getAttribute('data-qty'));
+        const price = parseFloat(selectedOption.getAttribute('data-price'));
+        const name = selectedOption.getAttribute('data-name');
+
+        if(qtyToBill > currentQty) return alert("Not enough stock!");
+
+        try {
+            // Update Database (Deduct Qty)
+            await db.collection("inventory").doc(docId).update({
+                qty: currentQty - qtyToBill
+            });
+
+            // Billing Logic
+            const base = price * qtyToBill;
+            const gst = base * 0.18;
+            const total = base + gst;
+
+            document.getElementById('rDate').innerText = new Date().toLocaleString();
+            document.getElementById('rItems').innerHTML = `<div class="row"><span>${name} x ${qtyToBill}</span><span>₹${base.toFixed(2)}</span></div>`;
+            document.getElementById('rBase').innerText = "₹" + base.toFixed(2);
+            document.getElementById('rGst').innerText = "₹" + gst.toFixed(2);
+            document.getElementById('rTotal').innerText = "₹" + total.toFixed(2);
+
+            window.print();
+        } catch (e) {
+            alert("Billing failed: " + e.message);
+        }
+    }
+
+    // Start loading on page open
+    loadInventory();
+</script>
+</body>
+</html>
