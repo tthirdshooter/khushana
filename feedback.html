@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client Feedback | Khushana Makeup Studio</title>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+
+    <style>
+        :root {
+            --primary: #720e3d;
+            --accent: #f48fb1;
+            --bg-gradient: linear-gradient(135deg, #fff5f8 0%, #ffe4ec 100%);
+            --white: #ffffff;
+            --text: #444;
+        }
+
+        body {
+            font-family: 'Poppins', 'Segoe UI', sans-serif;
+            background: var(--bg-gradient);
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .feedback-container {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            max-width: 500px;
+            width: 100%;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(114, 14, 61, 0.1);
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--primary);
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        h2 {
+            color: var(--text);
+            margin-bottom: 30px;
+            font-weight: 500;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--primary);
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1.5px solid #eee;
+            border-radius: 10px;
+            font-size: 15px;
+            outline: none;
+            transition: 0.3s;
+            box-sizing: border-box;
+        }
+
+        input:focus, textarea:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 8px rgba(244, 143, 177, 0.2);
+        }
+
+        /* Star Rating System */
+        .rating-wrapper {
+            margin: 25px 0;
+        }
+
+        .stars {
+            display: flex;
+            justify-content: center;
+            flex-direction: row-reverse;
+            gap: 10px;
+        }
+
+        .stars input { display: none; }
+
+        .stars label {
+            font-size: 35px;
+            color: #ddd;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .stars input:checked ~ label,
+        .stars label:hover,
+        .stars label:hover ~ label {
+            color: var(--accent);
+        }
+
+        button {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            transition: transform 0.2s, background 0.3s;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background: #5a0b31;
+            transform: translateY(-2px);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        #success-msg {
+            display: none;
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .footer-text {
+            margin-top: 25px;
+            font-size: 12px;
+            color: #999;
+        }
+    </style>
+</head>
+<body>
+
+<div class="feedback-container" id="form-card">
+    <div id="form-content">
+        <div class="logo">Khushana</div>
+        <h2>Share Your Glow Experience</h2>
+
+        <div class="input-group">
+            <label>Your Name</label>
+            <input type="text" id="custName" placeholder="Enter your name" required>
+        </div>
+
+        <div class="input-group">
+            <label>Service Received</label>
+            <input type="text" id="custService" placeholder="e.g. Bridal Makeup, Hair Styling">
+        </div>
+
+        <div class="rating-wrapper">
+            <label>Your Rating</label>
+            <div class="stars">
+                <input type="radio" name="star" id="star5" value="5"><label for="star5">★</label>
+                <input type="radio" name="star" id="star4" value="4"><label for="star4">★</label>
+                <input type="radio" name="star" id="star3" value="3"><label for="star3">★</label>
+                <input type="radio" name="star" id="star2" value="2"><label for="star2">★</label>
+                <input type="radio" name="star" id="star1" value="1"><label for="star1">★</label>
+            </div>
+        </div>
+
+        <div class="input-group">
+            <label>Any Comments?</label>
+            <textarea id="custComments" rows="4" placeholder="How did you feel about our work?"></textarea>
+        </div>
+
+        <button onclick="handleSubmit()">Submit Review</button>
+        <p class="footer-text">© 2026 Khushana Makeup Studio. All rights reserved.</p>
+    </div>
+
+    <div id="success-msg">
+        <div style="font-size: 60px; color: var(--accent); margin-bottom: 20px;">💖</div>
+        <h2 style="color: var(--primary);">Thank You!</h2>
+        <p>Your feedback helps us shine brighter. We hope to see you again soon!</p>
+        <button onclick="location.reload()" style="background: var(--accent); margin-top: 20px;">Submit Another</button>
+    </div>
+</div>
+
+<script>
+    // --- FIREBASE INITIALIZATION ---
+    // Make sure these details match your Firebase project settings
+    const firebaseConfig = {
+        apiKey: "AIzaSyAWnqBp3OdNg6JGjJ_xGsJsCTeOg_bp_8A",
+        authDomain: "khushanastudio.firebaseapp.com",
+        projectId: "khushanastudio",
+        storageBucket: "khushanastudio.firebasestorage.app",
+        messagingSenderId: "988189434269",
+        appId: "1:988189434269:web:e0afc4deac7c0a21da4f74",
+        measurementId: "G-L4L0G6F6M3"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+
+    async function handleSubmit() {
+        const name = document.getElementById('custName').value.trim();
+        const service = document.getElementById('custService').value.trim();
+        const comments = document.getElementById('custComments').value.trim();
+        const rating = document.querySelector('input[name="star"]:checked')?.value;
+
+        if (!name || !rating) {
+            alert("Please provide your name and a star rating!");
+            return;
+        }
+
+        const submitBtn = document.querySelector('button');
+        submitBtn.disabled = true;
+        submitBtn.innerText = "Sending...";
+
+        try {
+            await db.collection("feedback").add({
+                customerName: name,
+                service: service,
+                rating: parseInt(rating),
+                comments: comments,
+                timestamp: firebase.firestore.FieldValue.serverTimestamp()
+            });
+
+            // Transition to Success
+            document.getElementById('form-content').style.display = 'none';
+            document.getElementById('success-msg').style.display = 'block';
+
+        } catch (error) {
+            console.error("Error submitting feedback: ", error);
+            alert("Oops! Something went wrong. Please try again.");
+            submitBtn.disabled = false;
+            submitBtn.innerText = "Submit Review";
+        }
+    }
+</script>
+
+</body>
+</html>
