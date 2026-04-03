@@ -26,11 +26,8 @@
             .no-print { display: none !important; }
             #printReceipt { 
                 display: block !important; 
-                width: 80mm; 
-                margin: 0 auto; 
-                padding: 5mm;
-                box-sizing: border-box; 
-                color: black;
+                width: 80mm; margin: 0 auto; padding: 5mm;
+                box-sizing: border-box; color: black;
                 font-family: 'Courier New', monospace;
             }
             .row { display: flex; justify-content: space-between; width: 100%; font-size: 12px; margin: 4px 0; }
@@ -58,16 +55,18 @@
             <option value="service">Service (Salon Works)</option>
         </select>
         
+        <!-- NEW: Product ID Field to prevent overlapping -->
+        <input type="text" id="itemId" placeholder="Product ID / SKU (e.g., LIPS01)">
         <input type="text" id="itemName" placeholder="Item Name">
         <input type="number" id="itemPrice" placeholder="Base Price (₹)">
         <input type="number" id="itemQty" placeholder="Initial Stock" value="1">
         
-        <button class="btn-add" onclick="saveToDatabase()">Add to Inventory</button>
+        <button class="btn-add" onclick="saveToDatabase()">Add / Update Inventory</button>
 
         <div style="overflow-x:auto;">
             <table>
                 <thead>
-                    <tr><th>Type</th><th>Name</th><th>Price</th><th>Stock</th></tr>
+                    <tr><th>ID</th><th>Type</th><th>Name</th><th>Price</th><th>Stock</th></tr>
                 </thead>
                 <tbody id="inventoryList"></tbody>
             </table>
@@ -142,46 +141,69 @@
 
             querySnapshot.forEach((doc) => {
                 const item = doc.data();
-                const id = doc.id;
+                const id = doc.id; // This is now your Product ID
                 const isService = item.type === 'service';
                 
                 const stockVal = isService ? "∞" : (item.qty || 0);
                 const typeBadge = isService ? '<span class="badge badge-serv">Service</span>' : '<span class="badge badge-prod">Product</span>';
 
                 list.innerHTML += `<tr>
+                    <td><strong>${id}</strong></td>
                     <td>${typeBadge}</td>
                     <td>${item.name}</td>
                     <td>₹${item.price}</td>
                     <td>${stockVal}</td>
                 </tr>`;
 
-                select.innerHTML += `<option value="${id}">${item.name} (${isService ? 'Service' : 'Stock: ' + stockVal})</option>`;
+                select.innerHTML += `<option value="${id}">${item.name} [${id}]</option>`;
             });
         });
     }
 
+    // --- FIX: USE CUSTOM ID TO PREVENT OVERLAPPING ---
     async function saveToDatabase() {
         const type = document.getElementById('itemType').value;
+        const customId = document.getElementById('itemId').value.trim().toUpperCase();
         const name = document.getElementById('itemName').value;
         const price = parseFloat(document.getElementById('itemPrice').value);
-        const qty = parseInt(document.getElementById('itemQty').value) || 0;
+        const qtyToAdd = parseInt(document.getElementById('itemQty').value) || 0;
 
-        if(!name || isNaN(price)) return alert("Fill Name and Price");
+        if(!customId || !name || isNaN(price)) return alert("Please fill ID, Name, and Price");
+
+        const docRef = db.collection("inventory").doc(customId);
 
         try {
-            await db.collection("inventory").add({
-                type: type,
-                name: name,
-                price: price,
-                qty: qty,
-                timestamp: firebase.firestore.FieldValue.serverTimestamp()
-            });
+            const docSnap = await docRef.get();
+            
+            if (docSnap.exists) {
+                // If item exists, update stock by adding to current
+                const existingData = docSnap.data();
+                await docRef.update({
+                    qty: existingData.type === 'product' ? (existingData.qty + qtyToAdd) : 0,
+                    price: price, // Update price to latest
+                    name: name,
+                    timestamp: firebase.firestore.FieldValue.serverTimestamp()
+                });
+                alert("Existing item updated successfully!");
+            } else {
+                // Create new item with Custom ID
+                await docRef.set({
+                    type: type,
+                    name: name,
+                    price: price,
+                    qty: qtyToAdd,
+                    timestamp: firebase.firestore.FieldValue.serverTimestamp()
+                });
+                alert("New item added successfully!");
+            }
+
+            // Clear inputs
+            document.getElementById('itemId').value = '';
             document.getElementById('itemName').value = '';
             document.getElementById('itemPrice').value = '';
         } catch (e) { alert(e.message); }
     }
 
-    // --- FIX: FETCH LATEST DATA BEFORE DEDUCTING ---
     async function processBill() {
         const select = document.getElementById('itemSelect');
         const docId = select.value;
@@ -190,7 +212,6 @@
         if(!docId) return alert("Select an item first");
 
         try {
-            // Get the most current data from Firebase directly
             const docRef = db.collection("inventory").doc(docId);
             const docSnap = await docRef.get();
 
@@ -200,18 +221,15 @@
             const type = itemData.type;
             const currentStock = parseInt(itemData.qty) || 0;
 
-            // Check stock for products
             if(type === 'product') {
                 if(qtyToBill > currentStock) {
                     return alert(`Low Stock! You have ${currentStock} left.`);
                 }
-                // Deduct stock
                 await docRef.update({
                     qty: currentStock - qtyToBill
                 });
             }
 
-            // Receipt Calculations
             const base = itemData.price * qtyToBill;
             const gst = base * 0.18;
             const total = base + gst;
@@ -228,7 +246,6 @@
             window.print();
 
         } catch (e) {
-            console.error(e);
             alert("Transaction failed: " + e.message);
         }
     }
