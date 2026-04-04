@@ -5,16 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Khushana Makeup Studio | Luxury Beauty Artistry</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Montserrat:wght@300;400;600&family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
         :root {
             --chic-black: #1a1a1a;
             --satin-gold: #c9a050;
-            --gold-hover: #e4c98e;
             --luminous-ivory: #fffbf5;
-            --text-main: #333333;
             --text-light: #ffffff;
         }
 
@@ -23,215 +21,149 @@
             padding: 0;
             font-family: 'Montserrat', sans-serif;
             background-color: var(--luminous-ivory);
-            color: var(--text-main);
             overflow-x: hidden;
-            line-height: 1.8;
-        }
-
-        /* --- POPUP STYLES --- */
-        .popup-overlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.85);
-            backdrop-filter: blur(8px);
-            display: none; 
-            justify-content: center;
-            align-items: center;
-            z-index: 99999;
-            opacity: 0;
-            transition: opacity 0.5s ease;
-        }
-
-        .popup-content {
-            background: var(--chic-black);
-            padding: 50px;
-            text-align: center;
-            border: 2px solid var(--satin-gold);
-            max-width: 500px;
-            width: 90%;
-            position: relative;
-            box-shadow: 0 0 30px rgba(201, 160, 80, 0.3);
-        }
-
-        .popup-content h2 {
-            font-family: 'Cormorant Garamond', serif;
-            color: var(--satin-gold);
-            font-size: 3rem;
-            margin: 0 0 10px 0;
-        }
-
-        .popup-content p { color: white; margin-bottom: 30px; }
-
-        .close-popup {
-            position: absolute;
-            top: 15px; right: 20px;
-            color: var(--satin-gold);
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-
-        /* --- MARQUEE --- */
-        .marquee-container {
-            background: var(--chic-black);
-            padding: 20px 0;
-            overflow: hidden;
-            border-bottom: 2px solid var(--satin-gold);
-        }
-
-        .marquee-content {
-            display: inline-flex;
-            gap: 20px;
-            animation: scroll 35s linear infinite;
-        }
-
-        .marquee-content img {
-            height: 200px;
-            width: 160px;
-            object-fit: cover;
-            border-radius: 4px;
-            border: 1px solid rgba(201, 160, 80, 0.2);
-        }
-
-        @keyframes scroll {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
+            line-height: 1.6;
         }
 
         /* --- NAVIGATION --- */
         .main-navbar {
-            background: rgba(10, 10, 10, 0.98);
-            padding: 10px 50px;
+            background: rgba(10, 10, 10, 0.95);
+            padding: 10px 20px;
             position: sticky;
             top: 0;
             z-index: 10000;
-            border-bottom: 2px solid var(--satin-gold);
+            border-bottom: 1px solid var(--satin-gold);
+            backdrop-filter: blur(10px);
         }
 
         .nav-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            max-width: 1400px;
+            max-width: 1200px;
             margin: 0 auto;
         }
 
-        .logo img { height: 50px; }
+        .logo img { height: 40px; width: auto; }
+        
         .nav-links a {
             color: #fff;
             text-decoration: none;
-            margin-left: 30px;
-            font-size: 0.8rem;
-            letter-spacing: 2px;
+            margin-left: 20px;
+            font-size: 0.75rem;
+            letter-spacing: 1px;
             text-transform: uppercase;
-            transition: 0.3s;
         }
-        .nav-links a:hover { color: var(--satin-gold); }
 
-        /* --- HERO SECTION (BANNER FIX) --- */
+        /* --- HERO SECTION (MOBILE OPTIMIZED) --- */
         .hero {
             position: relative;
-            min-height: 80vh;
-            width: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: #0d1a0d; /* Dark green base to match your banner */
-            overflow: hidden;
-        }
-
-        .hero-content { 
-            position: relative; 
-            z-index: 10; 
-            width: 100%;
+            background: #0d1a0d; 
             display: flex;
             flex-direction: column;
             align-items: center;
-            animation: fadeIn 1.5s ease-out; 
+            width: 100%;
         }
 
-        /* This ensures your image covers the width properly */
         .hero-banner-main {
             width: 100%;
             height: auto;
-            max-width: 100%; /* Covers the whole section width */
             display: block;
-            box-shadow: 0 10px 50px rgba(0,0,0,0.5);
+            object-fit: contain;
         }
 
         .hero-action {
-            margin-top: -50px; /* Pulls button slightly over the banner for style */
-            z-index: 11;
+            padding: 30px 0;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            background: linear-gradient(to bottom, #0d1a0d, var(--luminous-ivory));
         }
 
         /* --- BUTTONS --- */
         .cta-btn {
             display: inline-block;
-            padding: 15px 45px;
+            padding: 12px 30px;
             background: var(--satin-gold);
             color: white;
             text-decoration: none;
             letter-spacing: 2px;
             font-weight: 600;
             border: 2px solid var(--satin-gold);
-            transition: 0.3s;
             text-transform: uppercase;
+            font-size: 0.9rem;
+            transition: 0.3s;
         }
-        .cta-btn:hover { background: transparent; color: var(--satin-gold); }
 
-        /* --- SERVICES --- */
-        section { padding: 80px 10%; }
-        .section-title { font-family: 'Cormorant Garamond', serif; font-size: 3rem; text-align: center; margin-bottom: 10px; }
-        .section-subtitle { text-align: center; color: var(--satin-gold); letter-spacing: 3px; text-transform: uppercase; margin-bottom: 60px; }
+        /* --- SERVICES GRID --- */
+        .services { padding: 50px 20px; text-align: center; }
+        .section-title { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; margin-bottom: 5px; }
+        .section-subtitle { color: var(--satin-gold); font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 40px; }
 
-        .service-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
-        .service-card { background: white; padding: 40px; text-align: center; border: 1px solid #eee; transition: 0.3s; }
-        .service-card:hover { transform: translateY(-10px); border-color: var(--satin-gold); }
+        .service-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+            gap: 20px; 
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .service-card { 
+            background: white; 
+            padding: 30px; 
+            border: 1px solid #eee; 
+            box-shadow: 0 5px 15px rgba(0,0,0,0.02);
+        }
 
         /* --- FOOTER --- */
         footer { 
             background: var(--chic-black); 
-            color: #888; 
-            padding: 60px 20px; 
+            color: #bbb; 
+            padding: 40px 20px; 
             text-align: center; 
             border-top: 3px solid var(--satin-gold); 
         }
 
         .footer-logo-banner {
-            max-width: 800px;
-            width: 90%;
-            margin-bottom: 30px;
-            border: 1px solid var(--satin-gold);
+            width: 100%;
+            max-width: 500px;
+            margin-bottom: 25px;
+            border: 1px solid rgba(201, 160, 80, 0.3);
         }
 
-        .social-links a { color: #fff; font-size: 1.5rem; margin: 0 15px; transition: 0.3s; }
-        .social-links a:hover { color: var(--satin-gold); }
+        .social-links { margin: 20px 0; }
+        .social-links a { color: #fff; font-size: 1.4rem; margin: 0 10px; }
 
+        /* --- MOBILE FLOATS --- */
         .whatsapp-float {
-            position: fixed; width: 60px; height: 60px; bottom: 40px; right: 40px;
-            background-color: #25d366; color: #FFF; border-radius: 50px;
+            position: fixed; width: 55px; height: 55px; bottom: 20px; right: 20px;
+            background-color: #25d366; color: #FFF; border-radius: 50%;
             display: flex; align-items: center; justify-content: center;
-            font-size: 30px; z-index: 10000; text-decoration: none;
+            font-size: 28px; z-index: 10000; box-shadow: 0 4px 12px rgba(0,0,0,0.3);
         }
 
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        /* --- POPUP --- */
+        .popup-overlay {
+            position: fixed; inset: 0; background: rgba(0,0,0,0.9);
+            display: none; justify-content: center; align-items: center;
+            z-index: 99999; padding: 20px;
+        }
+        .popup-content {
+            background: var(--chic-black); padding: 40px 20px;
+            border: 1px solid var(--satin-gold); text-align: center; color: white;
+            width: 100%; max-width: 400px;
+        }
 
-        @media (max-width: 768px) {
-            .nav-links { display: none; }
-            .hero { min-height: 40vh; }
-            .hero-action { margin-top: 20px; }
+        /* --- RESPONSIVE ADJUSTMENTS --- */
+        @media (max-width: 600px) {
+            .nav-links { display: none; } /* Hide links on mobile for clean look */
+            .section-title { font-size: 1.8rem; }
+            .logo img { height: 35px; }
+            .cta-btn { width: 80%; text-align: center; }
         }
     </style>
 </head>
 <body>
-
-    <div class="popup-overlay" id="openingPopup">
-        <div class="popup-content">
-            <span class="close-popup" onclick="closePopup()">&times;</span>
-            <h2>Opening Soon</h2>
-            <p>Our Luxury Studio in <strong>Sec-E, Sainik Colony, Jammu</strong> is almost ready. Stay tuned for our Grand Launch!</p>
-            <a href="https://wa.me/917889425218" class="cta-btn">Get Notified</a>
-        </div>
-    </div>
 
     <nav class="main-navbar">
         <div class="nav-container">
@@ -239,82 +171,72 @@
                 <img src="https://raw.githubusercontent.com/tthirdshooter/khushana/main/images/logo1.png" alt="Khushana Logo">
             </a>
             <div class="nav-links">
-                <a href="#services">Services</a>
                 <a href="kgallery.html">Gallery</a>
-                <a href="contact.html">Booking</a>
+                <a href="contact.html">Book</a>
             </div>
         </div>
     </nav>
 
     <div class="hero">
-        <div class="hero-content">
-            <img src="https://raw.githubusercontent.com/tthirdshooter/khushana/main/images/ka.jpeg" alt="Khushana Makeup Studio Professional Banner" class="hero-banner-main">
-            <div class="hero-action">
-                <a href="contact.html" class="cta-btn">Book Consultation</a>
-            </div>
+        <img src="https://raw.githubusercontent.com/tthirdshooter/khushana/main/images/banner.jpg" alt="Khushana Makeup Studio" class="hero-banner-main">
+        <div class="hero-action">
+            <a href="contact.html" class="cta-btn">Book Consultation</a>
         </div>
     </div>
 
-    <div class="marquee-container">
-        <div class="marquee-content">
-            <img src="https://raw.githubusercontent.com/tthirdshooter/khushana/main/images/n1.jpeg" alt="Work 1">
-            <img src="https://raw.githubusercontent.com/tthirdshooter/khushana/main/images/n2.jpeg" alt="Work 2">
-            <img src="https://raw.githubusercontent.com/tthirdshooter/khushana/main/images/1.jpeg" alt="Work 3">
-            <img src="https://raw.githubusercontent.com/tthirdshooter/khushana/main/images/4.jpeg" alt="Work 4">
-            <img src="https://raw.githubusercontent.com/tthirdshooter/khushana/main/images/n1.jpeg" alt="Work 1">
-            <img src="https://raw.githubusercontent.com/tthirdshooter/khushana/main/images/n2.jpeg" alt="Work 2">
-        </div>
-    </div>
-
-    <section id="services">
-        <h2 class="section-title">Our Expertise</h2>
-        <p class="section-subtitle">Defining Modern Elegance</p>
+    <section class="services">
+        <h2 class="section-title">Signature Services</h2>
+        <p class="section-subtitle">Luxury Artistry in Jammu</p>
         <div class="service-grid">
             <div class="service-card">
-                <h3>Makeup Artistry</h3>
-                <p>Bridal, HD, and Editorial looks tailored to your unique beauty.</p>
+                <h3>Bridal Makeup</h3>
+                <p>Expert HD and Airbrush techniques for your special day.</p>
             </div>
             <div class="service-card">
-                <h3>Nail Art</h3>
-                <p>Professional extensions and precision nail design.</p>
+                <h3>Nail Artistry</h3>
+                <p>Bespoke extensions and precision styling.</p>
             </div>
             <div class="service-card">
-                <h3>Skincare & Hair</h3>
-                <p>Luxury treatments for a complete glow-up experience.</p>
+                <h3>Hair & Beauty</h3>
+                <p>Professional cuts, styling, and premium skincare.</p>
             </div>
         </div>
     </section>
 
     <footer>
-        <img src="https://raw.githubusercontent.com/tthirdshooter/khushana/main/images/k.jpeg" alt="Khushana Studio Details" class="footer-logo-banner">
-        <p><strong>Khushana Makeup Studio</strong> | Sec-E, Sainik Colony, Jammu</p>
-        <p>Contact: +91-7889425218 | +91-9149509617</p>
+        <img src="https://raw.githubusercontent.com/tthirdshooter/khushana/main/images/k.jpeg" alt="Khushana Banner" class="footer-logo-banner">
+        <p><strong>Khushana Makeup Studio</strong></p>
+        <p>Sec-E, Sainik Colony, Jammu</p>
+        <p>+91-7889425218 | +91-9149509617</p>
         <div class="social-links">
             <a href="https://www.instagram.com/khushanamakeup_studio"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-whatsapp"></i></a>
         </div>
-        <p style="margin-top:30px; font-size: 0.7rem; opacity: 0.5;">&copy; 2026 Khushana Makeup Studio. All Rights Reserved.</p>
+        <p style="font-size: 0.6rem; opacity: 0.5;">&copy; 2026 Khushana Makeup Studio.</p>
     </footer>
 
-    <a href="https://wa.me/917889425218" class="whatsapp-float" target="_blank">
+    <a href="https://wa.me/917889425218" class="whatsapp-float">
         <i class="fab fa-whatsapp"></i>
     </a>
 
+    <div class="popup-overlay" id="openingPopup">
+        <div class="popup-content">
+            <h2 style="font-family: 'Cormorant Garamond', serif; color: var(--satin-gold);">Opening Soon</h2>
+            <p>Redefining beauty in Sainik Colony, Jammu.</p>
+            <button onclick="closePopup()" class="cta-btn" style="margin-top: 20px; cursor:pointer;">Close</button>
+        </div>
+    </div>
+
     <script>
         window.onload = function() {
-            setTimeout(function() {
+            setTimeout(() => {
                 const popup = document.getElementById('openingPopup');
                 popup.style.display = 'flex';
-                setTimeout(() => { popup.style.opacity = '1'; }, 10);
-            }, 1500);
+            }, 2000);
         }
-
         function closePopup() {
-            const popup = document.getElementById('openingPopup');
-            popup.style.opacity = '0';
-            setTimeout(() => { popup.style.display = 'none'; }, 500);
+            document.getElementById('openingPopup').style.display = 'none';
         }
     </script>
-
 </body>
 </html>
