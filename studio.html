@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -152,21 +153,35 @@
             justify-content: center;
             color: var(--text-light);
             text-align: center;
+            overflow: hidden;
         }
 
         .hero-bg {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
-            background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.8)), url('image_0.png');
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), url('image_0.png');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
             z-index: 1;
         }
 
-        .hero-content { position: relative; z-index: 10; max-width: 800px; animation: fadeIn 1.5s ease-out; }
-        .hero h1 { font-family: 'Cormorant Garamond', serif; font-size: 4.5rem; margin: 0; line-height: 1.1; }
-        .hero h1 span { color: var(--satin-gold); }
+        .hero-content { 
+            position: relative; 
+            z-index: 10; 
+            max-width: 1000px; 
+            width: 90%;
+            animation: fadeIn 1.5s ease-out; 
+        }
+
+        /* Front Image Styling */
+        .hero-front-banner {
+            width: 100%;
+            height: auto;
+            max-width: 900px;
+            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5));
+            margin-bottom: 20px;
+        }
 
         /* --- SERVICES --- */
         section { padding: 80px 10%; }
@@ -181,6 +196,7 @@
             display: inline-block; padding: 15px 40px; background: var(--satin-gold); color: white;
             text-decoration: none; letter-spacing: 2px; font-weight: 600; border: 2px solid var(--satin-gold);
             transition: 0.3s; margin-top: 30px;
+            text-transform: uppercase;
         }
         .cta-btn:hover { background: transparent; color: var(--satin-gold); }
 
@@ -230,7 +246,7 @@
 
         @media (max-width: 850px) {
             .nav-links { display: none; }
-            .hero h1 { font-size: 2.8rem; }
+            .hero-front-banner { width: 100%; }
             .marquee-content img { height: 160px; width: 130px; }
         }
 
@@ -278,9 +294,12 @@
     <div class="hero">
         <div class="hero-bg"></div>
         <div class="hero-content">
-            <h1>Experience <span>Luxury</span> Beauty Artistry</h1>
-            <p>Masterful Makeup • Precision Nail Art • Bespoke Styling</p>
-            <a href="contact.html" class="cta-btn">BOOK CONSULTATION</a>
+            <!-- Professional Front Display Banner -->
+            <img src="https://raw.githubusercontent.com/tthirdshooter/khushana/main/images/ka.jpeg" alt="Khushana Luxury Artistry" class="hero-front-banner">
+            
+            <div>
+                <a href="contact.html" class="cta-btn">BOOK CONSULTATION</a>
+            </div>
         </div>
     </div>
 
