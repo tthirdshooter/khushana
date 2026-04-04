@@ -38,7 +38,7 @@
             height: 100%;
             background: rgba(0, 0, 0, 0.85);
             backdrop-filter: blur(8px);
-            display: none; /* Hidden by default */
+            display: none; 
             justify-content: center;
             align-items: center;
             z-index: 99999;
@@ -192,7 +192,30 @@
         .testimonial-text { font-style: italic; font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; line-height: 1.6; }
         .client-name { margin-top: 20px; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; font-size: 0.8rem; color: var(--satin-gold); }
 
-        /* --- SOCIAL & WHATSAPP --- */
+        /* --- FOOTER & BANNER --- */
+        footer { 
+            background: var(--chic-black); 
+            color: #888; 
+            padding: 40px 20px; 
+            text-align: center; 
+            border-top: 3px solid var(--satin-gold); 
+        }
+        
+        .footer-banner-container {
+            max-width: 1200px;
+            margin: 0 auto 40px auto;
+            padding: 0 15px;
+        }
+
+        .footer-banner {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            border: 1px solid var(--satin-gold);
+            display: block;
+        }
+
         .social-links { margin-top: 30px; display: flex; justify-content: center; gap: 25px; }
         .social-links a { color: #fff; font-size: 1.5rem; transition: 0.3s; }
         .social-links a:hover { color: var(--satin-gold); }
@@ -204,8 +227,6 @@
             font-size: 30px; box-shadow: 0px 4px 15px rgba(0,0,0,0.3);
             z-index: 10000; text-decoration: none; transition: 0.3s;
         }
-
-        footer { background: var(--chic-black); color: #888; padding: 60px 20px; text-align: center; border-top: 3px solid var(--satin-gold); }
 
         @media (max-width: 850px) {
             .nav-links { display: none; }
@@ -222,7 +243,7 @@
         <div class="popup-content">
             <span class="close-popup" onclick="closePopup()">&times;</span>
             <h2>Opening Soon</h2>
-            <p>Our Luxury Studio in Sainik Colony , Jammu is getting ready to redefine beauty. Stay tuned for our Grand Launch!</p>
+            <p>Our Luxury Studio in Sainik Colony, Jammu is getting ready to redefine beauty. Stay tuned for our Grand Launch!</p>
             <a href="https://wa.me/917889425218" class="cta-btn" style="margin-top:0;">GET NOTIFIED</a>
         </div>
     </div>
@@ -259,9 +280,7 @@
         <div class="hero-content">
             <h1>Experience <span>Luxury</span> Beauty Artistry</h1>
             <p>Masterful Makeup • Precision Nail Art • Bespoke Styling</p>
-<a href="contact.html" class="cta-btn">BOOK CONSULTATION</a>
-            
-         <!--  <a href="https://wa.me/917889425218" class="cta-btn">BOOK CONSULTATION</a> -->
+            <a href="contact.html" class="cta-btn">BOOK CONSULTATION</a>
         </div>
     </div>
 
@@ -303,13 +322,16 @@
             </div>
             <div class="testimonial-card">
                 <div class="stars">★★★★★</div>
-                <p class="testimonial-text">"A truly luxury atmosphere. They listen to what you want and elevate it beyond expectations."</p>
+                <p class="testimonial-text">"A luxury atmosphere. They listen to what you want and elevate it beyond expectations."</p>
                 <p class="client-name">— Mehak Gupta</p>
             </div>
         </div>
     </section>
 
     <footer>
+        <div class="footer-banner-container">
+            <img src="https://raw.githubusercontent.com/tthirdshooter/khushana/main/images/k.jpeg" alt="Khushana Makeup Studio Banner" class="footer-banner">
+        </div>
         <p><strong>Khushana Makeup Studio</strong> | Sector E, Sainik Colony, Jammu</p>
         <p>+91-788-942-5218 | khushanaa@hotmail.com</p>
         <div class="social-links">
@@ -329,9 +351,8 @@
             setTimeout(function() {
                 const popup = document.getElementById('openingPopup');
                 popup.style.display = 'flex';
-                // Small timeout to trigger opacity transition
                 setTimeout(() => { popup.style.opacity = '1'; }, 10);
-            }, 1500); // Popup appears after 1.5 seconds
+            }, 1500);
         }
 
         function closePopup() {
