@@ -7,20 +7,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            /* Sophisticated Olive & Cream Palette */
-            --olive-bg: #4c634c;       /* Rich Olive Green */
-            --cream-text: #f5f1e6;     /* Soft Cream */
-            --golden-accent: #b8860b;   /* Deep Golden */
-            --form-bg: #fcfaf5;        /* Ultra-pale cream for form */
-            --input-border: #d9d0c1;   /* Subtle border */
+            --deep-gold: #b8860b;
+            --midnight: #0a0a0a;
+            --input-bg: #1a1a1a;
         }
 
         body {
             margin: 0;
-            /* Olive green becomes the main page background */
-            background: var(--olive-bg);
-            /* Soft cream for main text contrast */
-            color: var(--cream-text);
+            background: var(--midnight);
+            color: #fff;
             font-family: 'Montserrat', sans-serif;
             display: flex;
             justify-content: center;
@@ -30,25 +25,14 @@
         }
 
         .booking-card {
-            /* Form background becomes a very light cream for readability */
-            background: var(--form-bg);
-            /* Main text on the cream card should be dark olive */
-            color: #2c3a2c;
+            background: #111;
             width: 100%;
             max-width: 600px;
             padding: 40px;
-            /* Subtle border for definition */
-            border: 1px solid var(--input-border);
-            /* Golden top accent bar */
-            border-top: 5px solid var(--golden-accent);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.15); /* Softer shadow for elegance */
-            border-radius: 4px; /* Optional slight rounding for modern feel */
+            border: 1px solid #222;
+            border-top: 5px solid var(--deep-gold);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
         }
-
-.logo-container {
-    text-align: center;
-    margin-bottom: 25px;
-}
 
 .logo-container a {
     display: inline-block;
@@ -57,7 +41,7 @@
 }
 
 .logo-container a:hover {
-    transform: scale(1.05); /* Sophisticated slight zoom */
+    transform: scale(1.08); /* Sophisticated slight zoom */
     opacity: 0.9;            /* Subtle visual feedback */
 }
 
@@ -67,10 +51,14 @@
     outline: none;
 }
 
+
+
+        
+  
+
         h2 {
             font-family: 'Cinzel', serif;
-            /* Use golden accent for the title */
-            color: var(--golden-accent);
+            color: var(--deep-gold);
             text-align: center;
             letter-spacing: 4px;
             margin-bottom: 30px;
@@ -85,37 +73,29 @@
             font-size: 0.75rem;
             text-transform: uppercase;
             letter-spacing: 2px;
-            /* Darker label for readability against cream */
-            color: #555;
+            color: #888;
         }
 
         input, select, textarea {
             width: 100%;
             padding: 15px;
-            /* Input backgrounds are pure white for crispness */
-            background: #fff;
-            border: 1px solid var(--input-border);
-            /* Dark text inside inputs */
-            color: #333;
+            background: var(--input-bg);
+            border: 1px solid #333;
+            color: white;
             font-family: 'Montserrat', sans-serif;
             box-sizing: border-box;
-            border-radius: 2px;
         }
 
-        input:focus, select:focus, textarea:focus {
-            /* Gold border on focus */
-            border-color: var(--golden-accent);
+        input:focus, select:focus {
+            border-color: var(--deep-gold);
             outline: none;
-            box-shadow: 0 0 5px rgba(184, 134, 11, 0.2);
         }
 
         .submit-btn {
             width: 100%;
             padding: 18px;
-            /* Deep Golden background for the primary CTA */
-            background: var(--golden-accent);
-            /* Dark Olive text for high contrast on gold */
-            color: var(--olive-bg);
+            background: var(--deep-gold);
+            color: var(--midnight);
             border: none;
             font-family: 'Cinzel', serif;
             font-weight: bold;
@@ -123,12 +103,10 @@
             cursor: pointer;
             transition: 0.3s;
             letter-spacing: 2px;
-            text-transform: uppercase;
         }
 
         .submit-btn:hover {
-            /* Subtle hover effect */
-            background: #cd9b31; /* Slightly lighter gold */
+            background: #fff;
             transform: translateY(-2px);
         }
 
@@ -140,24 +118,17 @@
             padding: 14px;
             margin-top: 15px;
             background: transparent;
-            /* Gold outline button */
-            color: var(--golden-accent);
-            border: 1px solid var(--golden-accent);
+            color: var(--deep-gold);
+            border: 1px solid var(--deep-gold);
             font-family: 'Cinzel', serif;
             font-size: 0.8rem;
             text-decoration: none;
             transition: 0.3s;
             letter-spacing: 1px;
             box-sizing: border-box;
-            text-transform: uppercase;
         }
 
-        .call-btn:hover { 
-            /* Subtle reverse fill on hover */
-            background: rgba(184, 134, 11, 0.05); 
-            color: #cd9b31; 
-            border-color: #cd9b31; 
-        }
+        .call-btn:hover { background: rgba(184, 134, 11, 0.1); color: #fff; border-color: #fff; }
 
         #success-message {
             display: none;
@@ -168,10 +139,9 @@
         .business-hours {
             margin-top: 30px;
             padding-top: 20px;
-            border-top: 1px solid var(--input-border);
+            border-top: 1px solid #222;
             text-align: center;
-            /* Muted dark grey for hours */
-            color: #777;
+            color: #666;
             font-size: 0.75rem;
             line-height: 1.6;
         }
@@ -180,15 +150,11 @@
             display: block;
             text-align: center;
             margin-top: 20px;
-            /* Muted olive link */
-            color: var(--olive-bg);
+            color: #444;
             text-decoration: none;
             font-size: 0.7rem;
             letter-spacing: 1px;
-            opacity: 0.8;
         }
-
-        .nav-home:hover { opacity: 1; text-decoration: underline; }
 
         .fade-out { opacity: 0; transition: opacity 0.4s ease; }
     </style>
@@ -199,9 +165,10 @@
 
 <div class="logo-container">
     <a href="studio.html" title="Visit Studio">
-                <img src="https://raw.githubusercontent.com/tthirdshooter/khushana/main/images/logo1.png" 
-             alt="Khushana Logo" 
-             style="height: 60px; width: auto;">  
+       
+  <img src="https://raw.githubusercontent.com/tthirdshooter/khushana/main/images/logo1.png" 
+     alt="Khushana Logo" 
+     style="height: 50px; width: auto;">  
     </a>
 </div>
    
@@ -246,8 +213,8 @@
         </div>
 
         <div id="success-message">
-            <h3 style="font-family: 'Cinzel'; color: var(--golden-accent);">Request Initiated</h3>
-            <p style="color: #444;">Redirecting to WhatsApp...</p>
+            <h3 style="font-family: 'Cinzel'; color: var(--deep-gold);">Request Initiated</h3>
+            <p>Redirecting to WhatsApp...</p>
             <button onclick="location.reload()" class="nav-home" style="border:none; background:none; cursor:pointer; width:100%;">Click here to reset form</button>
         </div>
 
@@ -264,7 +231,7 @@
         document.getElementById('whatsappForm').addEventListener('submit', function(e) {
             e.preventDefault();
 
-            // CONFIG: This number remains as previously defined
+            // CONFIG: Replace with your 10-digit number (include country code, no +)
             const myPhoneNumber = "917889425218"; 
 
             const name = document.getElementById('userName').value;
