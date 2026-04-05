@@ -1,264 +1,289 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inquiry | Khushana Makeup Studio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --deep-gold: #b8860b;
-            --midnight: #0a0a0a;
-            --input-bg: #1a1a1a;
-        }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inquiry | Khushana Makeup Studio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --deep-gold: #c5a059;
+            --light-gold: #e2c285;
+            --midnight: #0f0f0f;
+            --card-bg: #161616;
+            --input-bg: #1e1e1e;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
 
-        body {
-            margin: 0;
-            background: var(--midnight);
-            color: #fff;
-            font-family: 'Montserrat', sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            padding: 20px;
-        }
+        body {
+            margin: 0;
+            background: radial-gradient(circle at center, #1a1a1a 0%, #0a0a0a 100%);
+            color: #ffffff;
+            font-family: 'Montserrat', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
 
-        .booking-card {
-            background: #111;
-            width: 100%;
-            max-width: 600px;
-            padding: 40px;
-            border: 1px solid #222;
-            border-top: 5px solid var(--deep-gold);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-        }
+        .booking-card {
+            background: var(--card-bg);
+            width: 100%;
+            max-width: 500px;
+            padding: 50px 40px;
+            border: 1px solid #2a2a2a;
+            position: relative;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.8);
+            border-radius: 4px;
+        }
 
-.logo-container a {
-    display: inline-block;
-    transition: transform 0.3s ease, opacity 0.3s ease;
-    text-decoration: none;
-}
+        /* Accent Top Bar */
+        .booking-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--deep-gold), var(--light-gold), var(--deep-gold));
+        }
 
-.logo-container a:hover {
-    transform: scale(1.08); /* Sophisticated slight zoom */
-    opacity: 0.9;            /* Subtle visual feedback */
-}
+        .logo-container {
+            text-align: center;
+            margin-bottom: 40px;
+        }
 
-/* Ensure the image itself doesn't have a default link border */
-.logo-container img {
-    border: none;
-    outline: none;
-}
+        .logo-container img {
+            height: 60px;
+            width: auto;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
+            transition: var(--transition);
+        }
 
+        .logo-container a:hover img {
+            transform: scale(1.05);
+        }
 
+        h2 {
+            font-family: 'Cinzel', serif;
+            color: var(--light-gold);
+            text-align: center;
+            letter-spacing: 5px;
+            margin-bottom: 35px;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+        }
 
-        
-  
+        .form-group { margin-bottom: 25px; }
 
-        h2 {
-            font-family: 'Cinzel', serif;
-            color: var(--deep-gold);
-            text-align: center;
-            letter-spacing: 4px;
-            margin-bottom: 30px;
-            font-size: 1.4rem;
-        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #a0a0a0;
+            font-weight: 500;
+        }
 
-        .form-group { margin-bottom: 20px; }
+        input, select, textarea {
+            width: 100%;
+            padding: 14px 18px;
+            background: var(--input-bg);
+            border: 1px solid #333;
+            color: #fff;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem;
+            box-sizing: border-box;
+            border-radius: 2px;
+            transition: var(--transition);
+        }
 
-        label {
-            display: block;
-            margin-bottom: 8px;
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: #888;
-        }
+        input:focus, select:focus, textarea:focus {
+            border-color: var(--deep-gold);
+            outline: none;
+            background: #252525;
+            box-shadow: 0 0 10px rgba(197, 160, 89, 0.1);
+        }
 
-        input, select, textarea {
-            width: 100%;
-            padding: 15px;
-            background: var(--input-bg);
-            border: 1px solid #333;
-            color: white;
-            font-family: 'Montserrat', sans-serif;
-            box-sizing: border-box;
-        }
+        .submit-btn {
+            width: 100%;
+            padding: 18px;
+            background: var(--deep-gold);
+            color: #000;
+            border: none;
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: var(--transition);
+            letter-spacing: 3px;
+            margin-top: 10px;
+        }
 
-        input:focus, select:focus {
-            border-color: var(--deep-gold);
-            outline: none;
-        }
+        .submit-btn:hover {
+            background: var(--light-gold);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(197, 160, 89, 0.3);
+        }
 
-        .submit-btn {
-            width: 100%;
-            padding: 18px;
-            background: var(--deep-gold);
-            color: var(--midnight);
-            border: none;
-            font-family: 'Cinzel', serif;
-            font-weight: bold;
-            font-size: 0.9rem;
-            cursor: pointer;
-            transition: 0.3s;
-            letter-spacing: 2px;
-        }
+        .call-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            padding: 14px;
+            margin-top: 20px;
+            background: transparent;
+            color: var(--light-gold);
+            border: 1px solid rgba(197, 160, 89, 0.4);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+            letter-spacing: 1px;
+            box-sizing: border-box;
+        }
 
-        .submit-btn:hover {
-            background: #fff;
-            transform: translateY(-2px);
-        }
+        .call-btn:hover {
+            border-color: var(--light-gold);
+            background: rgba(197, 160, 89, 0.05);
+        }
 
-        .call-btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 100%;
-            padding: 14px;
-            margin-top: 15px;
-            background: transparent;
-            color: var(--deep-gold);
-            border: 1px solid var(--deep-gold);
-            font-family: 'Cinzel', serif;
-            font-size: 0.8rem;
-            text-decoration: none;
-            transition: 0.3s;
-            letter-spacing: 1px;
-            box-sizing: border-box;
-        }
+        .business-hours {
+            margin-top: 40px;
+            padding-top: 25px;
+            border-top: 1px solid #2a2a2a;
+            text-align: center;
+            color: #666;
+            font-size: 0.7rem;
+            line-height: 1.8;
+            letter-spacing: 1px;
+        }
 
-        .call-btn:hover { background: rgba(184, 134, 11, 0.1); color: #fff; border-color: #fff; }
+        .nav-home {
+            display: block;
+            text-align: center;
+            margin-top: 25px;
+            color: #555;
+            text-decoration: none;
+            font-size: 0.65rem;
+            letter-spacing: 2px;
+            transition: var(--transition);
+            text-transform: uppercase;
+        }
 
-        #success-message {
-            display: none;
-            text-align: center;
-            padding: 30px 0;
-        }
+        .nav-home:hover { color: var(--light-gold); }
 
-        .business-hours {
-            margin-top: 30px;
-            padding-top: 20px;
-            border-top: 1px solid #222;
-            text-align: center;
-            color: #666;
-            font-size: 0.75rem;
-            line-height: 1.6;
-        }
+        #success-message {
+            display: none;
+            text-align: center;
+            padding: 40px 0;
+        }
 
-        .nav-home {
-            display: block;
-            text-align: center;
-            margin-top: 20px;
-            color: #444;
-            text-decoration: none;
-            font-size: 0.7rem;
-            letter-spacing: 1px;
-        }
-
-        .fade-out { opacity: 0; transition: opacity 0.4s ease; }
-    </style>
+        .fade-out { opacity: 0; transform: translateY(10px); transition: var(--transition); }
+        
+        /* Custom Select Arrow */
+        select {
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23c5a059' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 15px center;
+            background-size: 15px;
+        }
+    </style>
 </head>
 <body>
 
-    <div class="booking-card">
+    <div class="booking-card">
+        <div class="logo-container">
+            <a href="studio.html">
+                <img src="https://raw.githubusercontent.com/tthirdshooter/khushana/main/images/logo1.png" alt="Khushana Logo">  
+            </a>
+        </div>
 
-<div class="logo-container">
-    <a href="studio.html" title="Visit Studio">
-       
-  <img src="https://raw.githubusercontent.com/tthirdshooter/khushana/main/images/logo1.png" 
-     alt="Khushana Logo" 
-     style="height: 50px; width: auto;">  
-    </a>
-</div>
-   
-        
+        <div id="form-container">
+            <h2>Consultation</h2>
+            <form id="whatsappForm">
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" id="userName" placeholder="e.g. Sophia Loren" required>
+                </div>
 
-        <div id="form-container">
-            <h2>Consultation Request</h2>
-            <form id="whatsappForm">
-                <div class="form-group">
-                    <label>Full Name</label>
-                    <input type="text" id="userName" placeholder="Your Name" required>
-                </div>
+                <div class="form-group">
+                    <label>Interest</label>
+                    <select id="interest">
+                        <option value="Beauty">Khushana Makeup Studio (Beauty)</option>
+                        <option value="Tech">Khushana Digital Info (Tech)</option>
+                    </select>
+                </div>
 
-                <div class="form-group">
-                    <label>Interest</label>
-                    <select id="interest">
-                        <option value="Beauty">Khushana Makeup Studio (Beauty)</option>
-                        <option value="Tech">Khushana Digital Info (Tech)</option>
-                    </select>
-                </div>
+                <div class="form-group">
+                    <label>Desired Service</label>
+                    <select id="service">
+                        <option>Bridal Makeup</option>
+                        <option>Nail Art / Manicure</option>
+                        <option>Haircut / Styling</option>
+                        <option>Website Development</option>
+                        <option>Digital Marketing</option>
+                    </select>
+                </div>
 
-                <div class="form-group">
-                    <label>Desired Service</label>
-                    <select id="service">
-                        <option>Bridal Makeup</option>
-                        <option>Nail Art / Manicure</option>
-                        <option>Haircut / Styling</option>
-                        <option>Website Development</option>
-                        <option>Digital Marketing</option>
-                    </select>
-                </div>
+                <div class="form-group">
+                    <label>Message</label>
+                    <textarea id="userMsg" rows="3" placeholder="Tell us about your requirements..."></textarea>
+                </div>
 
-                <div class="form-group">
-                    <label>Message</label>
-                    <textarea id="userMsg" rows="3" placeholder="How can we help?"></textarea>
-                </div>
+                <button type="submit" class="submit-btn">SEND INQUIRY</button>
+            </form>
+            
+            <a href="tel:+917889425218" class="call-btn">DIRECT CALL</a>
+        </div>
 
-                <button type="submit" class="submit-btn">SEND WHATSAPP INQUIRY</button>
-            </form>
-            
-            <a href="tel:+917889425218" class="call-btn">📞 DIRECT CALL</a>
-        </div>
+        <div id="success-message">
+            <h3 style="font-family: 'Cinzel'; color: var(--light-gold); letter-spacing: 3px;">REQUEST INITIATED</h3>
+            <p style="font-size: 0.8rem; color: #888;">Connecting you to our specialist via WhatsApp...</p>
+            <button onclick="location.reload()" class="nav-home" style="border:none; background:none; cursor:pointer; width:100%;">Refresh Form</button>
+        </div>
 
-        <div id="success-message">
-            <h3 style="font-family: 'Cinzel'; color: var(--deep-gold);">Request Initiated</h3>
-            <p>Redirecting to WhatsApp...</p>
-            <button onclick="location.reload()" class="nav-home" style="border:none; background:none; cursor:pointer; width:100%;">Click here to reset form</button>
-        </div>
+        <div class="business-hours">
+            <span style="color: var(--deep-gold); font-weight: 600;">HOURS</span><br>
+            MON – SAT: 10:00 AM – 8:00 PM<br>
+            <span style="font-style: italic; opacity: 0.8;">Exclusive Appointment Service</span>
+        </div>
 
-        <div class="business-hours">
-            <strong>BUSINESS HOURS</strong><br>
-            Monday – Saturday: 10:00 AM – 8:00 PM<br>
-            By Appointment Only
-        </div>
+        <a href="index.html" class="nav-home">Return to Portal</a>
+    </div>
 
-        <a href="index.html" class="nav-home">BACK TO PORTAL</a>
-    </div>
+    <script>
+        document.getElementById('whatsappForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const myPhoneNumber = "917889425218"; 
 
-    <script>
-        document.getElementById('whatsappForm').addEventListener('submit', function(e) {
-            e.preventDefault();
+            const name = document.getElementById('userName').value;
+            const interest = document.getElementById('interest').value;
+            const service = document.getElementById('service').value;
+            const message = document.getElementById('userMsg').value;
 
-            // CONFIG: Replace with your 10-digit number (include country code, no +)
-            const myPhoneNumber = "917889425218"; 
+            const whatsappMessage = `*New Website Inquiry*%0A` +
+                `--------------------------%0A` +
+                `*Name:* ${encodeURIComponent(name)}%0A` +
+                `*Interest:* ${encodeURIComponent(interest)}%0A` +
+                `*Service:* ${encodeURIComponent(service)}%0A` +
+                `*Message:* ${encodeURIComponent(message)}`;
 
-            const name = document.getElementById('userName').value;
-            const interest = document.getElementById('interest').value;
-            const service = document.getElementById('service').value;
-            const message = document.getElementById('userMsg').value;
+            const url = `https://wa.me/${myPhoneNumber}?text=${whatsappMessage}`;
+            const formContainer = document.getElementById('form-container');
+            const successMsg = document.getElementById('success-message');
 
-            const whatsappMessage = `*New Website Inquiry*%0A%0A` +
-                `*Name:* ${encodeURIComponent(name)}%0A` +
-                `*Interest:* ${encodeURIComponent(interest)}%0A` +
-                `*Service:* ${encodeURIComponent(service)}%0A` +
-                `*Message:* ${encodeURIComponent(message)}`;
-
-            const url = `https://wa.me/${myPhoneNumber}?text=${whatsappMessage}`;
-
-            const formContainer = document.getElementById('form-container');
-            const successMsg = document.getElementById('success-message');
-
-            formContainer.classList.add('fade-out');
-            
-            setTimeout(() => {
-                formContainer.style.display = 'none';
-                successMsg.style.display = 'block';
-                window.open(url, '_blank');
-            }, 400);
-        });
-    </script>
-
+            formContainer.classList.add('fade-out');
+            
+            setTimeout(() => {
+                formContainer.style.display = 'none';
+                successMsg.style.display = 'block';
+                window.open(url, '_blank');
+            }, 400);
+        });
+    </script>
 </body>
 </html>
