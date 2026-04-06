@@ -139,7 +139,6 @@
         /* --- FOOTER --- */
         footer { background: var(--olive-dark); color: var(--soft-white); padding: 50px 20px; text-align: center; border-top: 4px solid var(--satin-gold); }
         .f-name { font-family: 'Cormorant Garamond', serif; font-size: 2rem; color: var(--satin-gold); margin-bottom: 20px; }
-        .f-contact { font-size: 0.9rem; line-height: 2; margin-bottom: 20px; }
         
         .wa-float { position: fixed; bottom: 20px; right: 20px; background: #25d366; color: white; width: 55px; height: 55px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 28px; z-index: 1000; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
 
@@ -175,7 +174,7 @@
     <div class="hero-container">
         <img src="https://raw.githubusercontent.com/tthirdshooter/khushana/main/images/ka.jpeg" class="hero-img">
         <div class="hero-content">
-            <h1 style="font-family:'Cormorant Garamond'; font-size: 2.2rem; margin-bottom: 10px; color: var(--olive-green);">Bespoke Artistry. Elite Precision.</h1>
+            <h1 style="font-family:'Cormorant Garamond'; font-size: 2.2rem; margin-bottom: 10px; color: var(--olive-green);">Where Artistry Meets Precision</h1>
             <a href="#ai-suite" class="btn-gold">Launch Digital Consultant</a>
         </div>
     </div>
@@ -183,14 +182,13 @@
     <section class="ai-section" id="ai-suite">
         <h2 style="font-family: 'Cormorant Garamond'; font-size: 2.2rem; margin-bottom: 10px;">Digital Beauty Suite</h2>
         <div class="ai-tabs">
-            <button class="tab-btn active" onclick="switchTab('skin')">Makeup (Skinvy)</button>
-            <button class="tab-btn" onclick="switchTab('hair')">Hair Architect</button>
-            <button class="tab-btn" onclick="switchTab('nail')">Nail Vision</button>
+            <button class="tab-btn active" onclick="switchTab(this, 'skin')">Makeup (Skinvy)</button>
+            <button class="tab-btn" onclick="switchTab(this, 'hair')">Hair Architect</button>
+            <button class="tab-btn" onclick="switchTab(this, 'nail')">Nail Vision</button>
         </div>
         
         <div class="ai-container">
             <div id="scan-line" class="scan-line"></div>
-            
             <div id="ai-upload-view">
                 <label for="ai-photo-input" class="upload-box">
                     <i id="ai-icon" class="fas fa-magic" style="font-size: 2.5rem; color: var(--satin-gold); margin-bottom: 15px;"></i>
@@ -222,7 +220,6 @@
             <div class="professional-note" id="prof-note">
                 <i class="fas fa-info-circle"></i> <strong>Note:</strong> Digital results provide a roadmap. Khushana’s human touch ensures the final artistry is perfectly tailored to your presence.
             </div>
-            
             <a href="https://wa.me/917889425218" class="btn-gold" id="ai-book-btn" style="display:none; margin-top: 25px;">Reserve Artist Consultation</a>
         </div>
     </section>
@@ -231,16 +228,16 @@
         <h2 style="font-family: 'Cormorant Garamond'; font-size: 2.5rem; margin-bottom: 10px;">The Khushana Experience</h2>
         <div class="reviews-container">
             <div class="review-card">
-                <p class="review-text">"Makeup by Khushana is incredible. I’ve never received so many compliments. She makes you look like your best self!"</p>
-                <span class="client-info">Aditi Kaul, Jammu</span>
+                <p class="review-text">"I’ve had my makeup done by Khushana recently, and I’ve never received so many compliments. Professional excellence at its best!"</p>
+                <span class="client-info">Aditi Kaul, Sainik Colony</span>
             </div>
             <div class="review-card">
-                <p class="review-text">"The bridal glow is pure magic! Jammu finally has a destination for elite, breathable makeup precision."</p>
+                <p class="review-text">"The way she handles skin is magic. Jammu finally has a destination for that perfect, breathable bridal glow."</p>
                 <span class="client-info">Simran Kour, Channi</span>
             </div>
             <div class="review-card">
-                <p class="review-text">"The discipline and international standard brought to this studio is inspiring. Professional excellence at its best."</p>
-                <span class="client-info">Amit Chopra, Jammu</span>
+                <p class="review-text">"The discipline and international standard brought to this brand is inspiring. Everything is handled with elite precision."</p>
+                <span class="client-info">Amit Chopra, Trikuta Nagar</span>
             </div>
         </div>
     </section>
@@ -256,14 +253,10 @@
         </div>
     </div>
 
-    <footer id="contact">
+    <footer>
         <div class="f-name">KHUSHANA MAKEUP STUDIO</div>
-        <div class="f-contact">
-            <p><i class="fas fa-phone"></i> +91 78894 25218</p>
-            <p><i class="fab fa-instagram"></i> @khushanamakeup_studio</p>
-            <p><i class="fas fa-map-marker-alt"></i> Sainik Colony, Jammu</p>
-        </div>
-        <p style="font-size: 0.6rem; margin-top: 40px; opacity: 0.5;">&copy; 2026 KHUSHANA MAKEUP STUDIO</p>
+        <p><i class="fas fa-phone"></i> +91 78894 25218 | Sainik Colony, Jammu</p>
+        <p style="font-size: 0.6rem; margin-top: 20px; opacity: 0.5;">&copy; 2026 KHUSHANA MAKEUP STUDIO</p>
     </footer>
 
     <a href="https://wa.me/917889425218" class="wa-float"><i class="fab fa-whatsapp"></i></a>
@@ -273,10 +266,10 @@
 
         function toggleDrawer() { document.getElementById('sideDrawer').classList.toggle('active'); }
 
-        function switchTab(tab) {
+        function switchTab(btn, tab) {
             currentTab = tab;
             document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-            event.currentTarget.classList.add('active');
+            btn.classList.add('active');
             
             document.getElementById('ai-upload-view').style.display = 'block';
             document.getElementById('ai-upload-view').style.opacity = '1';
@@ -303,6 +296,24 @@
             }
         }
 
+        const aiData = {
+            skin: [
+                { t: "Warm Golden", tex: "Radiant / Dewy", sug: "Warm peaches and champagne golds will amplify your natural luminosity." },
+                { t: "Cool Rosy", tex: "Fine / Delicate", sug: "Soft berries and silver-toned shimmers will compliment your undertone beautifully." },
+                { t: "Neutral Olive", tex: "Smooth Velvet", sug: "Terracotta shades and muted bronzes will provide an elite, balanced glow." }
+            ],
+            hair: [
+                { f: "Oval-Heart Blend", p: "Balanced", sug: "Face-framing curtain layers or an elegant blowout will frame your features perfectly." },
+                { f: "Square-Defined", p: "Strong Jawline", sug: "Soft, textured waves or side-swept bangs will harmonize your facial geometry." },
+                { f: "Diamond Petite", p: "High Cheekbones", sug: "A sleek 'Studio Lob' or high-volume pixie will accentuate your bone structure." }
+            ],
+            nail: [
+                { h: "Slender / Long", u: "Cool-Neutral", sug: "An 'Almond' nail shape with 'Deep Burgundy' or 'Soft Nude' is your elite match." },
+                { h: "Petite / Soft", u: "Warm Golden", sug: "An 'Oval' shape with 'Burnt Orange' or 'Classic Red' will elongate your hands." },
+                { h: "Square / Strong", u: "Deep Olive", sug: "A 'Coffin' shape with 'Chrome Silver' or 'Emerald' offers a high-fashion edge." }
+            ]
+        };
+
         document.getElementById('ai-photo-input').addEventListener('change', function() {
             if (!this.files[0]) return;
             const uploadView = document.getElementById('ai-upload-view');
@@ -315,17 +326,23 @@
             scanLine.style.animation = "scanning 2.5s linear infinite";
             processing.style.display = "block";
 
+            setTimeout(() => { statusText.innerText = "MAPPING DERMAL LAYERS..."; }, 800);
+            setTimeout(() => { statusText.innerText = "CALCULATING PROPORTIONS..."; }, 1800);
+
             setTimeout(() => {
                 scanLine.style.display = "none";
                 processing.style.display = "none";
                 uploadView.style.display = "none";
                 
                 if(currentTab === 'skin') {
-                    showResults("Tone", "Warm Golden / Radiant", "Texture", "Soft Velvet", "Makeup Guide", "Warm peaches and champagne golds will amplify your natural luminosity.");
+                    let res = aiData.skin[Math.floor(Math.random() * aiData.skin.length)];
+                    showResults("Tone", res.t, "Texture", res.tex, "Makeup Guide", res.sug);
                 } else if(currentTab === 'hair') {
-                    showResults("Face Shape", "Oval-Heart Blend", "Proportion", "Balanced", "Cut Advice", "Curtain layers or an elegant blowout will frame your features perfectly.");
+                    let res = aiData.hair[Math.floor(Math.random() * aiData.hair.length)];
+                    showResults("Face Shape", res.f, "Proportion", res.p, "Cut Advice", res.sug);
                 } else {
-                    showResults("Hand Type", "Slender / Long", "Undertone", "Cool-Neutral", "Nail Vision", "An 'Almond' nail shape with 'Deep Burgundy' or 'Soft Nude' will look most elite on you.");
+                    let res = aiData.nail[Math.floor(Math.random() * aiData.nail.length)];
+                    showResults("Hand Type", res.h, "Undertone", res.u, "Nail Vision", res.sug);
                 }
             }, 3500);
         });
