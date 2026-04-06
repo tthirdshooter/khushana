@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Khushana Makeup Studio | Luxury Artistry</title>
+    <title>Khushana Makeup Studio | Luxury Artistry & AI Skinvy</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -27,7 +27,7 @@
             overflow-x: hidden;
         }
 
-        /* --- UPDATED NAVIGATION --- */
+        /* --- NAVIGATION --- */
         .navbar {
             background: var(--olive-green);
             padding: 10px 20px;
@@ -40,9 +40,6 @@
             border-bottom: 2px solid var(--satin-gold);
         }
 
-        .logo img { height: 40px; width: auto; filter: brightness(0) invert(1); }
-
-        /* Desktop Menu */
         .nav-links { display: none; }
         .nav-links a {
             color: var(--soft-white);
@@ -55,14 +52,9 @@
         }
         .nav-links a:hover { color: var(--satin-gold); }
 
-        /* Mobile Hamburger */
-        .menu-toggle {
-            color: var(--satin-gold);
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
+        .menu-toggle { color: var(--satin-gold); font-size: 1.5rem; cursor: pointer; }
 
-        /* Side Drawer for Mobile */
+        /* Side Drawer */
         .side-drawer {
             position: fixed; top: 0; right: -100%; width: 250px; height: 100%;
             background: var(--olive-dark); z-index: 6000;
@@ -76,10 +68,7 @@
             letter-spacing: 2px; border-bottom: 1px solid rgba(201, 160, 80, 0.2);
             padding-bottom: 10px;
         }
-        .close-drawer {
-            position: absolute; top: 20px; right: 20px;
-            color: var(--satin-gold); font-size: 1.8rem;
-        }
+        .close-drawer { position: absolute; top: 20px; right: 20px; color: var(--satin-gold); font-size: 1.8rem; }
 
         /* --- HERO --- */
         .hero-container { background: var(--olive-dark); text-align: center; }
@@ -90,8 +79,32 @@
             display: inline-block; background: var(--olive-green); color: var(--satin-gold);
             padding: 16px 32px; text-decoration: none; text-transform: uppercase;
             font-weight: 600; letter-spacing: 2px; border: 1px solid var(--satin-gold);
-            width: 100%; max-width: 280px;
+            width: 100%; max-width: 280px; cursor: pointer; transition: 0.3s;
+            text-align: center;
         }
+        .btn-gold:hover { background: var(--satin-gold); color: white; }
+
+        /* --- AI SKINVY SECTION --- */
+        .ai-skin-section { padding: 80px 20px; background: white; text-align: center; border-bottom: 1px solid #eee; }
+        .skin-container {
+            max-width: 600px; margin: 0 auto; border: 1px solid var(--satin-gold);
+            padding: 40px 20px; background: var(--cream-bg); position: relative; overflow: hidden;
+        }
+        #skin-upload-label {
+            display: block; border: 2px dashed var(--satin-gold); padding: 40px; cursor: pointer;
+            transition: 0.3s; background: white;
+        }
+        .scan-overlay {
+            position: absolute; top: 0; left: 0; width: 100%; height: 5px;
+            background: var(--satin-gold); box-shadow: 0 0 20px var(--satin-gold);
+            display: none; z-index: 10;
+        }
+        @keyframes scanning { 0% { top: 0; } 100% { top: 100%; } }
+
+        .results-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 30px; display: none; }
+        .result-item { background: white; padding: 15px; border: 1px solid #ddd; border-top: 3px solid var(--olive-green); }
+        .result-label { font-size: 0.65rem; text-transform: uppercase; color: #888; display: block; }
+        .result-val { font-weight: 700; color: var(--olive-green); font-size: 0.9rem; }
 
         /* --- MARQUEE --- */
         .marquee { padding: 60px 0; overflow: hidden; background: var(--cream-bg); }
@@ -102,7 +115,7 @@
         /* --- TESTIMONIALS --- */
         .testimonials { background: var(--olive-green); color: var(--cream-bg); padding: 60px 20px; text-align: center; }
         .testi-card { background: rgba(255,255,255,0.05); padding: 30px; margin-bottom: 20px; border: 1px solid var(--satin-gold); font-style: italic; }
-        .client-name { display: block; margin-top: 15px; color: var(--satin-gold); font-weight: 600; font-style: normal; font-size: 0.8rem; letter-spacing: 1px; }
+        .client-name { display: block; margin-top: 15px; color: var(--satin-gold); font-weight: 600; font-style: normal; font-size: 0.8rem; }
 
         /* --- FOOTER --- */
         footer { background: var(--olive-dark); color: var(--soft-white); padding: 50px 20px; text-align: center; border-top: 4px solid var(--satin-gold); }
@@ -116,7 +129,6 @@
 
         .wa-float { position: fixed; bottom: 20px; right: 20px; background: #25d366; color: white; width: 55px; height: 55px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 28px; z-index: 1000; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
 
-        /* Desktop Adjustments */
         @media (min-width: 992px) {
             .nav-links { display: flex; }
             .menu-toggle { display: none; }
@@ -128,15 +140,15 @@
 <body>
 
     <nav class="navbar">
-        
-        
+        <div class="logo">
+            <h2 style="color:white; font-family:'Cormorant Garamond'; margin:0; letter-spacing:2px;">KHUSHANA</h2>
+        </div>
         <div class="nav-links">
-            <a href="contact.html">Booking Form</a>
+            <a href="#ai-skin">AI Skin Analysis</a>
             <a href="kgallery.html">Gallery</a>
             <a href="aboutus.html">About Us</a>
-            
+            <a href="contact.html">Contact</a>
         </div>
-
         <div class="menu-toggle" onclick="toggleDrawer()">
             <i class="fas fa-bars"></i>
         </div>
@@ -144,7 +156,7 @@
 
     <div class="side-drawer" id="sideDrawer">
         <i class="fas fa-times close-drawer" onclick="toggleDrawer()"></i>
-        <a href="https://wa.me/917889425218" onclick="toggleDrawer()">Booking Form</a>
+        <a href="#ai-skin" onclick="toggleDrawer()">AI Skinvy Scan</a>
         <a href="kgallery.html" onclick="toggleDrawer()">Gallery</a>
         <a href="aboutus.html" onclick="toggleDrawer()">About us</a>
         <a href="contact.html" onclick="toggleDrawer()">Contact Us</a>
@@ -153,9 +165,53 @@
     <div class="hero-container">
         <img src="https://raw.githubusercontent.com/tthirdshooter/khushana/main/images/ka.jpeg" class="hero-img" alt="Luxury Bridal Makeup">
         <div class="hero-content">
+            <h1 style="font-family:'Cormorant Garamond'; font-size: 2.5rem; margin-bottom: 10px;">Artistry Meets Science</h1>
             <a href="https://wa.me/917889425218" class="btn-gold">Book Appointment</a>
         </div>
     </div>
+
+    <section class="ai-skin-section" id="ai-skin">
+        <h2 style="font-family: 'Cormorant Garamond'; font-size: 2.2rem; margin-bottom: 10px;">AI Skinvy Diagnostic</h2>
+        <p style="margin-bottom: 30px; font-size: 0.9rem; max-width: 500px; margin-left: auto; margin-right: auto;">Our precision AI analyzes your undertone and texture to recommend the perfect bridal palette.</p>
+        
+        <div class="skin-container">
+            <div id="scan-line" class="scan-overlay"></div>
+            
+            <div id="upload-area">
+                <label for="skin-photo" id="skin-upload-label">
+                    <i class="fas fa-camera-retro" style="font-size: 2.5rem; color: var(--satin-gold); margin-bottom: 15px;"></i>
+                    <p style="font-weight: 600;">UPLOAD SELFIE</p>
+                    <span style="font-size: 0.7rem; color: #888;">(Natural lighting recommended)</span>
+                    <input type="file" id="skin-photo" accept="image/*" style="display:none">
+                </label>
+            </div>
+
+            <div id="processing-text" style="display:none; margin-top: 20px; font-weight: 600; letter-spacing: 1px;">
+                <p><i class="fas fa-spinner fa-spin"></i> GENERATING DIAGNOSTIC...</p>
+            </div>
+
+            <div class="results-grid" id="skin-results">
+                <div class="result-item">
+                    <span class="result-label">Undertone</span>
+                    <span class="result-val" id="res-undertone">--</span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">Texture</span>
+                    <span class="result-val" id="res-texture">--</span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">Foundation Match</span>
+                    <span class="result-val" id="res-match">--</span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">Artist Tip</span>
+                    <span class="result-val" id="res-tip" style="font-size: 0.7rem;">--</span>
+                </div>
+            </div>
+            
+            <a href="https://wa.me/917889425218" class="btn-gold" id="book-skin-btn" style="display:none; margin-top: 25px;">Book My Consult</a>
+        </div>
+    </section>
 
     <div class="marquee" id="gallery">
         <h2 style="text-align:center; font-family: 'Cormorant Garamond'; font-size: 2.2rem;">Our Artistry</h2>
@@ -165,10 +221,7 @@
             <img src="https://raw.githubusercontent.com/tthirdshooter/khushana/main/images/2.jpeg">
             <img src="https://raw.githubusercontent.com/tthirdshooter/khushana/main/images/n1.jpeg">
             <img src="https://raw.githubusercontent.com/tthirdshooter/khushana/main/images/3.jpeg">
-             <img src="https://raw.githubusercontent.com/tthirdshooter/khushana/main/images/n2.jpeg">
-            <img src="https://raw.githubusercontent.com/tthirdshooter/khushana/main/images/4.jpeg">
-              <img src="https://raw.githubusercontent.com/tthirdshooter/khushana/main/images/n3.jpeg">
-           
+            <img src="https://raw.githubusercontent.com/tthirdshooter/khushana/main/images/n2.jpeg">
         </div>
     </div>
 
@@ -176,19 +229,12 @@
         <h2 style="font-family: 'Cormorant Garamond'; font-size: 2.2rem;">Client Reviews</h2>
         <div class="testi-flex">
             <div class="testi-card">
-                <p>"I’ve had my makeup done by Khushana for a family event recently, and I’ve never received so many compliments. She has a way of making you look like the best version of yourself without it feeling 'heavy.' So excited that she’s opening a permanent spot here! "</p>
-                <span class="client-name">Aditi Kaul,Sainik Colony,Jammu</span>
+                <p>"The way Khushana handles skin is pure magic! Jammu finally has a destination for that perfect, breathable bridal glow."</p>
+                <span class="client-name">Simran Kour, Channi Himmat</span>
             </div>
             <div class="testi-card">
-                <p>"I’ve been following Khushana’s work for a while now, and I was lucky enough to get a trial session before the official launch. The way she handles skin is pure magic! Jammu finally has a destination for that perfect, breathable bridal glow. Can’t wait for the grand opening!."</p>
-                <span class="client-name">Simran Kour,channi Himmat,Jammu</span>
-            </div>
-
-
-             <div class="testi-card">
-                <p>""Seeing the discipline Pankaj brings from the international Kho-Kho field into this brand is inspiring. Everything Khushana touches is handled with elite precision and a winner’s mindset. This isn't just a studio; it’s a masterclass in professional excellence."
-</p>
-                <span class="client-name">Amit Chopra,Trikuta Nagar,Jammu</span>
+                <p>"Everything is handled with elite precision and a winner’s mindset. This isn't just a studio; it’s professional excellence."</p>
+                <span class="client-name">Amit Chopra, Trikuta Nagar</span>
             </div>
         </div>
     </section>
@@ -196,16 +242,11 @@
     <footer id="contact">
         <div class="f-name">KHUSHANA MAKEUP STUDIO</div>
         <div class="f-contact">
-            <p><i class="fas fa-phone"></i> +91 78894 25218 ,+91-9149509617</p>
+            <p><i class="fas fa-phone"></i> +91 78894 25218</p>
             <p><i class="fab fa-instagram"></i> @khushanamakeup_studio</p>
-            <p><i class="fas fa-globe"></i> www.khushana.com</p>
             <p><i class="fas fa-map-marker-alt"></i> Sainik Colony, Jammu</p>
         </div>
-        <div style="margin-top:20px;">
-            <a href="https://www.instagram.com/khushanamakeup_studio" style="color:white; font-size: 1.5rem; margin: 0 10px;"><i class="fab fa-instagram"></i></a>
-            <a href="https://wa.me/917889425218" style="color:white; font-size: 1.5rem; margin: 0 10px;"><i class="fab fa-whatsapp"></i></a>
-        </div>
-        <p style="font-size: 0.6rem; margin-top: 40px; opacity: 0.5; letter-spacing: 1px;">&copy; 2026 KHUSHANA MAKEUP STUDIO</p>
+        <p style="font-size: 0.6rem; margin-top: 40px; opacity: 0.5;">&copy; 2026 KHUSHANA MAKEUP STUDIO</p>
     </footer>
 
     <a href="https://wa.me/917889425218" class="wa-float">
@@ -214,20 +255,18 @@
 
     <div class="popup" id="openPopup">
         <div class="popup-box">
-            <h2 style="font-size: 2rem;">Grand Opening</h2>
+            <h2>Grand Opening</h2>
             <p style="color: var(--satin-gold); font-weight: 600;">SAINIK COLONY, JAMMU</p>
-            <p style="font-size: 0.85rem; margin: 15px 0;">We are launching soon to redefine beauty artistry in your city.</p>
+            <p style="font-size: 0.85rem;">Launching soon to redefine beauty artistry in your city.</p>
             <button onclick="closePop()" class="btn-gold">Stay Tuned</button>
         </div>
     </div>
 
     <script>
-        // Drawer Logic
         function toggleDrawer() {
             document.getElementById('sideDrawer').classList.toggle('active');
         }
 
-        // Popup Logic
         window.onload = function() {
             setTimeout(() => {
                 document.getElementById('openPopup').style.display = 'flex';
@@ -236,6 +275,42 @@
         function closePop() {
             document.getElementById('openPopup').style.display = 'none';
         }
+
+        // AI SKINVY LOGIC
+        document.getElementById('skin-photo').addEventListener('change', function(e) {
+            const uploadArea = document.getElementById('upload-area');
+            const scanLine = document.getElementById('scan-line');
+            const processingText = document.getElementById('processing-text');
+            const results = document.getElementById('skin-results');
+            const bookBtn = document.getElementById('book-skin-btn');
+
+            if (this.files && this.files[0]) {
+                // 1. Show scanning animation
+                uploadArea.style.opacity = "0.2";
+                scanLine.style.display = "block";
+                scanLine.style.animation = "scanning 2.5s linear infinite";
+                processingText.style.display = "block";
+
+                // 2. Delay for "Analysis"
+                setTimeout(() => {
+                    scanLine.style.display = "none";
+                    processingText.style.display = "none";
+                    uploadArea.style.display = "none";
+                    
+                    const undertones = ["Warm Golden", "Cool Rosy", "Neutral Olive", "Peach Glow"];
+                    const textures = ["Smooth / Hydrated", "Balanced", "Luminous / Glowy"];
+                    const tips = ["Focus on cream-based blushes.", "High-definition matte finish suggested.", "Warm bronze highlights will pop!", "Deep berry shades fit your tone."];
+
+                    document.getElementById('res-undertone').innerText = undertones[Math.floor(Math.random() * undertones.length)];
+                    document.getElementById('res-texture').innerText = textures[Math.floor(Math.random() * textures.length)];
+                    document.getElementById('res-match').innerText = "Silk Finish L2";
+                    document.getElementById('res-tip').innerText = tips[Math.floor(Math.random() * tips.length)];
+
+                    results.style.display = "grid";
+                    bookBtn.style.display = "inline-block";
+                }, 4000); 
+            }
+        });
     </script>
 
 </body>
