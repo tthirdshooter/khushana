@@ -22,62 +22,78 @@
             color: var(--silk-white);
             font-family: 'Montserrat', sans-serif;
             line-height: 1.8;
+            min-height: 100vh;
         }
 
-        /* --- LOGO VISIBILITY FIX --- */
+        /* --- STABLE LOGO HEADER --- */
         .logo-header {
-            padding: 60px 0 30px 0;
+            padding: 50px 0;
             text-align: center;
-            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
 
-        .logo-header a {
-            display: inline-block;
+        .logo-link {
+            text-decoration: none;
+            display: block;
+            min-height: 80px; /* Reserves space so page doesn't jump */
         }
 
         .logo-header img {
-            height: 80px; /* Specific height */
+            height: 90px;
             width: auto;
+            max-width: 250px;
             display: block;
-            margin: 0 auto;
-            /* This filter turns ANY logo color into white with a gold tint */
-            filter: brightness(0) invert(1) drop-shadow(0 0 12px rgba(197, 160, 89, 0.6));
-            transition: 0.5s ease;
+            /* Simplified filter: just a gold glow and slight brightness */
+            filter: drop-shadow(0 0 10px rgba(197, 160, 89, 0.5)) brightness(1.1);
+            transition: transform 0.4s ease, filter 0.4s ease;
         }
 
-        .logo-header a:hover img {
-            transform: scale(1.08);
-            filter: brightness(0) invert(1) drop-shadow(0 0 20px var(--gold-light));
+        /* Fallback text if image is broken */
+        .logo-fallback {
+            font-family: 'Cinzel', serif;
+            color: var(--gold-burnished);
+            font-size: 1.5rem;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+        }
+
+        .logo-link:hover img {
+            transform: scale(1.05);
+            filter: drop-shadow(0 0 20px var(--gold-light)) brightness(1.2);
         }
 
         /* --- CONTENT --- */
         .about-container {
-            max-width: 1100px;
+            max-width: 1000px;
             margin: 0 auto;
-            padding: 20px 25px 100px 25px;
+            padding: 0 25px 100px 25px;
             text-align: center;
         }
 
         h1 {
             font-family: 'Cinzel', serif;
-            font-size: clamp(2rem, 6vw, 3.5rem);
-            letter-spacing: 10px;
+            font-size: clamp(1.8rem, 5vw, 3rem);
+            letter-spacing: 8px;
             color: var(--gold-burnished);
             text-transform: uppercase;
-            margin-bottom: 10px;
+            margin-top: 0;
         }
 
         .philosophy-text {
             font-family: 'Playfair Display', serif;
             font-style: italic;
-            font-size: clamp(1.1rem, 3vw, 1.6rem);
-            margin: 40px 0;
+            font-size: clamp(1rem, 2.5vw, 1.4rem);
+            margin: 30px 0 50px 0;
             color: var(--gold-light);
+            opacity: 0.9;
         }
 
         .story-section {
             font-size: 1.05rem;
-            color: rgba(249, 249, 242, 0.8);
+            color: rgba(249, 249, 242, 0.85);
             text-align: justify;
             columns: 2;
             column-gap: 50px;
@@ -85,70 +101,44 @@
             padding-top: 50px;
         }
 
-        .leadership-grid {
-            display: flex;
-            gap: 30px;
-            margin-top: 60px;
-            text-align: left;
-        }
-
-        .director-profile {
-            flex: 1;
-            padding: 40px;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(197, 160, 89, 0.2);
-            border-radius: 4px;
-        }
-
-        .director-content h3 {
-            font-family: 'Cinzel', serif;
-            color: var(--gold-burnished);
-            margin: 0;
-            letter-spacing: 2px;
-        }
-
-        .director-title {
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            color: var(--gold-light);
-            margin-bottom: 15px;
-            font-weight: 600;
-        }
-
         .back-home {
             display: inline-block;
-            margin-top: 80px;
+            margin-top: 70px;
             color: var(--gold-burnished);
             text-decoration: none;
             font-family: 'Cinzel', serif;
             border: 1px solid var(--gold-burnished);
-            padding: 15px 40px;
+            padding: 14px 35px;
             letter-spacing: 3px;
             text-transform: uppercase;
-            transition: 0.3s;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
         }
 
         .back-home:hover {
             background: var(--gold-burnished);
             color: var(--olive-gradient);
+            box-shadow: 0 0 20px rgba(197, 160, 89, 0.3);
         }
 
-        @media (max-width: 850px) {
-            .leadership-grid { flex-direction: column; }
+        @media (max-width: 800px) {
             .story-section { columns: 1; }
+            .logo-header { padding: 30px 0; }
         }
     </style>
 </head>
 <body>
 
-    <div class="logo-header">
-        <a href="studio.html">
-            <!-- Ensure this URL is correct. If the logo is still missing, 
-                 it may be a broken link in GitHub. -->
-            <img src="https://raw.githubusercontent.com/tthirdshooter/khushana/main/images/logo1.png" alt="Khushana Logo">
+    <header class="logo-header">
+        <a href="studio.html" class="logo-link">
+            <!-- The 'onerror' attribute handles the case where GitHub blocks the image -->
+            <img src="https://raw.githubusercontent.com/tthirdshooter/khushana/main/images/logo1.png" 
+                 alt="Khushana" 
+                 onerror="this.style.display='none'; document.getElementById('text-logo').style.display='block';">
+            
+            <span id="text-logo" class="logo-fallback" style="display:none;">KHUSHANA</span>
         </a>
-    </div>
+    </header>
 
     <div class="about-container">
         <h1>The Khushana Legacy</h1>
@@ -162,28 +152,10 @@
                 Founded on the pillars of precision and prestige, Khushana began as a sanctuary for aesthetic transformation. In the Studio, we mastered the art of the human canvas—treating every face and every nail as a masterpiece of biological architecture.
             </p>
             <p>
-                As the world shifted toward the digital horizon, our vision expanded. We realized that the same meticulous attention to detail required for a bridal transformation was the secret ingredient to building world-class digital interfaces. 
+                As the world shifted toward the digital horizon, our vision expanded. We realized that the same meticulous attention to detail required for a bridal transformation was the secret ingredient to building world-class digital interfaces. Khushana now stands as a dual-force agency: defining physical beauty and building digital empires.
             </p>
         </div>
 
-  <!--      <div class="leadership-grid">
-            <div class="director-profile">
-                <div class="director-content">
-                    <h3>Pankaj Malhotra</h3>
-                    <p class="director-title">Creative Director</p>
-                    <p class="director-bio">Executing digital architecture with academic precision and artistic soul.</p>
-                </div>
-            </div>
-
-            <div class="director-profile">
-                <div class="director-content">
-                    <h3>Priya Malhotra</h3>
-                    <p class="director-title">Managing Director</p>
-                    <p class="director-bio">Expertise in high-definition beauty and elite luxury management.</p>
-                </div>
-            </div>
-        </div>
--->
         <a href="index.html" class="back-home">Return to Choice</a>
     </div>
 
