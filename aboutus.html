@@ -25,49 +25,20 @@
             min-height: 100vh;
         }
 
-        /* --- STABLE LOGO HEADER --- */
         .logo-header {
             padding: 50px 0;
             text-align: center;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .logo-link {
-            text-decoration: none;
-            display: block;
-            min-height: 80px; /* Reserves space so page doesn't jump */
         }
 
         .logo-header img {
             height: 90px;
             width: auto;
-            max-width: 250px;
-            display: block;
-            /* Simplified filter: just a gold glow and slight brightness */
             filter: drop-shadow(0 0 10px rgba(197, 160, 89, 0.5)) brightness(1.1);
-            transition: transform 0.4s ease, filter 0.4s ease;
+            transition: 0.4s ease;
         }
 
-        /* Fallback text if image is broken */
-        .logo-fallback {
-            font-family: 'Cinzel', serif;
-            color: var(--gold-burnished);
-            font-size: 1.5rem;
-            letter-spacing: 5px;
-            text-transform: uppercase;
-        }
-
-        .logo-link:hover img {
-            transform: scale(1.05);
-            filter: drop-shadow(0 0 20px var(--gold-light)) brightness(1.2);
-        }
-
-        /* --- CONTENT --- */
         .about-container {
-            max-width: 1000px;
+            max-width: 1100px;
             margin: 0 auto;
             padding: 0 25px 100px 25px;
             text-align: center;
@@ -75,20 +46,18 @@
 
         h1 {
             font-family: 'Cinzel', serif;
-            font-size: clamp(1.8rem, 5vw, 3rem);
-            letter-spacing: 8px;
+            font-size: clamp(2rem, 6vw, 3.5rem);
+            letter-spacing: 10px;
             color: var(--gold-burnished);
             text-transform: uppercase;
-            margin-top: 0;
         }
 
         .philosophy-text {
             font-family: 'Playfair Display', serif;
             font-style: italic;
-            font-size: clamp(1rem, 2.5vw, 1.4rem);
-            margin: 30px 0 50px 0;
+            font-size: clamp(1.1rem, 3vw, 1.6rem);
+            margin: 40px 0;
             color: var(--gold-light);
-            opacity: 0.9;
         }
 
         .story-section {
@@ -96,49 +65,102 @@
             color: rgba(249, 249, 242, 0.85);
             text-align: justify;
             columns: 2;
-            column-gap: 50px;
+            column-gap: 60px;
             border-top: 1px solid rgba(197, 160, 89, 0.2);
             padding-top: 50px;
+            margin-bottom: 80px;
+        }
+
+        /* --- LEADERSHIP SECTION --- */
+        .section-title {
+            font-family: 'Cinzel', serif;
+            color: var(--gold-burnished);
+            letter-spacing: 5px;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+            font-size: 1.5rem;
+        }
+
+        .leadership-grid {
+            display: flex;
+            gap: 30px;
+            text-align: left;
+            margin-bottom: 60px;
+        }
+
+        .director-profile {
+            flex: 1;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(197, 160, 89, 0.2);
+            position: relative;
+            transition: 0.3s;
+        }
+
+        .director-profile:hover {
+            border-color: var(--gold-burnished);
+            background: rgba(197, 160, 89, 0.05);
+        }
+
+        .director-content h3 {
+            font-family: 'Cinzel', serif;
+            color: var(--gold-burnished);
+            margin: 0;
+            font-size: 1.4rem;
+        }
+
+        .director-title {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--gold-light);
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .badge {
+            display: inline-block;
+            background: var(--gold-burnished);
+            color: var(--olive-gradient);
+            padding: 2px 10px;
+            font-size: 0.65rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            border-radius: 2px;
         }
 
         .back-home {
             display: inline-block;
-            margin-top: 70px;
+            margin-top: 50px;
             color: var(--gold-burnished);
             text-decoration: none;
             font-family: 'Cinzel', serif;
             border: 1px solid var(--gold-burnished);
-            padding: 14px 35px;
+            padding: 15px 40px;
             letter-spacing: 3px;
             text-transform: uppercase;
-            font-size: 0.85rem;
-            transition: all 0.3s ease;
+            transition: 0.3s;
         }
 
         .back-home:hover {
             background: var(--gold-burnished);
             color: var(--olive-gradient);
-            box-shadow: 0 0 20px rgba(197, 160, 89, 0.3);
         }
 
-        @media (max-width: 800px) {
+        @media (max-width: 850px) {
+            .leadership-grid { flex-direction: column; }
             .story-section { columns: 1; }
-            .logo-header { padding: 30px 0; }
         }
     </style>
 </head>
 <body>
 
-    <header class="logo-header">
-        <a href="studio.html" class="logo-link">
-            <!-- The 'onerror' attribute handles the case where GitHub blocks the image -->
-            <img src="https://raw.githubusercontent.com/tthirdshooter/khushana/main/images/logo1.png" 
-                 alt="Khushana" 
-                 onerror="this.style.display='none'; document.getElementById('text-logo').style.display='block';">
-            
-            <span id="text-logo" class="logo-fallback" style="display:none;">KHUSHANA</span>
+    <div class="logo-header">
+        <a href="studio.html">
+            <img src="https://raw.githubusercontent.com/tthirdshooter/khushana/main/images/logo1.png" alt="Khushana Logo">
         </a>
-    </header>
+    </div>
 
     <div class="about-container">
         <h1>The Khushana Legacy</h1>
@@ -152,8 +174,34 @@
                 Founded on the pillars of precision and prestige, Khushana began as a sanctuary for aesthetic transformation. In the Studio, we mastered the art of the human canvas—treating every face and every nail as a masterpiece of biological architecture.
             </p>
             <p>
-                As the world shifted toward the digital horizon, our vision expanded. We realized that the same meticulous attention to detail required for a bridal transformation was the secret ingredient to building world-class digital interfaces. Khushana now stands as a dual-force agency: defining physical beauty and building digital empires.
+                The Khushana ethos is defined by the spirit of the athlete and the eye of the artist. We believe that world-class digital experiences require the same agility, strategy, and relentless pursuit of excellence found on the national sports field. Today, we bridge the gap between physical grace and digital power.
             </p>
+        </div>
+
+        <h2 class="section-title">Leadership</h2>
+
+        <div class="leadership-grid">
+            <div class="director-profile">
+                <div class="badge">International Athlete</div>
+                <div class="director-content">
+                    <h3>Pankaj Malhotra</h3>
+                    <p class="director-title">Creative Director & IT Educator</p>
+                    <p class="director-bio">
+                        An International Kho-Kho player and Veer Jija Bhai Awardee, Pankaj brings the discipline of a top-tier athlete to the digital world. Ranked 3rd in India by the Kho-Kho Federation, his leadership is built on a foundation of competitive excellence, academic precision in Computer Science, and a passion for architectural aesthetics.
+                    </p>
+                </div>
+            </div>
+
+            <div class="director-profile">
+                <div class="badge">Master Artist</div>
+                <div class="director-content">
+                    <h3>Priya Malhotra</h3>
+                    <p class="director-title">Managing Director & Lead Artist</p>
+                    <p class="director-bio">
+                        The operational heart of Khushana, Priya is a specialist in high-definition beauty and structural nail artistry. She ensures that every service provided by the Studio meets the "Sovereign Standard," blending elite technical skills with an uncompromising commitment to luxury client management.
+                    </p>
+                </div>
+            </div>
         </div>
 
         <a href="index.html" class="back-home">Return to Choice</a>
