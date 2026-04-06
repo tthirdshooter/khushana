@@ -9,154 +9,172 @@
     
     <style>
         :root {
-            --deep-gold: #b8860b;
-            --midnight: #0a0a0a;
-            --silk-white: #f4f4f4;
+            /* Premium Olive & Gold Palette */
+            --olive-deep: #2d3319;       /* Deep Forest Olive */
+            --olive-gradient: #1b1f0e;   /* Darker Shadow Olive */
+            --gold-burnished: #c5a059;   /* Elegant Metallic Gold */
+            --gold-light: #e2c285;       /* Shimmering Highlight Gold */
+            --silk-white: #f9f9f2;       /* Off-white for readability */
+            --olive-glass: rgba(45, 51, 25, 0.6);
         }
 
         body {
             margin: 0;
-            background: var(--midnight);
+            /* Creates a vignette effect like luxury wallpaper */
+            background: radial-gradient(circle at center, var(--olive-deep) 0%, var(--olive-gradient) 100%);
             color: var(--silk-white);
             font-family: 'Montserrat', sans-serif;
             overflow-x: hidden;
-            line-height: 1.6;
+            line-height: 1.8;
         }
 
         .logo-header {
-            padding: 40px 0 20px 0;
+            padding: 60px 0 30px 0;
             text-align: center;
         }
 
         .logo-header img {
-            height: 60px;
+            height: 70px;
             width: auto;
-            transition: 0.4s ease;
+            /* Makes logo appear slightly golden/white to match theme */
+            filter: brightness(0) invert(1) sepia(1) hue-rotate(10deg) saturate(2);
+            transition: 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
 
         .logo-header a:hover img {
-            transform: scale(1.1);
+            transform: scale(1.05);
+            filter: brightness(1.2) invert(1) sepia(1) drop-shadow(0 0 15px var(--gold-burnished));
         }
 
         .about-container {
-            max-width: 1000px;
+            max-width: 1100px;
             margin: 0 auto;
-            padding: 20px 20px 100px 20px;
+            padding: 20px 25px 120px 25px;
             text-align: center;
-        }
-
-        .crown-icon {
-            color: var(--deep-gold);
-            font-size: 2.5rem;
-            margin-bottom: 15px;
         }
 
         h1 {
             font-family: 'Cinzel', serif;
-            font-size: clamp(2rem, 5vw, 3.5rem);
-            letter-spacing: 10px;
-            color: var(--deep-gold);
+            font-size: clamp(2.2rem, 6vw, 3.8rem);
+            letter-spacing: 12px;
+            color: var(--gold-burnished);
             text-transform: uppercase;
-            margin: 0;
+            margin-bottom: 10px;
+            font-weight: 700;
         }
 
         .philosophy-text {
             font-family: 'Playfair Display', serif;
             font-style: italic;
-            font-size: clamp(1.1rem, 3vw, 1.6rem);
-            margin: 40px 0;
-            color: #ddd;
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            margin: 30px 0 60px 0;
+            color: var(--gold-light);
+            position: relative;
+            display: inline-block;
         }
 
+        /* Subtle gold lines flanking the quote */
+        .philosophy-text::before, .philosophy-text::after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 1px;
+            background: var(--gold-burnished);
+            top: 50%;
+        }
+        .philosophy-text::before { left: -70px; }
+        .philosophy-text::after { right: -70px; }
+
         .story-section {
-            line-height: 2;
-            font-size: 1.05rem;
-            color: #bbb;
+            font-size: 1.1rem;
+            color: rgba(249, 249, 242, 0.8);
             text-align: justify;
             columns: 2;
-            column-gap: 50px;
-            border-top: 1px solid #333;
-            padding-top: 50px;
-            margin-bottom: 60px;
+            column-gap: 60px;
+            column-rule: 1px solid rgba(197, 160, 89, 0.2);
+            padding: 60px 0;
+            margin-bottom: 80px;
         }
 
         /* --- LEADERSHIP GRID --- */
         .leadership-title {
             font-family: 'Cinzel', serif;
-            color: var(--deep-gold);
-            margin-top: 100px;
-            letter-spacing: 5px;
-            font-size: 1.5rem;
+            color: var(--gold-burnished);
+            margin-top: 120px;
+            letter-spacing: 8px;
+            font-size: 1.8rem;
             text-transform: uppercase;
         }
 
         .leadership-grid {
             display: flex;
-            gap: 30px;
-            margin-top: 40px;
+            gap: 40px;
+            margin-top: 50px;
             text-align: left;
         }
 
         .director-profile {
             flex: 1;
-            padding: 40px;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(184, 134, 11, 0.2);
-            transition: 0.3s;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
+            padding: 50px;
+            background: var(--olive-glass);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(197, 160, 89, 0.15);
+            transition: 0.4s ease;
+            position: relative;
+            overflow: hidden;
         }
 
         .director-profile:hover {
-            background: rgba(184, 134, 11, 0.05);
-            border-color: var(--deep-gold);
+            border-color: var(--gold-burnished);
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            background: rgba(45, 51, 25, 0.8);
         }
 
         .director-line {
-            width: 40px;
-            height: 2px;
-            background: var(--deep-gold);
-            margin-bottom: 20px;
+            width: 50px;
+            height: 3px;
+            background: var(--gold-burnished);
+            margin-bottom: 25px;
         }
 
         .director-content h3 {
             font-family: 'Cinzel', serif;
-            color: var(--deep-gold);
+            color: var(--gold-light);
             margin: 0;
-            font-size: 1.5rem;
-            letter-spacing: 2px;
+            font-size: 1.6rem;
+            letter-spacing: 3px;
         }
 
         .director-title {
-            font-size: 0.7rem;
+            font-size: 0.75rem;
             text-transform: uppercase;
-            letter-spacing: 3px;
-            color: #888;
-            margin-bottom: 15px;
+            letter-spacing: 4px;
+            color: var(--gold-burnished);
+            margin-bottom: 20px;
             font-weight: 600;
         }
 
         .director-bio {
-            font-size: 0.9rem;
-            line-height: 1.7;
-            color: #ccc;
-            margin-bottom: 25px;
+            font-size: 0.95rem;
+            line-height: 1.8;
+            color: rgba(249, 249, 242, 0.7);
+            margin-bottom: 30px;
         }
 
         /* --- SOCIAL LINKS --- */
         .social-links {
             display: flex;
-            gap: 15px;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            padding-top: 20px;
+            gap: 20px;
+            border-top: 1px solid rgba(197, 160, 89, 0.1);
+            padding-top: 25px;
         }
 
         .social-links a {
-            color: var(--deep-gold);
+            color: var(--gold-burnished);
             text-decoration: none;
-            font-size: 0.75rem;
-            letter-spacing: 1px;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
             text-transform: uppercase;
             font-weight: 600;
             transition: 0.3s;
@@ -164,31 +182,35 @@
 
         .social-links a:hover {
             color: #fff;
+            text-shadow: 0 0 8px var(--gold-burnished);
         }
 
         .back-home {
             display: inline-block;
-            margin-top: 80px;
-            color: var(--deep-gold);
+            margin-top: 100px;
+            color: var(--gold-burnished);
             text-decoration: none;
             font-family: 'Cinzel', serif;
-            border: 1px solid var(--deep-gold);
-            padding: 15px 40px;
-            letter-spacing: 3px;
+            border: 1px solid var(--gold-burnished);
+            padding: 18px 50px;
+            letter-spacing: 5px;
             text-transform: uppercase;
-            font-size: 0.8rem;
-            transition: 0.3s;
+            font-size: 0.9rem;
+            transition: 0.4s;
+            background: transparent;
         }
 
         .back-home:hover {
-            background: var(--deep-gold);
-            color: var(--midnight);
+            background: var(--gold-burnished);
+            color: var(--olive-gradient);
+            box-shadow: 0 0 30px rgba(197, 160, 89, 0.3);
         }
 
-        @media (max-width: 850px) {
+        @media (max-width: 900px) {
             .leadership-grid { flex-direction: column; }
             .story-section { columns: 1; text-align: center; }
-            h1 { letter-spacing: 5px; }
+            .philosophy-text::before, .philosophy-text::after { display: none; }
+            h1 { letter-spacing: 6px; }
         }
     </style>
 </head>
@@ -201,7 +223,7 @@
     </div>
 
     <div class="about-container">
-       
+        
         <h1>The Khushana Legacy</h1>
         
         <p class="philosophy-text">
@@ -216,10 +238,11 @@
                 As the world shifted toward the digital horizon, our vision expanded. We realized that the same meticulous attention to detail required for a bridal transformation was the secret ingredient to building world-class digital interfaces. Today, Khushana stands as a dual-force agency: defining physical beauty and building digital empires.
             </p>
         </div>
-<!--
-        <h2 class="leadership-title">Leadership</h2>
+
+        <h2 class="leadership-title">The Visionaries</h2>
         
         <div class="leadership-grid">
+            <!-- Profile 1 -->
             <div class="director-profile">
                 <div>
                     <div class="director-line"></div>
@@ -237,6 +260,7 @@
                 </div>
             </div>
 
+            <!-- Profile 2 -->
             <div class="director-profile">
                 <div>
                     <div class="director-line"></div>
@@ -251,7 +275,7 @@
                 <div class="social-links">
                     <a href="#">Instagram</a>
                     <a href="#">Portfolio</a>
-                </div> -->
+                </div>
             </div>
         </div>
 
