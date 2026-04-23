@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio | Khushana Make Up Studio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Raleway:wght@300;400&display=swap" rel="stylesheet">
     <style>
         :root {
             --gold: #c5a059;
@@ -14,13 +15,15 @@
         }
 
         body {
-            font-family: 'Playfair Display', serif, Arial;
+            font-family: 'Raleway', sans-serif;
             background-color: var(--dark-bg);
             color: var(--text-light);
             margin: 0;
             padding: 0;
             overflow-x: hidden;
         }
+
+        h1, h2, nav a { font-family: 'Playfair Display', serif; }
 
         /* --- Animated Logo Section --- */
         .logo-container {
@@ -30,16 +33,11 @@
         }
 
         .logo-container img {
-            max-width: 200px;
+            max-width: 180px;
             height: auto;
             border: 1px solid var(--gold);
             padding: 10px;
             transition: transform 0.5s ease;
-        }
-
-        .logo-container img:hover {
-            transform: scale(1.05) rotate(1deg);
-            box-shadow: 0 0 20px rgba(197, 160, 89, 0.3);
         }
 
         @keyframes fadeInDown {
@@ -75,7 +73,7 @@
             padding: 20px;
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            grid-auto-rows: 400px;
+            grid-auto-rows: 450px;
             gap: 20px;
         }
 
@@ -84,30 +82,39 @@
             overflow: hidden;
             border: 1px solid #222;
             cursor: pointer;
+            background: #000;
         }
 
-        /* Making some items larger for a professional "Masonry" look */
         .gallery-item.tall { grid-row: span 2; }
         .gallery-item.wide { grid-column: span 2; }
 
-        .gallery-item img {
+        .gallery-item img, .gallery-item iframe {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            filter: grayscale(30%);
             transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
         }
 
-        .gallery-item:hover img {
-            filter: grayscale(0%);
-            transform: scale(1.1);
+        /* Video Overlay Icon */
+        .video-icon {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(197, 160, 89, 0.8);
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
         }
 
+        /* View Details Overlay */
         .gallery-item::after {
-            content: 'VIEW DETAILS';
+            content: 'VIEW WORK';
             position: absolute;
-            top: 50%;
-            left: 50%;
+            top: 50%; left: 50%;
             transform: translate(-50%, -50%);
             color: var(--gold);
             letter-spacing: 3px;
@@ -116,28 +123,30 @@
             transition: opacity 0.3s;
             border: 1px solid var(--gold);
             padding: 10px 20px;
-            background: rgba(0,0,0,0.5);
+            background: rgba(0,0,0,0.7);
+            z-index: 5;
         }
 
+        .gallery-item:hover img { transform: scale(1.05); filter: brightness(60%); }
         .gallery-item:hover::after { opacity: 1; }
 
         /* --- Lightbox --- */
         #lightbox {
             position: fixed;
-            z-index: 2000;
+            z-index: 3000;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.95);
+            background: rgba(0,0,0,0.97);
             display: none;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
         }
 
         #lightbox.active { display: flex; }
-
-        #lightbox img {
+        #lightbox iframe, #lightbox img {
             max-width: 90%;
-            max-height: 85%;
-            border: 2px solid var(--gold);
+            max-height: 80%;
+            border: 1px solid var(--gold);
         }
 
         .close-btn {
@@ -148,17 +157,16 @@
             cursor: pointer;
         }
 
-        /* --- Footer --- */
         footer {
             text-align: center;
             padding: 60px 20px;
             color: var(--text-muted);
             font-size: 0.75rem;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
         }
 
         @media (max-width: 768px) {
-            .gallery-item.wide { grid-column: span 1; }
+            .gallery-item.wide, .gallery-item.tall { grid-column: span 1; grid-row: span 1; }
             .gallery-wrapper { grid-template-columns: 1fr; }
         }
     </style>
@@ -166,7 +174,7 @@
 <body>
 
     <div class="logo-container">
-        <img src="https://raw.githubusercontent.com/tthirdshooter/khushana/main/images/logo1.jpeg" alt="Khushana Make Up Studio">
+        <img src="https://raw.githubusercontent.com/tthirdshooter/khushana/main/images/logo1.jpeg" alt="Khushana Studio">
     </div>
 
     <nav>
@@ -177,28 +185,36 @@
     </nav>
 
     <div class="gallery-wrapper">
-
-<div class="gallery-item tall" onclick="openLightbox(this)">
-            <img src="https://raw.githubusercontent.com/tthirdshooter/khushana/main/images/n1.jpeg" alt="nailart">
+        
+        <div class="gallery-item tall" onclick="openVideo('https://www.instagram.com/reels/videos/C4p5_yivUv0/embed')">
+            <div class="video-icon">▶</div>
+            <img src="https://raw.githubusercontent.com/tthirdshooter/khushana/main/images/n1.jpeg" alt="Nail Art Reel">
         </div>
-       <div class="gallery-item" onclick="openLightbox(this)">
+
+        <div class="gallery-item" onclick="openLightbox(this)">
             <img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=800" alt="Makeup Detail">
         </div>   
-        <div class="gallery-item tall" onclick="openLightbox(this)">
-            <img src="https://raw.githubusercontent.com/tthirdshooter/khushana/main/images/n2.jpeg" alt="nailart">
+
+        <div class="gallery-item tall" onclick="openVideo('https://www.instagram.com/reels/videos/DXb_OzMErti/?igsh=MXI1M21tbGtjeWVpZw==/embed')">
+            <div class="video-icon">▶</div>
+            <img src="https://raw.githubusercontent.com/tthirdshooter/khushana/main/images/n2.jpeg" alt="Nail Art Video">
         </div>
       
         <div class="gallery-item wide" onclick="openLightbox(this)">
             <img src="https://images.unsplash.com/photo-1512496015851-a90fb38ba796?auto=format&fit=crop&w=1200" alt="Studio Shot">
         </div>
+
         <div class="gallery-item" onclick="openLightbox(this)">
             <img src="https://images.unsplash.com/photo-1526045478516-99145907023c?auto=format&fit=crop&w=800" alt="Evening Glam">
         </div>
-        <div class="gallery-item tall" onclick="openLightbox(this)">
-            <img src="https://raw.githubusercontent.com/tthirdshooter/khushana/main/images/1.jpeg" alt="Tradition">
+
+        <div class="gallery-item tall" onclick="openVideo('https://www.instagram.com/reels/videos/C8R8W-6S8_D/embed')">
+            <div class="video-icon">▶</div>
+            <img src="https://raw.githubusercontent.com/tthirdshooter/khushana/main/images/1.jpeg" alt="Bridal Reel">
         </div>
- <div class="gallery-item tall" onclick="openLightbox(this)">
-            <img src="https://raw.githubusercontent.com/tthirdshooter/khushana/main/images/nailart2.png" alt="nailart">
+
+        <div class="gallery-item tall" onclick="openLightbox(this)">
+            <img src="https://raw.githubusercontent.com/tthirdshooter/khushana/main/images/nailart2.png" alt="Nail Art Design">
         </div>
         
     </div>
@@ -207,25 +223,40 @@
         <p>&copy; 2026 KHUSHANA MAKE UP STUDIO. ALL RIGHTS RESERVED.</p>
     </footer>
 
-    <div id="lightbox" onclick="closeLightbox()">
-        <span class="close-btn">&times;</span>
-        <img id="lightbox-img" src="">
+    <div id="lightbox">
+        <span class="close-btn" onclick="closeLightbox()">&times;</span>
+        <div id="content-area" style="width:100%; display:flex; justify-content:center;">
+            </div>
     </div>
 
     <script>
         const lb = document.getElementById('lightbox');
-        const lbImg = document.getElementById('lightbox-img');
+        const contentArea = document.getElementById('content-area');
 
         function openLightbox(el) {
-            lbImg.src = el.querySelector('img').src;
+            const imgSrc = el.querySelector('img').src;
+            contentArea.innerHTML = `<img src="${imgSrc}" style="max-height:80vh; border: 2px solid #c5a059;">`;
+            lb.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function openVideo(videoUrl) {
+            // Instagram embed URL usually needs to end in /embed
+            contentArea.innerHTML = `<iframe src="${videoUrl}" width="400" height="600" frameborder="0" scrolling="no" allowtransparency="true"></iframe>`;
             lb.classList.add('active');
             document.body.style.overflow = 'hidden';
         }
 
         function closeLightbox() {
             lb.classList.remove('active');
+            contentArea.innerHTML = ''; // Clear content to stop video playback
             document.body.style.overflow = 'auto';
         }
+
+        // Close on clicking outside the content
+        lb.addEventListener('click', function(e) {
+            if (e.target === lb) closeLightbox();
+        });
     </script>
 </body>
 </html>
