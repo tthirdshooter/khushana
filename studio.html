@@ -27,7 +27,56 @@
             overflow-x: hidden;
         }
 
-        /* --- NAVIGATION --- */
+        /* --- POPUP MODAL STYLES --- */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            display: none; /* Hidden by default */
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+            backdrop-filter: blur(8px);
+        }
+
+        .modal-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 80vh;
+            border: 2px solid var(--satin-gold);
+            background: var(--olive-dark);
+            box-shadow: 0 0 30px rgba(201, 160, 80, 0.3);
+            animation: fadeIn 0.5s ease;
+        }
+
+        .modal-content img {
+            display: block;
+            width: 100%;
+            max-height: 80vh;
+            object-fit: contain;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: -45px;
+            right: 0;
+            color: var(--satin-gold);
+            font-size: 2.5rem;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        
+        .close-modal:hover { color: white; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        /* --- EXISTING NAVIGATION --- */
         .navbar {
             background: var(--olive-green);
             padding: 12px 20px;
@@ -148,11 +197,18 @@
             .reviews-container { flex-direction: row; }
             .review-card { flex: 1; }
         }
-
-        <link rel="manifest" href="/manifest.json">
     </style>
 </head>
 <body>
+
+    <!-- POPUP MODAL -->
+    <div class="modal-overlay" id="offerModal">
+        <div class="modal-content">
+            <i class="fas fa-times close-modal" onclick="closePopup()"></i>
+            <!-- This points to the Inaugural Offer image you provided -->
+            <img src="https://raw.githubusercontent.com/tthirdshooter/khushana/main/images/in.jpeg" alt="Special Inaugural Offer">
+        </div>
+    </div>
 
     <nav class="navbar">
         <div class="logo"><h2>KHUSHANA</h2></div>
@@ -248,19 +304,16 @@
         </div>
     </section>
 
-   
-
     <div class="marquee">
         <div class="marquee-track">
-               <img src="https://raw.githubusercontent.com/tthirdshooter/khushana/main/images/arshnail.jpeg">
+            <img src="https://raw.githubusercontent.com/tthirdshooter/khushana/main/images/arshnail.jpeg">
             <img src="https://raw.githubusercontent.com/tthirdshooter/khushana/main/images/ka.jpeg">
             <img src="https://raw.githubusercontent.com/tthirdshooter/khushana/main/images/1.jpeg">
             <img src="https://raw.githubusercontent.com/tthirdshooter/khushana/main/images/2.jpeg">
-<img src="https://raw.githubusercontent.com/tthirdshooter/khushana/main/images/kha.jpeg">
+            <img src="https://raw.githubusercontent.com/tthirdshooter/khushana/main/images/kha.jpeg">
             <img src="https://raw.githubusercontent.com/tthirdshooter/khushana/main/images/priya.png">
             <img src="https://raw.githubusercontent.com/tthirdshooter/khushana/main/images/poojaa.jpeg">
-   <img src="https://raw.githubusercontent.com/tthirdshooter/khushana/main/images/arshnail1.jpeg">
-            
+            <img src="https://raw.githubusercontent.com/tthirdshooter/khushana/main/images/arshnail1.jpeg">
             <img src="https://raw.githubusercontent.com/tthirdshooter/khushana/main/images/n1.jpeg">
             <img src="https://raw.githubusercontent.com/tthirdshooter/khushana/main/images/3.jpeg">
             <img src="https://raw.githubusercontent.com/tthirdshooter/khushana/main/images/n2.jpeg">
@@ -275,46 +328,52 @@
                 INNAUGURAL BOOKINGS OPENING THIS WEEK
             </span>
         </div>
-        <style>
-    /* Adding a style to ensure links look professional */
-    .f-contact a {
-        color: inherit;
-        text-decoration: none;
-        transition: color 0.3s ease;
-    }
-    .f-contact a:hover {
-        color: var(--gold); /* Or your --satin-gold variable */
-    }
-</style>
 
-<div class="f-contact">
-    <p><i class="fas fa-phone"></i> +91 78894 25218 , +91 9149509617</p>
-    
-    <p>
-        <i class="fab fa-instagram"></i> 
-        <a href="https://www.instagram.com/khushana_makeup/reels/" target="_blank">
-            @khushanamakeup_studio
-        </a>
-    </p>
-    
-    <p><i class="fas fa-map-marker-alt"></i> Sector E, Sainik Colony, Jammu</p>
-    
-    <p style="margin-top: 15px; color: var(--satin-gold); font-weight: 600;">
-        <a href="https://wa.me/917889425218" target="_blank">
-            Join the Priority Waiting List via WhatsApp
-        </a>
-    </p>
-</div>
+        <div class="f-contact">
+            <p><i class="fas fa-phone"></i> +91 78894 25218 , +91 9149509617</p>
+            <p>
+                <i class="fab fa-instagram"></i> 
+                <a href="https://www.instagram.com/khushana_makeup/reels/" target="_blank" style="color: inherit; text-decoration: none;">
+                    @khushanamakeup_studio
+                </a>
+            </p>
+            <p><i class="fas fa-map-marker-alt"></i> Sector E, Sainik Colony, Jammu</p>
+            <p style="margin-top: 15px; color: var(--satin-gold); font-weight: 600;">
+                <a href="https://wa.me/917889425218" target="_blank" style="color: inherit; text-decoration: none;">
+                    Join the Priority Waiting List via WhatsApp
+                </a>
+            </p>
+        </div>
         <p style="font-size: 0.6rem; margin-top: 40px; opacity: 0.4;">&copy; 2026 KHUSHANA MAKEUP STUDIO | ELITE ARTISTRY UNVEILING SOON</p>
     </footer>
 
     <a href="https://wa.me/917889425218" class="wa-float"><i class="fab fa-whatsapp"></i></a>
 
     <script>
-        let currentTab = 'skin';
+        // POPUP LOGIC
+        window.onload = function() {
+            setTimeout(function() {
+                document.getElementById('offerModal').style.display = 'flex';
+            }, 1500); // Popup appears after 1.5 seconds
+        };
 
+        function closePopup() {
+            document.getElementById('offerModal').style.display = 'none';
+        }
+
+        // Close if clicking the background
+        window.onclick = function(event) {
+            let modal = document.getElementById('offerModal');
+            if (event.target == modal) {
+                closePopup();
+            }
+        };
+
+        // DRAWER LOGIC
         function toggleDrawer() { document.getElementById('sideDrawer').classList.toggle('active'); }
 
+        // AI SUITE LOGIC
+        let currentTab = 'skin';
         function switchTab(btn, tab) {
             currentTab = tab;
             document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
