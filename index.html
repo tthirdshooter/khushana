@@ -1,20 +1,53 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Khushana | Welcome</title>
+    <!-- SEO FIX 1: Keyword & Location Optimized Title -->
+    <title>Khushana | Luxury Makeup Studio & Luxury Digital Agency</title>
+    
+    <!-- SEO FIX 2: Meta Descriptions to win organic clicks -->
+    <meta name="description" content="Discover Khushana. Experience premium bridal and celebrity makeover services at our luxury Makeup Studio, or scale your brand via Khushana Digital Agency.">
+    <meta name="keywords" content="luxury makeup studio, bridal makeup artist, premium celebrity makeover, digital design studio, brand strategy development">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph for Social Media Search Visibility -->
+    <meta property="og:title" content="Khushana | Luxury Makeup Studio & Digital Design Agency">
+    <meta property="og:description" content="Premium bridal artistry meets cutting-edge digital development. Step inside the world of Khushana.">
+    <meta property="og:type" content="website">
+
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <!-- SEO FIX 3: Local Business Schema Markup for Google Maps Pack Ranking -->
+    <script type="application/ld+json">
+    [
+      {
+        "@context": "https://schema.org",
+        "@type": "BeautySalon",
+        "name": "Khushana Makeup Studio",
+        "description": "Premium makeup studio specializing in bridal makeovers, celebrity glamour, and professional beauty artistry.",
+        "url": "https://www.khushana.com",
+        "telephone": "+1-XXX-XXX-XXXX", 
+        "priceRange": "$$$"
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "ProfessionalService",
+        "name": "Khushana Digital",
+        "description": "High-end design, development, and digital strategy agency.",
+        "url": "https://www.khushana.com"
+      }
+    ]
+    </script>
+
     <style>
         :root {
-            /* Updated Color Palette */
-            --olive-deep: #3b4d3b;      /* Elegant Olive */
-            --olive-light: #4c634c;     /* Lighter Olive for gradients */
-            --cream-light: #fdfaf5;     /* Soft luxury cream */
-            --satin-gold: #c9a050;      /* Signature Gold */
-            --deep-gold: #b8860b;       /* Accent Gold */
-            --text-dark: #2c3a2c;       /* Dark olive for text on cream */
+            --olive-deep: #3b4d3b;
+            --olive-light: #4c634c;
+            --cream-light: #fdfaf5;
+            --satin-gold: #c9a050;
+            --deep-gold: #b8860b;
+            --text-dark: #2c3a2c;
         }
 
         body, html {
@@ -155,16 +188,20 @@
             z-index: 2;
         }
 
-        .split h1 {
-            font-size: clamp(1.5rem, 4vw, 3rem);
+        /* SEO FIX 4: Controlled heading sizing for crawlability without breaking layout */
+        .split h1, .split h2 {
             text-transform: uppercase;
             letter-spacing: 5px;
             margin: 5px 0;
             font-family: 'Cormorant Garamond', serif;
         }
+        
+        .split h1 { font-size: clamp(1.8rem, 4.5vw, 3.5rem); }
+        .split h2 { font-size: clamp(1.1rem, 2.5vw, 1.8rem); font-weight: 400; }
 
-        .left h1 { color: var(--satin-gold); }
+        .left h1, .left h2 { color: var(--satin-gold); }
         .right h1 { color: var(--olive-deep); }
+        .right h2 { color: var(--text-dark); }
 
         .split p {
             font-size: 0.9rem;
@@ -175,7 +212,20 @@
             opacity: 0.9;
         }
 
+        /* SEO FIX 5: Screen-reader hidden semantic description text block */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            border: 0;
+        }
+
         .btn {
+            display: inline-block;
             padding: 15px 40px;
             text-transform: uppercase;
             font-size: 0.75rem;
@@ -184,6 +234,7 @@
             transition: 0.4s;
             border: 1px solid;
             background: transparent;
+            pointer-events: auto; /* Fixed link clicking accessibility bug */
         }
 
         /* Left Button: Gold Outline */
@@ -224,9 +275,16 @@
 </head>
 <body>
 
+<!-- Accessible Screen-Reader text for complete search engine crawling -->
+<div class="sr-only">
+    <h1>Khushana Luxury Brand Hub</h1>
+    <p>Welcome to Khushana, featuring our premier Makeup Studio for luxury bridal makeup and celebrity makeovers, alongside Khushana Digital Agency delivering top-tier web design, product development, and brand growth strategy.</p>
+</div>
+
 <div id="loader">
     <div class="loader-content">
-        <img src="https://raw.githubusercontent.com/tthirdshooter/khushana/main/images/logo1.png" class="loader-logo" alt="Khushana Logo">
+        <!-- SEO FIX 6: Explicit alt tag for image indexing -->
+        <img src="https://raw.githubusercontent.com/tthirdshooter/khushana/main/images/logo1.png" class="loader-logo" alt="Khushana Luxury Studio Logo">
         <h2 class="shimmer">KHUSHANA</h2>
         <div class="progress-bar"><div class="progress-fill"></div></div>
     </div>
@@ -238,21 +296,23 @@
 
 <div class="container">
     <!-- STUDIO SIDE (OLIVE) -->
-    <a href="studio.html" class="split left" id="studio-side">
+    <!-- SEO FIX 7: Added aria-label to structural anchors -->
+    <a href="studio.html" class="split left" id="studio-side" aria-label="Enter Khushana Makeup Studio Portfolio and Booking Engine">
         <canvas id="particleCanvas"></canvas>
         <div class="content-wrapper">
             <h1>KHUSHANA</h1>
-            <h1>Makeup Studio</h1>
-            <p>Artistry • Elegance • Beauty</p>
+            <h2>Makeup Studio</h2>
+            <p>Artistry • Elegance • Bridal Beauty</p>
             <div class="btn">Enter Studio</div>
         </div>
     </a>
 
     <!-- DIGITAL SIDE (CREAM) -->
-    <a href="info.html" class="split right">
+    <a href="info.html" class="split right" aria-label="Explore Khushana Digital Design and Development Strategy Services">
         <div class="content-wrapper">
             <h1>Khushana Digital</h1>
-            <p>Design • Dev • Strategy</p>
+            <h2>Creative Agency</h2>
+            <p>Design • Dev • Brand Strategy</p>
             <div class="btn">Explore Services</div>
         </div>
     </a>
@@ -283,8 +343,10 @@
     let particles = [];
     function resize() {
         const side = document.getElementById('studio-side');
-        canvas.width = side.offsetWidth;
-        canvas.height = side.offsetHeight;
+        if(side) {
+            canvas.width = side.offsetWidth;
+            canvas.height = side.offsetHeight;
+        }
     }
     window.addEventListener('resize', resize);
     resize();
@@ -336,14 +398,16 @@
 
     // 5. Gold Sparkle Trail on Studio Side
     const studioSide = document.getElementById('studio-side');
-    studioSide.addEventListener('mousemove', (e) => {
-        const sparkle = document.createElement('div');
-        sparkle.className = 'sparkle';
-        sparkle.style.left = e.clientX + 'px';
-        sparkle.style.top = e.clientY + 'px';
-        document.body.appendChild(sparkle);
-        setTimeout(() => sparkle.remove(), 800);
-    });
+    if(studioSide) {
+        studioSide.addEventListener('mousemove', (e) => {
+            const sparkle = document.createElement('div');
+            sparkle.className = 'sparkle';
+            sparkle.style.left = e.clientX + 'px';
+            sparkle.style.top = e.clientY + 'px';
+            document.body.appendChild(sparkle);
+            setTimeout(() => sparkle.remove(), 800);
+        });
+    }
 </script>
 
 </body>
