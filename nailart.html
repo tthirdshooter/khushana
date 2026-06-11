@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Polished & Perfect | Luxury Nail Artistry</title>
+    <style>
+        /* --- Global Styles & Variables --- */
+        :root {
+            --primary-color: #f7d6d0; /* Soft blush pink */
+            --secondary-color: #d4a373; /* Elegant gold/bronze */
+            --dark-text: #2b2d42;
+            --light-bg: #faf9f6; /* Off-white */
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--light-bg);
+            color: var(--dark-text);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 85%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* --- Header & Navigation --- */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            letter-spacing: 2px;
+            color: var(--dark-text);
+            text-transform: uppercase;
+        }
+
+        .logo span {
+            color: var(--secondary-color);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 20px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark-text);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary-color);
+        }
+
+        /* --- Hero Section --- */
+        #hero {
+            background: linear-gradient(rgba(255,255,255,0.7), rgba(255,255,255,0.7)), url('https://images.unsplash.com/photo-1604654894610-df4906b1850a?q=80&w=1200') no-repeat center center/cover;
+            height: 70vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+            color: var(--dark-text);
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 25px;
+            color: #555;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--dark-text);
+            color: var(--white);
+            padding: 12px 30px;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: transform 0.3s, background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+
+        /* --- About Section --- */
+        #about {
+            padding: 80px 0;
+            background-color: var(--white);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            width: 60px;
+            height: 3px;
+            background-color: var(--primary-color);
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .about-text p {
+            margin-bottom: 15px;
+            color: #555;
+        }
+
+        .about-img img {
+            width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        /* --- Services & Pricing --- */
+        #services {
+            padding: 80px 0;
+        }
+
+        .menu-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .menu-table th, .menu-table td {
+            padding: 20px;
+            text-align: left;
+        }
+
+        .menu-table th {
+            background-color: var(--primary-color);
+            color: var(--dark-text);
+            font-size: 1.2rem;
+        }
+
+        .menu-table tr {
+            border-bottom: 1px solid #eee;
+        }
+
+        .menu-table tr:last-child {
+            border-bottom: none;
+        }
+
+        .price {
+            font-weight: bold;
+            color: var(--secondary-color);
+            text-align: right;
+        }
+
+        /* --- Gallery Section --- */
+        #gallery {
+            padding: 80px 0;
+            background-color: var(--white);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .gallery-item {
+            overflow: hidden;
+            border-radius: 10px;
+            height: 300px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item img:hover {
+            transform: scale(1.1);
+        }
+
+        /* --- Contact & Info --- */
+        #contact {
+            padding: 80px 0;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+        }
+
+        .info-box h3 {
+            margin-bottom: 15px;
+            color: var(--secondary-color);
+        }
+
+        .info-box p {
+            margin-bottom: 20px;
+        }
+
+        .booking-form {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        /* --- Footer --- */
+        footer {
+            background-color: var(--dark-text);
+            color: var(--white);
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 40px;
+        }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 768px) {
+            nav { display: flex; flex-direction: column; gap: 15px; }
+            .nav-links { padding-left: 0; }
+            .about-grid, .contact-grid { grid-template-columns: 1fr; }
+            .hero-content h1 { font-size: 2.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header / Navigation -->
+    <header>
+        <nav class="container">
+            <div class="logo">Polished<span>.</span></div>
+            <ul class="nav-links">
+                <li><a href="#hero">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#contact">Book Now</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero">
+        <div class="container hero-content">
+            <h1>Luxury Nail Artistry</h1>
+            <p>Custom designs, premium care, and flawlessly sculpted nails tailored to your vibe.</p>
+            <a href="#contact" class="btn">Book Appointment</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">Meet the Artist</h2>
+            <div class="about-grid">
+                <div class="about-text">
+                    <h3>Hi, I'm Elena Vance</h3>
+                    <p>With over 7 years of professional experience in nail tech and luxury nail art, I treat every single nail like a mini canvas. I specialize in Japanese gel overlays, hand-painted intricate art, and healthy structured manicures.</p>
+                    <p>My top priority is the health of your natural nails. I use only non-toxic, premium products to ensure your manicure looks stunning and lasts for weeks without chipping.</p>
+                    <p><strong>Certifications:</strong> Certified Master Gel Educator, Advanced E-File Mani Certified.</p>
+                </div>
+                <div class="about-img">
+                    <!-- Placeholder placeholder image of a nail artist/studio -->
+                    <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?q=80&w=600" alt="Nail Artist Elena">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services & Pricing Section -->
+    <section id="services">
+        <div class="container">
+            <h2 class="section-title">Services & Pricing</h2>
+            <table class="menu-table">
+                <thead>
+                    <tr>
+                        <th>Service</th>
+                        <th>Description</th>
+                        <th style="text-align: right;">Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Structured Gel Manicure</strong></td>
+                        <td>Involves a builder gel overlay to reinforce and grow your natural nails. Includes cuticle care.</td>
+                        <td class="price">$75</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Gel-X Extensions</strong></td>
+                        <td>Full-coverage soft gel extensions for instant length. Lightweight and natural look.</td>
+                        <td class="price">$110</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Minimalist Nail Art</strong></td>
+                        <td>Dots, simple lines, foil, or negative space on up to 4 accent nails.</td>
+                        <td class="price">+$20</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Tier 1 Custom Art</strong></td>
+                        <td>Intricate hand-painted art, chrome, French variants, or charms on all 10 fingers.</td>
+                        <td class="price">+$45</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Gel Removal & Fresh Prep</strong></td>
+                        <td>Safe e-file/soak-off removal of previous work to protect the nail plate.</td>
+                        <td class="price">$15</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery">
+        <div class="container">
+            <h2 class="section-title">My Recent Work</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item"><img src="https://images.unsplash.com/photo-1607779097040-26e80aa78e66?q=80&w=400" alt="Nail Art 1"></div>
+                <div class="gallery-item"><img src="https://images.unsplash.com/photo-1519014816548-bf5fe059798b?q=80&w=400" alt="Nail Art 2"></div>
+                <div class="gallery-item"><img src="https://images.unsplash.com/photo-1632345031435-8797b2d58045?q=80&w=400" alt="Nail Art 3"></div>
+                <div class="gallery-item"><img src="https://images.unsplash.com/photo-1522337094846-8a8101f49413?q=80&w=400" alt="Nail Art 4"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact & Booking Section -->
+    <section id="contact">
+        <div class="container">
+            <h2 class="section-title">Book An Appointment</h2>
+            <div class="contact-grid">
+                
+                <div class="info-box">
+                    <h3>Studio Information</h3>
+                    <p><strong>Address:</strong> 123 Glamour Suite, Downtown Luxe District</p>
+                    <p><strong>Text to Book:</strong> (555) 019-2834</p>
+                    <p><strong>Email:</strong> hello@polishednails.com</p>
+                    
+                    <h3>Hours of Operation</h3>
+                    <p>Tuesday - Friday: 10:00 AM - 7:00 PM<br>
+                    Saturday: 9:00 AM - 5:00 PM<br>
+                    Sunday & Monday: Closed</p>
+
+                    <h3>Studio Policies</h3>
+                    <p><small>* Please arrive with bare nails unless you booked a removal service. Cancellations must be made 24 hours in advance to avoid a 50% fee.</small></p>
+                </div>
+
+                <div class="booking-form">
+                    <form action="#" method="POST" onsubmit="alert('Thank you! Your inquiry has been sent. I will text you shortly to confirm your slot.'); return false;">
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" required placeholder="Jane Doe">
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" required placeholder="(555) 000-0000">
+                        </div>
+                        <div class="form-group">
+                            <label for="service-select">Select Service</label>
+                            <select id="service-select">
+                                <option>Structured Gel Manicure ($75)</option>
+                                <option>Gel-X Extensions ($110)</option>
+                                <option>Nail Art Consultation Only</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="date">Preferred Date & Time</label>
+                            <input type="datetime-local" id="date" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="notes">Nail Art Ideas / Notes</label>
+                            <textarea id="notes" rows="3" placeholder="E.g., I want almond shape with chrome French tips..."></textarea>
+                        </div>
+                        <button type="submit" class="btn" style="width: 100%; border: none; cursor: pointer;">Request Slot</button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Polished & Perfect. Follow along on Instagram @PolishedByElena</p>
+        </div>
+    </footer>
+
+</body>
+</html>
