@@ -2,329 +2,155 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio | Khushana Make Up Studio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Raleway:wght@300;400&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    
+    <!-- SEO OPTIMIZATION: High-Intent Visual Portfolio Title -->
+    <title>Bridal Makeover Portfolio | Khushana Makeup Studio Jammu</title>
+    
+    <!-- SEO OPTIMIZATION: Rich Meta Description & Canonical Link -->
+    <meta name="description" content="Explore the official visual lookbook of Khushana Makeup Studio. View real bridal makeovers, premium airbrush finishes, and luxury hair transformations in Jammu.">
+    <link rel="canonical" href="https://www.khushana.com/kgallery.html">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph for Social Media Portfolios -->
+    <meta property="og:title" content="Bridal Makeover Gallery | Khushana Makeup Studio">
+    <meta property="og:description" content="Stunning real bridal transformations, luxury event makeup, and custom nail art designs by Khushana in Jammu.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.khushana.com/kgallery.html">
+
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Schema Markup: Image Gallery & ItemList for Image Search Dominance -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ImageGallery",
+      "name": "Khushana Luxury Makeup & Bridal Portfolio",
+      "description": "A collection of premium HD bridal makeovers, celebrity events, and advanced hair styling portfolio work in Jammu.",
+      "url": "https://www.khushana.com/kgallery.html",
+      "provider": {
+        "@type": "BeautySalon",
+        "name": "Khushana Makeup Studio",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Jammu",
+          "addressCountry": "IN"
+        }
+      }
+    }
+    </script>
+
     <style>
         :root {
-            --gold: #c5a059;
-            --dark-bg: #0a0a0a;
-            --card-bg: #111111;
-            --text-light: #ffffff;
-            --text-muted: #a0a0a0;
+            --olive-green: #3d441e;
+            --olive-dark: #2a2f14;
+            --satin-gold: #c9a050;
+            --cream-bg: #fdfaf5;
+            --soft-white: #ffffff;
         }
-
+        * { box-sizing: border-box; scroll-behavior: smooth; }
         body {
-            font-family: 'Raleway', sans-serif;
-            background-color: var(--dark-bg);
-            color: var(--text-light);
-            margin: 0;
-            padding: 0;
-            overflow-x: hidden;
+            margin: 0; padding: 0;
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--cream-bg);
+            color: var(--olive-green);
         }
-
-        h1, h2, nav a { font-family: 'Playfair Display', serif; }
-
-        /* --- Animated Logo Section --- */
-        .logo-container {
-            text-align: center;
-            padding: 50px 20px;
-            animation: fadeInDown 1.5s ease-out;
+        .navbar {
+            background: var(--olive-green); padding: 12px 20px; position: sticky; top: 0; z-index: 5000;
+            display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--satin-gold);
         }
-
-        .logo-container img {
-            max-width: 150px;
-            height: auto;
-            border: 1px solid var(--gold);
-            padding: 10px;
-            transition: transform 0.5s ease;
-        }
-
-        @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* --- Navigation --- */
-        nav {
-            text-align: center;
-            border-top: 1px solid #1a1a1a;
-            border-bottom: 1px solid #1a1a1a;
-            padding: 18px 0;
-            margin-bottom: 40px;
-        }
-
-        nav a {
-            color: var(--text-light);
-            text-decoration: none;
-            margin: 0 25px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-size: 0.8rem;
-            transition: color 0.3s, letter-spacing 0.3s;
-        }
-
-        nav a:hover { 
-            color: var(--gold); 
-            letter-spacing: 3px;
-        }
-
-        /* --- Professional Gallery Grid --- */
-        .gallery-wrapper {
-            max-width: 1280px;
-            margin: 0 auto;
-            padding: 0 20px 60px 20px;
-            display: grid;
-            /* Balanced 3-column setup on desktops */
-            grid-template-columns: repeat(3, 1fr);
-            grid-auto-rows: 320px;
-            gap: 25px;
-        }
-
-        .gallery-item {
-            position: relative;
-            overflow: hidden;
-            border: 1px solid #1a1a1a;
-            cursor: pointer;
-            background: #000;
-            border-radius: 4px;
-            transition: border-color 0.4s ease;
-        }
-
-        /* Premium balanced layout spans */
-        .gallery-item.tall { grid-row: span 2; } /* 640px height + gap */
-        .gallery-item.wide { grid-column: span 2; } /* Spans 2 blocks horizontally */
-
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center; /* Ensures makeup/faces remain centered */
-            transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1), filter 0.5s ease;
-        }
-
-        /* Video Overlay Icon styling */
-        .video-icon {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background: rgba(0, 0, 0, 0.6);
-            border: 1px solid var(--gold);
-            color: var(--gold);
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 10;
-            font-size: 0.9rem;
-            transition: background 0.3s, transform 0.3s;
-        }
-
-        /* View Details Overlay */
-        .gallery-item::after {
-            content: 'VIEW WORK';
-            position: absolute;
-            top: 50%; left: 50%;
-            transform: translate(-50%, -30%); /* Subtle upward movement entry */
-            color: var(--text-light);
-            letter-spacing: 4px;
-            font-size: 0.75rem;
-            opacity: 0;
-            transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
-            border-bottom: 1px solid var(--gold);
-            padding: 8px 15px;
-            z-index: 5;
-        }
-
-        /* Hover States */
-        .gallery-item:hover {
-            border-color: var(--gold);
-        }
-        .gallery-item:hover img { 
-            transform: scale(1.04); 
-            filter: brightness(50%) contrast(1.1); 
-        }
-        .gallery-item:hover::after { 
-            opacity: 1; 
-            transform: translate(-50%, -50%);
-        }
-        .gallery-item:hover .video-icon {
-            background: var(--gold);
-            color: #000;
-            transform: scale(1.1);
-        }
-
-        /* --- Lightbox --- */
-        #lightbox {
-            position: fixed;
-            z-index: 3000;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(4, 4, 4, 0.98);
-            display: none;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        #lightbox.active { 
-            display: flex; 
-            opacity: 1;
-        }
+        .logo .brand-title { color: white; font-family: 'Cormorant Garamond', serif; margin: 0; letter-spacing: 2px; font-size: 1.4rem; text-transform: uppercase; font-weight: 700; }
+        .nav-links { display: none; }
+        .nav-links a { color: var(--soft-white); text-decoration: none; font-size: 0.75rem; letter-spacing: 1.5px; text-transform: uppercase; margin-left: 20px; transition: 0.3s; }
+        .nav-links a:hover { color: var(--satin-gold); }
+        .menu-toggle { color: var(--satin-gold); font-size: 1.5rem; cursor: pointer; }
         
-        #lightbox iframe, #lightbox img {
-            max-width: 90%;
-            max-height: 85vh;
-            border: 1px solid var(--gold);
-            box-shadow: 0 10px 40px rgba(0,0,0,0.8);
-            background-color: #000;
-        }
+        /* Side Drawer */
+        .side-drawer { position: fixed; top: 0; right: -100%; width: 280px; height: 100%; background: var(--olive-dark); z-index: 6000; transition: 0.4s; padding: 60px 25px; border-left: 2px solid var(--satin-gold); }
+        .side-drawer.active { right: 0; }
+        .side-drawer a { display: block; color: white; text-decoration: none; font-size: 1rem; margin-bottom: 25px; text-transform: uppercase; letter-spacing: 2px; border-bottom: 1px solid rgba(201, 160, 80, 0.2); padding-bottom: 10px; }
+        .close-drawer { position: absolute; top: 20px; right: 20px; color: var(--satin-gold); font-size: 1.8rem; }
 
-        .close-btn {
-            position: absolute;
-            top: 25px; right: 35px;
-            color: #fff;
-            font-size: 35px;
-            font-weight: 300;
-            cursor: pointer;
-            transition: color 0.3s;
-        }
+        /* Gallery Layout */
+        .gallery-header { text-align: center; padding: 60px 20px 20px; }
+        .gallery-header h1 { font-family: 'Cormorant Garamond', serif; font-size: 2.8rem; margin: 0; color: var(--olive-dark); }
+        .gallery-header p { font-size: 0.9rem; max-width: 600px; margin: 10px auto 0; opacity: 0.8; line-height: 1.6; }
+        
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; padding: 40px 20px; max-width: 1200px; margin: 0 auto; }
+        .gallery-item { position: relative; overflow: hidden; border: 1px solid var(--satin-gold); background: white; padding: 6px; box-shadow: 0 4px 15px rgba(0,0,0,0.03); }
+        .gallery-item img { width: 100%; height: 380px; object-fit: cover; display: block; transition: transform 0.5s ease; }
+        .gallery-item:hover img { transform: scale(1.03); }
+        .img-caption { padding: 12px 5px 5px; text-align: center; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: var(--olive-green); }
 
-        .close-btn:hover { color: var(--gold); }
-
-        footer {
-            text-align: center;
-            padding: 80px 20px 40px 20px;
-            color: var(--text-muted);
-            font-size: 0.75rem;
-            letter-spacing: 2px;
-            border-top: 1px solid #1a1a1a;
-        }
-
-        /* --- Seamless Responsive Design --- */
-        @media (max-width: 1024px) {
-            .gallery-wrapper {
-                grid-template-columns: repeat(2, 1fr);
-                grid-auto-rows: 300px;
-            }
-            .gallery-item.wide { grid-column: span 1; } /* Prevents layout collapse on mid-screens */
-        }
-
-        @media (max-width: 768px) {
-            .gallery-wrapper { 
-                grid-template-columns: 1fr; 
-                grid-auto-rows: auto;
-                gap: 20px;
-            }
-            .gallery-item.tall, .gallery-item.wide { grid-column: span 1; grid-row: span 1; }
-            .gallery-item { height: 400px; } /* Clean, consistent blocks on mobile phones */
-            nav a { margin: 0 10px; font-size: 0.75rem; }
-        }
+        footer { background: var(--olive-dark); color: var(--soft-white); padding: 40px 20px; text-align: center; margin-top: 60px; border-top: 4px solid var(--satin-gold); }
+        @media (min-width: 992px) { .nav-links { display: flex; } .menu-toggle { display: none; } }
     </style>
 </head>
 <body>
 
-    <div class="logo-container">
-        <img src="https://raw.githubusercontent.com/tthirdshooter/khushana/main/images/logo1.jpeg" alt="Khushana Studio">
-    </div>
-
-    <nav>
-        <a href="studio.html">Home</a>
-        <a href="#" style="color: var(--gold);">Portfolio</a>
-        <a href="#">Services</a>
-        <a href="contact.html">Contact</a>
+    <nav class="navbar">
+        <div class="logo"><div class="brand-title">KHUSHANA</div></div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="index.html#ai-suite">AI Suite</a>
+            <a href="index.html#reviews">Reviews</a>
+            <a href="kgallery.html" style="color: var(--satin-gold);">Gallery</a>
+            <a href="contact.html">Book Now</a>
+            <a href="aboutus.html">About Us</a>
+        </div>
+        <div class="menu-toggle" onclick="toggleDrawer()"><i class="fas fa-bars"></i></div>
     </nav>
 
-    <div class="gallery-wrapper">
-        
-        <!-- Row 1 -->
-        <div class="gallery-item tall" onclick="openLightbox(this)">
-            <img src="https://raw.githubusercontent.com/tthirdshooter/khushana/main/images/priya.png" alt="Nail Art Bridal Design">
-        </div>
-
-        <div class="gallery-item wide" onclick="openLightbox(this)">
-            <img src="https://raw.githubusercontent.com/tthirdshooter/khushana/main/images/tan.png" alt="Studio Professional Shot">
-        </div>
-
-        <!-- Row 2 -->
-        <div class="gallery-item tall" onclick="openVideo('https://www.instagram.com/reels/videos/DXb_OzMErti/')">
-            <div class="video-icon">▶</div>
-            <img src="https://raw.githubusercontent.com/tthirdshooter/khushana/main/images/poojaa.jpeg" alt="Nail Art Video Reel">
-        </div>
-
-        <div class="gallery-item" onclick="openLightbox(this)">
-            <img src="https://raw.githubusercontent.com/tthirdshooter/khushana/main/images/tan1.png" alt="Glamour Makeup Shot">
-        </div>
-
-        <!-- Row 3 -->
-        <div class="gallery-item" onclick="openLightbox(this)">
-            <img src="https://raw.githubusercontent.com/tthirdshooter/khushana/main/images/tan2.png" alt="Luxury Bridal Portfolio">
-        </div>
-
-        <div class="gallery-item wide" onclick="openLightbox(this)">
-            <img src="https://raw.githubusercontent.com/tthirdshooter/khushana/main/images/tan3.png" alt="Studio Presentation">
-        </div>
-
-        <!-- Row 4 -->
-        <div class="gallery-item" onclick="openLightbox(this)">
-            <img src="https://raw.githubusercontent.com/tthirdshooter/khushana/main/images/tan4.png" alt="HD Bridal Editorial">
-        </div>
-
-      
-
+    <div class="side-drawer" id="sideDrawer">
+        <i class="fas fa-times close-drawer" onclick="toggleDrawer()"></i>
+        <a href="index.html" onclick="toggleDrawer()">Home</a>
+        <a href="index.html#ai-suite" onclick="toggleDrawer()">AI Beauty Suite</a>
+        <a href="kgallery.html" onclick="toggleDrawer()">Gallery</a>
+        <a href="contact.html" onclick="toggleDrawer()">Book Now</a>
+        <a href="aboutus.html" onclick="toggleDrawer()">About Us</a>
     </div>
+
+    <!-- SEO FIX: Explicit Semantic Title and Context Rich Copy -->
+    <header class="gallery-header">
+        <h1>The Bridal Lookbook</h1>
+        <p>A refined collection of high-definition bridal transformations, custom luxury hairstyles, and signature aesthetics tailored meticulously at our Jammu studio.</p>
+    </header>
+
+    <!-- SEO FIX: Complete, descriptive, contextual image ALT tags for image indexation -->
+    <main class="gallery-grid">
+        <div class="gallery-item">
+            <img src="https://raw.githubusercontent.com/tthirdshooter/khushana/main/images/tan.png" alt="Bridal cosmetics makeover profile look by Khushana Studio Jammu">
+            <div class="img-caption">Signature HD Bridal Glow</div>
+        </div>
+        <div class="gallery-item">
+            <img src="https://raw.githubusercontent.com/tthirdshooter/khushana/main/images/tan1.png" alt="Premium airbrush wedding cosmetics layout by Khushana">
+            <div class="img-caption">Airbrush Precision Finishing</div>
+        </div>
+        <div class="gallery-item">
+            <img src="https://raw.githubusercontent.com/tthirdshooter/khushana/main/images/arshnail.jpeg" alt="Luxury bridal nail extension gel extensions design artwork">
+            <div class="img-caption">Luxury Gel Extensions</div>
+        </div>
+        <div class="gallery-item">
+            <img src="https://raw.githubusercontent.com/tthirdshooter/khushana/main/images/kha.jpeg" alt="South Indian traditional bridal cosmetics look Jammu">
+            <div class="img-caption">Traditional South Indian Bride</div>
+        </div>
+        <div class="gallery-item">
+            <img src="https://raw.githubusercontent.com/tthirdshooter/khushana/main/images/priya.png" alt="High fashion party glam makeovers by Khushana studio">
+            <div class="img-caption">High-Fashion Party Glam</div>
+        </div>
+        <div class="gallery-item">
+            <img src="https://raw.githubusercontent.com/tthirdshooter/khushana/main/images/tan2.png" alt="Dewy glass skin makeup finish look profile">
+            <div class="img-caption">Dewy Glass Skin Styling</div>
+        </div>
+    </main>
 
     <footer>
-        <p>&copy; 2026 KHUSHANA MAKE UP STUDIO. ALL RIGHTS RESERVED.</p>
+        <p style="font-size: 0.75rem; letter-spacing: 1px;">&copy; 2026 KHUSHANA MAKEUP STUDIO | SECTOR E, SAINIK COLONY, JAMMU</p>
     </footer>
 
-    <!-- Lightbox Structure -->
-    <div id="lightbox">
-        <span class="close-btn" onclick="closeLightbox()">&times;</span>
-        <div id="content-area" style="width:100%; display:flex; justify-content:center; align-items:center;"></div>
-    </div>
-
     <script>
-        const lb = document.getElementById('lightbox');
-        const contentArea = document.getElementById('content-area');
-
-        function openLightbox(el) {
-            const imgSrc = el.querySelector('img').src;
-            contentArea.innerHTML = `<img src="${imgSrc}" alt="Enlarged Portfolio View">`;
-            lb.style.display = 'flex';
-            setTimeout(() => lb.classList.add('active'), 10);
-            document.body.style.overflow = 'hidden';
-        }
-
-        function openVideo(videoUrl) {
-            // Cleans and properly structures Instagram embed links seamlessly 
-            let embedUrl = videoUrl;
-            if (!embedUrl.includes('/embed')) {
-                // Strip queries if any and append pure embed structural pathway
-                embedUrl = embedUrl.split('?')[0].replace(/\/$/, "") + "/embed/";
-            }
-            
-            contentArea.innerHTML = `<iframe src="${embedUrl}" width="380" height="580" frameborder="0" scrolling="no" allowtransparency="true" allow="encrypted-media"></iframe>`;
-            lb.style.display = 'flex';
-            setTimeout(() => lb.classList.add('active'), 10);
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeLightbox() {
-            lb.classList.remove('active');
-            setTimeout(() => {
-                lb.style.display = 'none';
-                contentArea.innerHTML = ''; 
-            }, 300);
-            document.body.style.overflow = 'auto';
-        }
-
-        lb.addEventListener('click', function(e) {
-            if (e.target === lb || e.target === contentArea) closeLightbox();
-        });
+        function toggleDrawer() { document.getElementById('sideDrawer').classList.toggle('active'); }
     </script>
 </body>
 </html>
