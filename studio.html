@@ -3,10 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Khushana Makeup Studio | Luxury Artistry & AI Beauty Suite</title>
     
+    <!-- SEO FIX 1: Geo-Targeted High-Intent Keyword Title Tag -->
+    <title>Khushana Makeup Studio | Best Bridal & Luxury Makeup Artist in Jammu</title>
+    
+    <!-- SEO FIX 2: Optimized Meta Tags for High CTR & Crawlability -->
+    <meta name="description" content="Welcome to Khushana Makeup Studio in Sainik Colony, Jammu. Discover premium bridal makeovers, celebrity luxury artistry, and our interactive AI Beauty Suite. Book your slot today.">
+    <meta name="keywords" content="makeup studio in jammu, best bridal makeup artist jammu, luxury salon jammu, wedding makeup sainik colony, celebrity makeover jammu, nail extension studio jammu">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph for Social Media Search Visibility -->
+    <meta property="og:title" content="Khushana Makeup Studio | Luxury Bridal Artistry in Jammu">
+    <meta property="og:description" content="Experience premium beauty artistry and custom AI consultations at Jammu's premier luxury makeup studio.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.khushana.com">
+
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- SEO FIX 3: Local Business Schema Markup for Google Maps Pack Placement -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BeautySalon",
+      "name": "Khushana Makeup Studio",
+      "image": "https://raw.githubusercontent.com/tthirdshooter/khushana/main/images/ka.jpeg",
+      "description": "Elite luxury makeup studio in Jammu specializing in HD bridal makeup, airbrush cosmetics, luxury hair styling, and professional nail vision services.",
+      "url": "https://www.khushana.com",
+      "telephone": "+917889425218",
+      "priceRange": "$$$",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Sector E, Sainik Colony",
+        "addressLocality": "Jammu",
+        "addressRegion": "Jammu and Kashmir",
+        "postalCode": "180011",
+        "addressCountry": "IN"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "32.6833", 
+        "longitude": "74.8833"
+      },
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday",
+          "Sunday"
+        ],
+        "opens": "10:00",
+        "closes": "20:00"
+      },
+      "sameAs": [
+        "https://www.instagram.com/khushana_makeup/reels/"
+      ]
+    }
+    </script>
 
     <style>
         :root {
@@ -35,7 +92,7 @@
             width: 100%;
             height: 100%;
             background: rgba(0, 0, 0, 0.85);
-            display: none; /* Hidden by default */
+            display: none; 
             justify-content: center;
             align-items: center;
             z-index: 10000;
@@ -76,7 +133,7 @@
             to { opacity: 1; transform: scale(1); }
         }
 
-        /* --- EXISTING NAVIGATION --- */
+        /* --- NAVIGATION --- */
         .navbar {
             background: var(--olive-green);
             padding: 12px 20px;
@@ -89,7 +146,8 @@
             border-bottom: 2px solid var(--satin-gold);
         }
 
-        .logo h2 { color: white; font-family: 'Cormorant Garamond', serif; margin: 0; letter-spacing: 2px; font-size: 1.4rem; }
+        /* SEO FIX 4: Changed to h1 for brand authority identifier on scroll tracking */
+        .logo h1 { color: white; font-family: 'Cormorant Garamond', serif; margin: 0; letter-spacing: 2px; font-size: 1.4rem; text-transform: uppercase; }
 
         .nav-links { display: none; }
         .nav-links a {
@@ -126,6 +184,9 @@
         .hero-img { width: 100%; height: auto; display: block; max-height: 80vh; object-fit: cover; }
         .hero-content { padding: 40px 20px; background: linear-gradient(to bottom, var(--olive-dark), var(--cream-bg)); }
 
+        /* SEO FIX 5: Standardizing semantic H2 sizing for hero typography consistency */
+        .hero-content h2 { font-family:'Cormorant Garamond', serif; font-size: 2.2rem; margin: 0 0 10px 0; color: var(--olive-green); font-weight: 700; }
+
         .btn-gold {
             display: inline-block; background: var(--olive-green); color: var(--satin-gold);
             padding: 16px 32px; text-decoration: none; text-transform: uppercase;
@@ -137,7 +198,9 @@
 
         /* --- AI BEAUTY SUITE --- */
         .ai-section { padding: 80px 20px; background: white; text-align: center; }
+        .ai-section h2 { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; margin: 0 0 10px 0; font-weight: 700; }
         .ai-tabs { display: flex; justify-content: center; gap: 8px; margin-bottom: 30px; flex-wrap: wrap; }
+        
         .tab-btn { 
             background: none; border: 1px solid var(--satin-gold); color: var(--olive-green); 
             padding: 10px 15px; font-family: 'Montserrat'; cursor: pointer; text-transform: uppercase; font-size: 0.65rem; font-weight: 600;
@@ -180,6 +243,7 @@
 
         /* --- REVIEWS --- */
         .reviews-section { padding: 80px 20px; background: var(--olive-green); color: var(--cream-bg); text-align: center; }
+        .reviews-section h2 { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; margin: 0 0 10px 0; }
         .reviews-container { max-width: 1100px; margin: 40px auto; display: flex; flex-direction: column; gap: 20px; }
         .review-card { background: rgba(255, 255, 255, 0.05); padding: 35px; border: 1px solid var(--satin-gold); position: relative; }
         .review-text { font-style: italic; font-size: 0.95rem; line-height: 1.6; }
@@ -187,7 +251,7 @@
 
         /* --- FOOTER --- */
         footer { background: var(--olive-dark); color: var(--soft-white); padding: 50px 20px; text-align: center; border-top: 4px solid var(--satin-gold); }
-        .f-name { font-family: 'Cormorant Garamond', serif; font-size: 2rem; color: var(--satin-gold); margin-bottom: 20px; }
+        .f-name { font-family: 'Cormorant Garamond', serif; font-size: 2rem; color: var(--satin-gold); margin-bottom: 20px; text-transform: uppercase; font-weight: 700; }
         
         .wa-float { position: fixed; bottom: 20px; right: 20px; background: #25d366; color: white; width: 55px; height: 55px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 28px; z-index: 1000; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
 
@@ -204,14 +268,14 @@
     <!-- POPUP MODAL -->
     <div class="modal-overlay" id="offerModal">
         <div class="modal-content">
-            <i class="fas fa-times close-modal" onclick="closePopup()"></i>
-            <!-- This points to the Inaugural Offer image you provided -->
-            <img src="https://raw.githubusercontent.com/tthirdshooter/khushana/main/images/in.jpeg" alt="Special Inaugural Offer">
+            <i class="fas fa-times close-modal" onclick="closePopup()" aria-label="Close Promotion Modal"></i>
+            <!-- SEO FIX 6: Added contextual Alt text for seasonal flyer index scanning -->
+            <img src="https://raw.githubusercontent.com/tthirdshooter/khushana/main/images/in.jpeg" alt="Khushana Makeup Studio Jammu Inaugural Launch Promotional Offer">
         </div>
     </div>
 
     <nav class="navbar">
-        <div class="logo"><h2>KHUSHANA</h2></div>
+        <div class="logo"><h1>KHUSHANA</h1></div>
         <div class="nav-links">
             <a href="#ai-suite">AI Suite</a>
             <a href="#reviews">Reviews</a>
@@ -230,39 +294,36 @@
         <a href="contact.html">Book Now</a>
         <a href="aboutus.html">About Us</a>
     </div>
-  <div class="marquee">
+
+    <!-- SEO FIX 7: Added descriptive Alt text attributes throughout the infinite portfolio carousel track -->
+    <div class="marquee">
         <div class="marquee-track">
- <img src="https://raw.githubusercontent.com/tthirdshooter/khushana/main/images/tan.png">
-             <img src="https://raw.githubusercontent.com/tthirdshooter/khushana/main/images/tan1.png">
-                     
-                       
-            <img src="https://raw.githubusercontent.com/tthirdshooter/khushana/main/images/arshnail.jpeg">
-          
-            <img src="https://raw.githubusercontent.com/tthirdshooter/khushana/main/images/kha.jpeg">
-            <img src="https://raw.githubusercontent.com/tthirdshooter/khushana/main/images/priya.png">
-
-              <img src="https://raw.githubusercontent.com/tthirdshooter/khushana/main/images/tan2.png">
-            <img src="https://raw.githubusercontent.com/tthirdshooter/khushana/main/images/poojaa.jpeg">
-            <img src="https://raw.githubusercontent.com/tthirdshooter/khushana/main/images/arshnail1.jpeg">
-
-             <img src="https://raw.githubusercontent.com/tthirdshooter/khushana/main/images/tan3.png">
-            <img src="https://raw.githubusercontent.com/tthirdshooter/khushana/main/images/n1.jpeg">
-            <img src="https://raw.githubusercontent.com/tthirdshooter/khushana/main/images/3.jpeg">
-              <img src="https://raw.githubusercontent.com/tthirdshooter/khushana/main/images/tan4.png">
-            <img src="https://raw.githubusercontent.com/tthirdshooter/khushana/main/images/n2.jpeg">
-            <img src="https://raw.githubusercontent.com/tthirdshooter/khushana/main/images/arshnail.jpeg">
+            <img src="https://raw.githubusercontent.com/tthirdshooter/khushana/main/images/tan.png" alt="Bridal cosmetics makeover profile look by Khushana Studio Jammu">
+            <img src="https://raw.githubusercontent.com/tthirdshooter/khushana/main/images/tan1.png" alt="Premium airbrush wedding cosmetics layout by Khushana">
+            <img src="https://raw.githubusercontent.com/tthirdshooter/khushana/main/images/arshnail.jpeg" alt="Luxury bridal nail extension gel extensions design artwork">
+            <img src="https://raw.githubusercontent.com/tthirdshooter/khushana/main/images/kha.jpeg" alt="South Indian traditional bridal cosmetics look Jammu">
+            <img src="https://raw.githubusercontent.com/tthirdshooter/khushana/main/images/priya.png" alt="High fashion party glam makeovers by Khushana studio">
+            <img src="https://raw.githubusercontent.com/tthirdshooter/khushana/main/images/tan2.png" alt="Dewy glass skin makeup finish look profile">
+            <img src="https://raw.githubusercontent.com/tthirdshooter/khushana/main/images/poojaa.jpeg" alt="North Indian wedding standard flawless bridal makeup look">
+            <img src="https://raw.githubusercontent.com/tthirdshooter/khushana/main/images/arshnail1.jpeg" alt="Premium salon custom nail art chrome design finish">
+            <img src="https://raw.githubusercontent.com/tthirdshooter/khushana/main/images/tan3.png" alt="Celebrity editorial glowing cosmetics makeover profile">
+            <img src="https://raw.githubusercontent.com/tthirdshooter/khushana/main/images/n1.jpeg" alt="Elegant eye shadow styling palette layout artwork by Khushana">
+            <img src="https://raw.githubusercontent.com/tthirdshooter/khushana/main/images/3.jpeg" alt="Luxury salon premium hair styling contours contouring look">
+            <img src="https://raw.githubusercontent.com/tthirdshooter/khushana/main/images/tan4.png" alt="Breathable lightweight reception makeup finish look profile">
+            <img src="https://raw.githubusercontent.com/tthirdshooter/khushana/main/images/n2.jpeg" alt="Intricate matte lip contour premium artistry presentation">
         </div>
     </div>
+
     <div class="hero-container">
-        <img src="https://raw.githubusercontent.com/tthirdshooter/khushana/main/images/ka.jpeg" class="hero-img">
+        <img src="https://raw.githubusercontent.com/tthirdshooter/khushana/main/images/ka.jpeg" class="hero-img" alt="Luxury Bridal Makeover Portfolio Background - Khushana Makeup Studio">
         <div class="hero-content">
-            <h1 style="font-family:'Cormorant Garamond'; font-size: 2.2rem; margin-bottom: 10px; color: var(--olive-green);">Where Artistry Meets Precision</h1>
+            <h2>Where Artistry Meets Precision</h2>
             <a href="#ai-suite" class="btn-gold">Launch Digital Consultant</a>
         </div>
     </div>
 
     <section class="ai-section" id="ai-suite">
-        <h2 style="font-family: 'Cormorant Garamond'; font-size: 2.2rem; margin-bottom: 10px;">Digital Beauty Suite</h2>
+        <h2>Digital Beauty Suite</h2>
         <div class="ai-tabs">
             <button class="tab-btn active" onclick="switchTab(this, 'skin')">Makeup (Skinvy)</button>
             <button class="tab-btn" onclick="switchTab(this, 'hair')">Hair Architect</button>
@@ -274,8 +335,8 @@
             <div id="ai-upload-view">
                 <label for="ai-photo-input" class="upload-box">
                     <i id="ai-icon" class="fas fa-magic" style="font-size: 2.5rem; color: var(--satin-gold); margin-bottom: 15px;"></i>
-                    <p id="ai-prompt" style="font-weight: 600; letter-spacing: 1px;">UPLOAD PHOTO</p>
-                    <span id="ai-sub" style="font-size: 0.7rem; color: #888;">AI will analyze for personalized results</span>
+                    <span id="ai-prompt" style="font-weight: 600; letter-spacing: 1px; display:block;">UPLOAD PHOTO</span>
+                    <span id="ai-sub" style="font-size: 0.7rem; color: #888; display:block; margin-top:5px;">AI will analyze for personalized results</span>
                     <input type="file" id="ai-photo-input" accept="image/*" style="display:none">
                 </label>
             </div>
@@ -306,8 +367,8 @@
         </div>
     </section>
 
-  <section class="reviews-section" id="reviews">
-        <h2 style="font-family: 'Cormorant Garamond'; font-size: 2.5rem; margin-bottom: 10px;">The Studio Secret</h2>
+    <section class="reviews-section" id="reviews">
+        <h2>The Studio Secret</h2>
         <p style="color: var(--satin-gold); text-transform: uppercase; letter-spacing: 3px; margin-bottom: 30px; font-size: 0.8rem; font-weight: 600;">Opened in Jammu</p>
         
         <div class="reviews-container">
@@ -326,13 +387,11 @@
         </div>
     </section>
 
-  
-
-   <footer>
+    <footer>
         <div class="f-name">KHUSHANA MAKEUP STUDIO</div>
         <div style="margin-bottom: 30px;">
             <span style="border: 1px solid var(--satin-gold); padding: 10px 20px; color: var(--satin-gold); font-size: 0.75rem; letter-spacing: 2px; display: inline-block;">
-                INNAUGURAL BOOKINGS OPENING THIS WEEK
+                INAUGURAL BOOKINGS OPENING THIS WEEK
             </span>
         </div>
 
@@ -354,21 +413,20 @@
         <p style="font-size: 0.6rem; margin-top: 40px; opacity: 0.4;">&copy; 2026 KHUSHANA MAKEUP STUDIO | ELITE ARTISTRY UNVEILING SOON</p>
     </footer>
 
-    <a href="https://wa.me/917889425218" class="wa-float"><i class="fab fa-whatsapp"></i></a>
+    <a href="https://wa.me/917889425218" class="wa-float" aria-label="Chat with Khushana Makeup Studio on WhatsApp"><i class="fab fa-whatsapp"></i></a>
 
     <script>
         // POPUP LOGIC
         window.onload = function() {
             setTimeout(function() {
                 document.getElementById('offerModal').style.display = 'flex';
-            }, 1500); // Popup appears after 1.5 seconds
+            }, 1500);
         };
 
         function closePopup() {
             document.getElementById('offerModal').style.display = 'none';
         }
 
-        // Close if clicking the background
         window.onclick = function(event) {
             let modal = document.getElementById('offerModal');
             if (event.target == modal) {
