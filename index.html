@@ -3,41 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- SEO FIX 1: Keyword & Location Optimized Title -->
-    <title>Khushana | Luxury Makeup Studio & Luxury Digital Agency</title>
+    <!-- SEO OPTIMIZED: Dedicated Studio Title -->
+    <title>Khushana | Luxury Makeup Studio</title>
     
-    <!-- SEO FIX 2: Meta Descriptions to win organic clicks -->
-    <meta name="description" content="Discover Khushana. Experience premium bridal and celebrity makeover services at our luxury Makeup Studio, or scale your brand via Khushana Digital Agency.">
-    <meta name="keywords" content="luxury makeup studio, bridal makeup artist, premium celebrity makeover, digital design studio, brand strategy development">
+    <!-- SEO: Meta Descriptions focused purely on beauty & bridal services -->
+    <meta name="description" content="Discover Khushana. Experience premium bridal makeovers, celebrity glamour, and professional beauty artistry at our luxury Makeup Studio.">
+    <meta name="keywords" content="luxury makeup studio, bridal makeup artist, premium celebrity makeover, professional beauty artistry">
     <meta name="robots" content="index, follow">
     
     <!-- Open Graph for Social Media Search Visibility -->
-    <meta property="og:title" content="Khushana | Luxury Makeup Studio & Digital Design Agency">
-    <meta property="og:description" content="Premium bridal artistry meets cutting-edge digital development. Step inside the world of Khushana.">
+    <meta property="og:title" content="Khushana | Luxury Makeup Studio">
+    <meta property="og:description" content="Premium bridal artistry and luxury beauty makeovers. Step inside the world of Khushana.">
     <meta property="og:type" content="website">
 
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     
-    <!-- SEO FIX 3: Local Business Schema Markup for Google Maps Pack Ranking -->
+    <!-- Local Business Schema Markup for Google Maps Pack Ranking -->
     <script type="application/ld+json">
-    [
-      {
-        "@context": "https://schema.org",
-        "@type": "BeautySalon",
-        "name": "Khushana Makeup Studio",
-        "description": "Premium makeup studio specializing in bridal makeovers, celebrity glamour, and professional beauty artistry.",
-        "url": "https://www.khushana.com",
-        "telephone": "+1-XXX-XXX-XXXX", 
-        "priceRange": "$$$"
-      },
-      {
-        "@context": "https://schema.org",
-        "@type": "ProfessionalService",
-        "name": "Khushana Digital",
-        "description": "High-end design, development, and digital strategy agency.",
-        "url": "https://www.khushana.com"
-      }
-    ]
+    {
+      "@context": "https://schema.org",
+      "@type": "BeautySalon",
+      "name": "Khushana Makeup Studio",
+      "description": "Premium makeup studio specializing in bridal makeovers, celebrity glamour, and professional beauty artistry.",
+      "url": "https://www.khushana.com",
+      "telephone": "+1-XXX-XXX-XXXX", 
+      "priceRange": "$$$"
+    }
     </script>
 
     <style>
@@ -129,10 +120,8 @@
 
         /* --- MAIN CONTAINER --- */
         .container {
-            display: flex;
             height: 100vh;
             width: 100vw;
-            flex-direction: row;
             perspective: 1000px;
             opacity: 0;
             transition: opacity 1.5s ease;
@@ -140,36 +129,25 @@
 
         .loaded .container { opacity: 1; }
 
-        .split {
-            flex: 1;
+        .studio-showcase {
+            height: 100%;
+            width: 100%;
             display: flex;
             align-items: center;
             justify-content: center;
             flex-direction: column;
-            transition: transform 0.2s ease-out, flex 0.8s cubic-bezier(0.77, 0, 0.175, 1);
+            transition: transform 0.2s ease-out;
             text-decoration: none;
             position: relative;
             text-align: center;
             padding: 20px;
+            box-sizing: border-box;
             overflow: hidden;
             transform-style: preserve-3d;
-        }
-
-        /* LEFT SIDE: Olive & Gold */
-        .left {
             background: linear-gradient(-45deg, var(--olive-deep), var(--olive-light), var(--olive-deep));
             background-size: 400% 400%;
             animation: gradientBG 15s ease infinite;
             color: var(--cream-light);
-            border-right: 1px solid rgba(201, 160, 80, 0.3);
-        }
-
-        /* RIGHT SIDE: Cream & Olive/Gold */
-        .right {
-            background: linear-gradient(-45deg, var(--cream-light), #fffefc, var(--cream-light));
-            background-size: 400% 400%;
-            animation: gradientBG 15s ease infinite;
-            color: var(--text-dark);
         }
 
         @keyframes gradientBG {
@@ -178,41 +156,34 @@
             100% { background-position: 0% 50%; }
         }
 
-        @media (min-width: 769px) {
-            .split:hover { flex: 1.4; }
-        }
-
         .content-wrapper {
             pointer-events: none;
             transform: translateZ(60px);
             z-index: 2;
         }
 
-        /* SEO FIX 4: Controlled heading sizing for crawlability without breaking layout */
-        .split h1, .split h2 {
+        .studio-showcase h1, .studio-showcase h2 {
             text-transform: uppercase;
             letter-spacing: 5px;
             margin: 5px 0;
             font-family: 'Cormorant Garamond', serif;
         }
         
-        .split h1 { font-size: clamp(1.8rem, 4.5vw, 3.5rem); }
-        .split h2 { font-size: clamp(1.1rem, 2.5vw, 1.8rem); font-weight: 400; }
+        .studio-showcase h1 { font-size: clamp(2.5rem, 6vw, 5rem); }
+        .studio-showcase h2 { font-size: clamp(1.4rem, 3vw, 2.2rem); font-weight: 400; }
 
-        .left h1, .left h2 { color: var(--satin-gold); }
-        .right h1 { color: var(--olive-deep); }
-        .right h2 { color: var(--text-dark); }
+        .studio-showcase h1, .studio-showcase h2 { color: var(--satin-gold); }
 
-        .split p {
-            font-size: 0.9rem;
+        .studio-showcase p {
+            font-size: 1rem;
             text-transform: uppercase;
-            letter-spacing: 3px;
-            margin-bottom: 30px;
+            letter-spacing: 4px;
+            margin-bottom: 40px;
             font-weight: 300;
             opacity: 0.9;
         }
 
-        /* SEO FIX 5: Screen-reader hidden semantic description text block */
+        /* Screen-reader hidden semantic text */
         .sr-only {
             position: absolute;
             width: 1px;
@@ -226,30 +197,28 @@
 
         .btn {
             display: inline-block;
-            padding: 15px 40px;
+            padding: 18px 50px;
             text-transform: uppercase;
-            font-size: 0.75rem;
+            font-size: 0.8rem;
             font-weight: 600;
             letter-spacing: 2px;
             transition: 0.4s;
-            border: 1px solid;
+            border: 1px solid var(--satin-gold);
+            color: var(--satin-gold);
             background: transparent;
-            pointer-events: auto; /* Fixed link clicking accessibility bug */
+            pointer-events: auto;
         }
 
-        /* Left Button: Gold Outline */
-        .left .btn { border-color: var(--satin-gold); color: var(--satin-gold); }
-        .left .btn:hover { background: var(--satin-gold); color: var(--olive-deep); }
-
-        /* Right Button: Olive Outline */
-        .right .btn { border-color: var(--olive-deep); color: var(--olive-deep); }
-        .right .btn:hover { background: var(--olive-deep); color: var(--cream-light); }
+        .btn:hover {
+            background: var(--satin-gold);
+            color: var(--olive-deep);
+        }
 
         #particleCanvas {
             position: absolute;
             inset: 0;
             pointer-events: none;
-            opacity: 0.5;
+            opacity: 0.6;
         }
 
         .sparkle {
@@ -266,24 +235,17 @@
         @keyframes sparkle-fade {
             to { transform: scale(0) translateY(20px); opacity: 0; }
         }
-
-        @media (max-width: 768px) {
-            .container { flex-direction: column; }
-            .split { flex: 1; border-right: none; border-bottom: 1px solid rgba(201, 160, 80, 0.2); }
-        }
     </style>
 </head>
 <body>
 
-<!-- Accessible Screen-Reader text for complete search engine crawling -->
 <div class="sr-only">
-    <h1>Khushana Luxury Brand Hub</h1>
-    <p>Welcome to Khushana, featuring our premier Makeup Studio for luxury bridal makeup and celebrity makeovers, alongside Khushana Digital Agency delivering top-tier web design, product development, and brand growth strategy.</p>
+    <h1>Khushana Luxury Makeup Studio</h1>
+    <p>Welcome to Khushana, featuring our premier Makeup Studio for luxury bridal makeup and celebrity makeovers.</p>
 </div>
 
 <div id="loader">
     <div class="loader-content">
-        <!-- SEO FIX 6: Explicit alt tag for image indexing -->
         <img src="https://raw.githubusercontent.com/tthirdshooter/khushana/main/images/logo1.png" class="loader-logo" alt="Khushana Luxury Studio Logo">
         <h2 class="shimmer">KHUSHANA</h2>
         <div class="progress-bar"><div class="progress-fill"></div></div>
@@ -295,25 +257,14 @@
 </audio>
 
 <div class="container">
-    <!-- STUDIO SIDE (OLIVE) -->
-    <!-- SEO FIX 7: Added aria-label to structural anchors -->
-    <a href="studio.html" class="split left" id="studio-side" aria-label="Enter Khushana Makeup Studio Portfolio and Booking Engine">
+    <!-- STUDIO FULL SCREEN SHOWCASE -->
+    <a href="studio.html" class="studio-showcase" id="studio-main" aria-label="Enter Khushana Makeup Studio Portfolio and Booking Engine">
         <canvas id="particleCanvas"></canvas>
         <div class="content-wrapper">
             <h1>KHUSHANA</h1>
             <h2>Makeup Studio</h2>
             <p>Artistry • Elegance • Bridal Beauty</p>
             <div class="btn">Enter Studio</div>
-        </div>
-    </a>
-
-    <!-- DIGITAL SIDE (CREAM) -->
-    <a href="info.html" class="split right" aria-label="Explore Khushana Digital Design and Development Strategy Services">
-        <div class="content-wrapper">
-            <h1>Khushana Digital</h1>
-            <h2>Creative Agency</h2>
-            <p>Design • Dev • Brand Strategy</p>
-            <div class="btn">Explore Services</div>
         </div>
     </a>
 </div>
@@ -341,12 +292,10 @@
     const canvas = document.getElementById('particleCanvas');
     const ctx = canvas.getContext('2d');
     let particles = [];
+    
     function resize() {
-        const side = document.getElementById('studio-side');
-        if(side) {
-            canvas.width = side.offsetWidth;
-            canvas.height = side.offsetHeight;
-        }
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
     }
     window.addEventListener('resize', resize);
     resize();
@@ -372,7 +321,7 @@
         }
     }
 
-    for (let i = 0; i < 60; i++) particles.push(new Particle());
+    for (let i = 0; i < 80; i++) particles.push(new Particle());
     function animate() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         particles.forEach(p => { p.update(); p.draw(); });
@@ -381,33 +330,28 @@
     animate();
 
     // 4. 3D Tilt Effect
-    const cards = document.querySelectorAll('.split');
-    cards.forEach(card => {
-        card.addEventListener('mousemove', (e) => {
-            const rect = card.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-            const rotateX = (rect.height / 2 - y) / 25;
-            const rotateY = (x - rect.width / 2) / 25;
-            card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-        });
-        card.addEventListener('mouseleave', () => {
-            card.style.transform = `rotateX(0deg) rotateY(0deg)`;
-        });
+    const showcase = document.getElementById('studio-main');
+    showcase.addEventListener('mousemove', (e) => {
+        const rect = showcase.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const rotateX = (rect.height / 2 - y) / 40;
+        const rotateY = (x - rect.width / 2) / 40;
+        showcase.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+    });
+    showcase.addEventListener('mouseleave', () => {
+        showcase.style.transform = `rotateX(0deg) rotateY(0deg)`;
     });
 
-    // 5. Gold Sparkle Trail on Studio Side
-    const studioSide = document.getElementById('studio-side');
-    if(studioSide) {
-        studioSide.addEventListener('mousemove', (e) => {
-            const sparkle = document.createElement('div');
-            sparkle.className = 'sparkle';
-            sparkle.style.left = e.clientX + 'px';
-            sparkle.style.top = e.clientY + 'px';
-            document.body.appendChild(sparkle);
-            setTimeout(() => sparkle.remove(), 800);
-        });
-    }
+    // 5. Gold Sparkle Trail
+    showcase.addEventListener('mousemove', (e) => {
+        const sparkle = document.createElement('div');
+        sparkle.className = 'sparkle';
+        sparkle.style.left = e.clientX + 'px';
+        sparkle.style.top = e.clientY + 'px';
+        document.body.appendChild(sparkle);
+        setTimeout(() => sparkle.remove(), 800);
+    });
 </script>
 
 </body>
