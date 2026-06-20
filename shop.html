@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Khushana Makeup Studio & Salon | Secure Order Tracking Console</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <style>
+        :root {
+            --primary: #d4417d;
+            --primary-dark: #b33668;
+            --dark: #2c2528;
+            --light: #fdf8f9;
+            --success: #2ed573;
+            --border: #f3d1dc;
+            --discount-color: #eb4d4b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+        }
+
+        body {
+            background-color: #fffafb;
+            color: var(--dark);
+            padding-bottom: 80px;
+        }
+
+        .container {
+            width: 92%;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        /* Navigation Bar */
+        header {
+            background: white;
+            box-shadow: 0 2px 15px rgba(212, 65, 125, 0.08);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 15px 0;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            text-decoration: none;
+            color: var(--dark);
+            letter-spacing: 0.5px;
+        }
+
+        .logo span { color: var(--primary); }
+
+        .nav-actions {
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn-nav {
+            background: var(--dark);
+            color: white;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-nav.cart { background: var(--primary); }
+        .btn-nav:hover { opacity: 0.9; }
+
+        /* Secure Admin Dashboard Panel */
+        .admin-panel {
+            background: white;
+            border: 2px solid var(--primary);
+            border-radius: 12px;
+            padding: 25px;
+            margin: 30px 0;
+            display: none;
+            box-shadow: 0 8px 24px rgba(212, 65, 125, 0.1);
+            position: relative;
+        }
+
+        .admin-panel.active { display: block; }
+        
+        .admin-lock-badge {
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            background: #ffeaa7;
+            color: #d63031;
+            padding: 4px 10px;
+            font-size: 11px;
+            font-weight: 700;
+            border-radius: 20px;
+            text-transform: uppercase;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: #615558;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            font-size: 14px;
+            outline: none;
+            background: #fff;
+        }
+
+        textarea { resize: vertical; min-height: 60px; }
+        input:focus, textarea:focus, select:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(212, 65, 125, 0.1);
+        }
+
+        /* Split Screen Workspace Layout */
+        .main-layout {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        @media(min-width: 992px) {
+            .main-layout { grid-template-columns: 1.8fr 1.2fr; }
+        }
+
+        /* Product Showcase Cards Layout */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 20px;
+        }
+
+        .product-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+        }
+
+        .product-img-frame {
+            height: 200px;
+            background: var(--light);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .product-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .discount-tag {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            background: var(--discount-color);
+            color: white;
+            padding: 3px 8px;
+            font-size: 12px;
+            font-weight: 700;
+            border-radius: 4px;
+        }
+
+        .stock-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(44, 37, 40, 0.85);
+            color: white;
+            padding: 4px 8px;
+            font-size: 11px;
+            border-radius: 4px;
+            font-weight: 600;
+            z-index: 2;
+        }
+
+        .stock-badge.low { background: #f1c40f; color: #000; }
+        .stock-badge.out { background: #e74c3c; }
+
+        .product-details {
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .product-title { font-size: 15px; font-weight: 700; margin-bottom: 8px; color: var(--dark); }
+        
+        .price-container {
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+        
+        .product-price-actual { font-size: 19px; font-weight: 800; color: var(--primary); }
+        .product-price-original { font-size: 14px; text-decoration: line-through; color: #a4b0be; }
+
+        .btn-add {
+            background: var(--dark);
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            margin-top: auto;
+        }
+
+        .btn-add:disabled { background: #ccc; cursor: not-allowed; }
+
+        /* Shopping Bag Sidebar */
+        .cart-wrapper {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            height: fit-content;
+            box-shadow: 0 4px 12px rgba(212, 65, 125, 0.03);
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--light);
+        }
+
+        .cart-qty-ctrl {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-qty {
+            background: #f3d1dc;
+            border: none;
+            width: 24px;
+            height: 24px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            color: var(--primary-dark);
+        }
+
+        /* Logistics Address Section */
+        .shipping-section {
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 2px solid var(--light);
+        }
+
+        .shipping-form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: 10px;
+        }
+
+        .shipping-form-grid .full-span { grid-column: span 2; }
+
+        /* Invoice Breakdown Calculations Box */
+        .cart-summary {
+            margin-top: 20px;
+            background: var(--light);
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .summary-row.total {
+            font-size: 19px;
+            font-weight: 800;
+            color: var(--primary-dark);
+            border-top: 1px solid var(--border);
+            padding-top: 10px;
+            margin-top: 10px;
+            margin-bottom: 0;
+        }
+
+        .btn-checkout {
+            background: var(--success);
+            color: white;
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+
+        /* Permanent Ledger/Order Storage Panel */
+        .orders-ledger-section {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 25px;
+            margin-top: 40px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+        }
+
+        .ledger-table-wrapper {
+            width: 100%;
+            overflow-x: auto;
+            margin-top: 15px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            font-size: 14px;
+        }
+
+        th, td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #f1f2f6;
+            vertical-align: top;
+        }
+
+        th {
+            background: var(--light);
+            color: var(--primary-dark);
+            font-weight: 700;
+        }
+
+        .meta-text { font-size: 12px; color: #747d8c; line-height: 1.4; }
+        .items-badge-list { font-size: 13px; color: #2f3640; }
+
+        /* UI System Modal */
+        .modal {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            visibility: hidden;
+        }
+
+        .modal.active { visibility: visible; }
+
+        .modal-content {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            max-width: 440px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        }
+
+        #qrcode {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        .btn-close {
+            background: #747d8c;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .shipping-badge-info {
+            font-size: 11px;
+            color: #747d8c;
+            margin-top: 4px;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container navbar">
+            <a href="#" class="logo">KHUSHANA<span> Studio Pro</span></a>
+            <div class="nav-actions">
+                <button class="btn-nav" style="border: 1px dashed var(--primary);" onclick="tryAccessAdminPanel()">🔒 Studio Admin</button>
+                <button class="btn-nav cart" onclick="scrollToCart()">🛒 Bag (<span id="cart-counter">0</span>)</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        
+        <section class="admin-panel" id="adminPanel">
+            <span class="admin-lock-badge">Authenticated Session</span>
+            <h2>Studio Catalog Management</h2>
+            <p style="color: #747d8c; font-size: 13px;">Add product entries with visual image sources, customizable price values, items discounts, and live quantity allocations.</p>
+            
+            <div class="form-grid">
+                <div>
+                    <label>Product Title Name</label>
+                    <input type="text" id="prodName" placeholder="e.g., Waterproof Liquid Eyeliner">
+                </div>
+                <div>
+                    <label>Base Price / Rate (INR)</label>
+                    <input type="number" id="prodPrice" placeholder="Original Rate ₹">
+                </div>
+                <div>
+                    <label>Discount Value (%)</label>
+                    <input type="number" id="prodDiscount" placeholder="0 if none" min="0" max="99" value="0">
+                </div>
+                <div>
+                    <label>Initial Stock / Quantity</label>
+                    <input type="number" id="prodStock" placeholder="Available Units">
+                </div>
+                <div style="grid-column: span 2;">
+                    <label>Product Image Source URL</label>
+                    <input type="url" id="prodImgUrl" placeholder="https://images.unsplash.com/... or link to image file">
+                </div>
+                <div style="display: flex; align-items: flex-end;">
+                    <button class="btn-nav" style="background: var(--primary); width: 100%;" onclick="addNewProductItemSecure()">Publish to Showcase</button>
+                </div>
+            </div>
+        </section>
+
+        <div class="main-layout">
+            <section>
+                <h2 style="margin-bottom: 20px;">Live Studio Catalog</h2>
+                <div class="product-grid" id="catalogDisplayContainer"></div>
+            </section>
+
+            <section class="cart-wrapper" id="cartSection">
+                <h3 style="border-bottom: 2px solid var(--light); padding-bottom: 10px; margin-bottom: 15px; color: var(--primary-dark);">Your Shopping Bag</h3>
+                
+                <div id="cartContentPayload">
+                    <p style="color: #a4b0be; text-align: center; padding: 20px 0;">Your shopping bag is empty.</p>
+                </div>
+                
+                <div id="cartInteractiveModulesBlock" style="display: none;">
+                    
+                    <div class="shipping-section">
+                        <h4 style="font-size: 15px; margin-bottom: 5px; color: var(--dark);">Client Delivery & Contact Info</h4>
+                        <div class="shipping-form-grid">
+                            <div class="full-span">
+                                <label for="custPhone">Mobile Contact Number *</label>
+                                <input type="tel" id="custPhone" placeholder="10-digit phone number" maxlength="10">
+                            </div>
+                            <div class="full-span">
+                                <label for="custAddress">Shipping Address / Landmark *</label>
+                                <textarea id="custAddress" placeholder="Flat/Salon No, Colony, Street details"></textarea>
+                            </div>
+                            <div>
+                                <label for="custCity">Town/City *</label>
+                                <input type="text" id="custCity" placeholder="City">
+                            </div>
+                            <div>
+                                <label for="custPin">Postal PIN Code *</label>
+                                <input type="text" id="custPin" placeholder="6 Digits PIN" maxlength="6">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="cart-summary">
+                        <div class="summary-row">
+                            <span>Items Subtotal (After Discounts):</span>
+                            <span id="summarySubtotal">₹0.00</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Shipping Logistics Charges:</span>
+                            <span id="summaryShipping">₹0.00</span>
+                        </div>
+                        <span class="shipping-badge-info">* Free delivery on studio orders over ₹2,000. Else normal flat ₹150 charge applies.</span>
+                        <div class="summary-row total">
+                            <span>Grand Total:</span>
+                            <span id="summaryGrandTotal">₹0.00</span>
+                        </div>
+                    </div>
+
+                    <button class="btn-checkout" style="background: var(--primary);" onclick="initializeUPITransaction()">Proceed to UPI Payment</button>
+                </div>
+            </section>
+        </div>
+
+        <section class="orders-ledger-section">
+            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--light); padding-bottom: 12px; flex-wrap: wrap; gap: 10px;">
+                <h3>📦 Studio Order Manifest & Sales Records</h3>
+                <div style="display: flex; gap: 10px;">
+                    <button class="btn-nav" style="background: var(--success);" onclick="exportLedgerToExcelCSV()">📥 Export Logs to Excel (.csv)</button>
+                    <button class="btn-nav" style="background:#e74c3c; padding: 6px 12px; font-size: 12px;" onclick="wipeAllDatabaseLogs()">Reset App & Clear Logs</button>
+                </div>
+            </div>
+            <div class="ledger-table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Order ID / Date</th>
+                            <th>Customer Contact</th>
+                            <th>Logistics Destination Address</th>
+                            <th>Purchased Line Items Summary</th>
+                            <th>Grand Total</th>
+                        </tr>
+                    </thead>
+                    <tbody id="ordersLedgerRowsContainer">
+                        <tr>
+                            <td colspan="5" style="text-align: center; color: #a4b0be; padding: 30px 0;">No purchase events committed to storage arrays yet.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+    </main>
+
+    <div class="modal" id="upiPaymentModal">
+        <div class="modal-content">
+            <h3>Secure Studio Checkout</h3>
+            <p style="margin-top: 5px; font-weight: 600; color: var(--primary);">Total Payable: <span id="modalAmountField">₹0</span></p>
+            
+            <div id="qrcode"></div>
+            
+            <p style="font-size: 13px; color: #57606f; margin-bottom: 12px; padding: 0 10px;" id="modalDeliveryTraceLog"></p>
+            <button class="btn-checkout" style="background: var(--success);" onclick="mockSimulatePaymentClearance()">Confirm Payment Received</button>
+            <button class="btn-close" onclick="closePaymentModal()">Cancel Order</button>
+        </div>
+    </div>
+
+    <script>
+        // MASKED KEY: Encoded layout representation of "admin123"
+        const MASKED_ADMIN_KEY = "YWRtaW4xMjM=";
+        let isAdminAuthenticatedSession = false;
+
+        // Default Starting Items Catalog
+        const BASE_CATALOG_STARTER = [
+            { id: 501, name: "Velvet Matte Lipstick (Ruby Red)", price: 1200, discount: 25, stock: 15, img: "https://images.unsplash.com/photo-1586495777744-4413f21062fa?auto=format&fit=crop&w=400&q=80" },
+            { id: 502, name: "Argan Oil Repair & Shine Shampoo", price: 600, discount: 10, stock: 20, img: "https://images.unsplash.com/photo-1535585209827-a15fcdbc4c2d?auto=format&fit=crop&w=400&q=80" },
+            { id: 503, name: "Pro-Keratin Deep Conditioning Kit", price: 2500, discount: 0, stock: 4, img: "https://images.unsplash.com/photo-1526947425960-945c6e72858f?auto=format&fit=crop&w=400&q=80" },
+            { id: 504, name: "Long-Wear Glossy Nail Paint Set", price: 400, discount: 15, stock: 12, img: "https://images.unsplash.com/photo-1604654894610-df63bc536371?auto=format&fit=crop&w=400&q=80" }
+        ];
+
+        // PERSISTENT DATA CORE: Load existing array data from storage, or initialize the baseline store
+        let productCatalogStore = JSON.parse(localStorage.getItem('khushana_inventory_catalog'));
+        if (!productCatalogStore) {
+            productCatalogStore = [...BASE_CATALOG_STARTER];
+            localStorage.setItem('khushana_inventory_catalog', JSON.stringify(productCatalogStore));
+        }
+
+        let shoppingCartState = [];
+        const merchantVPA = "khushana@upi"; 
+
+        function saveCatalogToLocalStorage() {
+            localStorage.setItem('khushana_inventory_catalog', JSON.stringify(productCatalogStore));
+        }
+
+        function getEffectivePrice(item) {
+            return item.price - (item.price * (item.discount / 100));
+        }
+
+        // High-Compatibility Admin Portal Login Verification System
+        function tryAccessAdminPanel() {
+            const panelElementNode = document.getElementById('adminPanel');
+            if (panelElementNode.classList.contains('active')) {
+                panelElementNode.classList.remove('active');
+                return;
+            }
+            if (!isAdminAuthenticatedSession) {
+                const inputPasswordRaw = prompt("🔒 Enter Studio Master Admin Password:");
+                if (!inputPasswordRaw) return;
+
+                if (inputPasswordRaw === atob(MASKED_ADMIN_KEY)) {
+                    isAdminAuthenticatedSession = true;
+                    panelElementNode.classList.add('active');
+                    panelElementNode.scrollIntoView({ behavior: 'smooth' });
+                } else {
+                    alert("🚫 Access Denied. Incorrect Password.");
+                }
+            } else {
+                panelElementNode.classList.add('active');
+                panelElementNode.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        function addNewProductItemSecure() {
+            if (!isAdminAuthenticatedSession) return;
+            const name = document.getElementById('prodName').value.trim();
+            const price = parseFloat(document.getElementById('prodPrice').value);
+            const discount = parseInt(document.getElementById('prodDiscount').value) || 0;
+            const stock = parseInt(document.getElementById('prodStock').value);
+            let img = document.getElementById('prodImgUrl').value.trim();
+
+            if(!name || isNaN(price) || isNaN(stock) || stock < 0 || price <= 0 || discount < 0 || discount > 99) {
+                alert("Provide valid input parameters mappings.");
+                return;
+            }
+            if(!img) img = "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=400&q=80";
+
+            productCatalogStore.push({ id: Date.now(), name, price, discount, stock, img });
+            saveCatalogToLocalStorage(); // Commit addition immediately to persistence matrix
+
+            document.getElementById('prodName').value = '';
+            document.getElementById('prodPrice').value = '';
+            document.getElementById('prodDiscount').value = '0';
+            document.getElementById('prodStock').value = '';
+            document.getElementById('prodImgUrl').value = '';
+            
+            renderStorefrontDisplay();
+        }
+
+        function renderStorefrontDisplay() {
+            const container = document.getElementById('catalogDisplayContainer');
+            container.innerHTML = '';
+
+            productCatalogStore.forEach(item => {
+                let stockStatusLabel = `<span class="stock-badge">Qty: ${item.stock} Available</span>`;
+                let blockStateDisabledAttribute = "";
+                let calculatedActivePrice = getEffectivePrice(item);
+
+                if(item.stock === 0) {
+                    stockStatusLabel = `<span class="stock-badge out">Out of Stock</span>`;
+                    blockStateDisabledAttribute = "disabled";
+                } else if (item.stock <= 3) {
+                    stockStatusLabel = `<span class="stock-badge low">Low Stock: ${item.stock} Left!</span>`;
+                }
+
+                let discountLabelHTML = item.discount > 0 ? `<div class="discount-tag">${item.discount}% OFF</div>` : '';
+                let originalPriceHTML = item.discount > 0 ? `<span class="product-price-original">₹${item.price}</span>` : '';
+
+                const cardHTML = `
+                    <div class="product-card">
+                        ${stockStatusLabel}
+                        <div class="product-img-frame">
+                            <img src="${item.img}" class="product-img" alt="${item.name}" onerror="this.src='https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=400&q=80'">
+                            ${discountLabelHTML}
+                        </div>
+                        <div class="product-details">
+                            <h4 class="product-title">${item.name}</h4>
+                            <div class="price-container">
+                                <span class="product-price-actual">₹${calculatedActivePrice.toFixed(0)}</span>
+                                ${originalPriceHTML}
+                            </div>
+                            <button class="btn-add" ${blockStateDisabledAttribute} onclick="addItemToCartBag(${item.id})">
+                                ${item.stock === 0 ? 'Sold Out' : 'Add to Bag'}
+                            </button>
+                        </div>
+                    </div>
+                `;
+                container.insertAdjacentHTML('beforeend', cardHTML);
+            });
+            document.getElementById('cart-counter').innerText = shoppingCartState.reduce((sum, i) => sum + i.quantity, 0);
+        }
+
+        function renderCartLayout() {
+            const container = document.getElementById('cartContentPayload');
+            const interactionWrapperBlock = document.getElementById('cartInteractiveModulesBlock');
+            
+            if(shoppingCartState.length === 0) {
+                container.innerHTML = `<p style="color: #a4b0be; text-align: center; padding: 20px 0;">Your shopping bag is empty.</p>`;
+                interactionWrapperBlock.style.display = 'none';
+                return;
+            }
+
+            container.innerHTML = '';
+            interactionWrapperBlock.style.display = 'block';
+            let totalCartSubtotalValue = 0;
+
+            shoppingCartState.forEach(cartItem => {
+                let compositeLineTotal = cartItem.effectivePrice * cartItem.quantity;
+                totalCartSubtotalValue += compositeLineTotal;
+
+                const cartRowHTML = `
+                    <div class="cart-item">
+                        <div>
+                            <h5 style="font-size:14px;">${cartItem.name}</h5>
+                            <p style="font-size:12px; color:#747d8c;">₹${cartItem.effectivePrice.toFixed(0)} &times; ${cartItem.quantity}</p>
+                        </div>
+                        <div class="cart-qty-ctrl">
+                            <button class="btn-qty" onclick="modifyCartQuantity(${cartItem.id}, -1)">-</button>
+                            <span style="font-size:14px; font-weight:600;">${cartItem.quantity}</span>
+                            <button class="btn-qty" onclick="modifyCartQuantity(${cartItem.id}, 1)">+</button>
+                        </div>
+                    </div>
+                `;
+                container.insertAdjacentHTML('beforeend', cartRowHTML);
+            });
+
+            let activeShippingFeeValue = (totalCartSubtotalValue >= 2000) ? 0 : 150;
+            let finalCombinedGrandTotalCost = totalCartSubtotalValue + activeShippingFeeValue;
+
+            document.getElementById('summarySubtotal').innerText = `₹${totalCartSubtotalValue.toFixed(2)}`;
+            document.getElementById('summaryShipping').innerText = activeShippingFeeValue === 0 ? "FREE" : `₹${activeShippingFeeValue.toFixed(2)}`;
+            document.getElementById('summaryGrandTotal').innerText = `₹${finalCombinedGrandTotalCost.toFixed(2)}`;
+            document.getElementById('summaryGrandTotal').setAttribute('data-computed-raw-total', finalCombinedGrandTotalCost);
+            document.getElementById('summaryShipping').setAttribute('data-computed-shipping', activeShippingFeeValue);
+        }
+
+        function addItemToCartBag(productId) {
+            const catalogProductItemRef = productCatalogStore.find(p => p.id === productId);
+            if(!catalogProductItemRef || catalogProductItemRef.stock <= 0) return;
+
+            const existingCartItemRecord = shoppingCartState.find(c => c.id === productId);
+            let targetActiveDiscountPrice = getEffectivePrice(catalogProductItemRef);
+
+            if(existingCartItemRecord) {
+                if(existingCartItemRecord.quantity < catalogProductItemRef.stock) {
+                    existingCartItemRecord.quantity++;
+                } else {
+                    alert("Maximum stock allocation reached.");
+                }
+            } else {
+                shoppingCartState.push({
+                    id: catalogProductItemRef.id,
+                    name: catalogProductItemRef.name,
+                    effectivePrice: targetActiveDiscountPrice,
+                    quantity: 1
+                });
+            }
+            renderCartLayout();
+            renderStorefrontDisplay();
+        }
+
+        function modifyCartQuantity(productId, directionalStepDelta) {
+            const cartItemRecord = shoppingCartState.find(c => c.id === productId);
+            const catalogProductItemRef = productCatalogStore.find(p => p.id === productId);
+            if(!cartItemRecord) return;
+
+            if(directionalStepDelta > 0 && cartItemRecord.quantity >= catalogProductItemRef.stock) {
+                alert("Cannot exceed layout allocation limits.");
+                return;
+            }
+            cartItemRecord.quantity += directionalStepDelta;
+            if(cartItemRecord.quantity <= 0) {
+                shoppingCartState = shoppingCartState.filter(c => c.id !== productId);
+            }
+            renderCartLayout();
+            renderStorefrontDisplay();
+        }
+
+        function initializeUPITransaction() {
+            const phone = document.getElementById('custPhone').value.trim();
+            const address = document.getElementById('custAddress').value.trim();
+            const city = document.getElementById('custCity').value.trim();
+            const pin = document.getElementById('custPin').value.trim();
+
+            if(!phone || !address || !city || !pin || phone.length < 10 || pin.length < 6) {
+                alert("Complete all client fields properly before checkout.");
+                return;
+            }
+
+            let absoluteGrandTotalCostAmount = parseFloat(document.getElementById('summaryGrandTotal').getAttribute('data-computed-raw-total'));
+            document.getElementById('modalAmountField').innerText = `₹${absoluteGrandTotalCostAmount.toFixed(0)}`;
+            document.getElementById('modalDeliveryTraceLog').innerText = `Logistics pipeline destination: ${city} - ${pin}.`;
+            
+            const qrCodeDisplayDiv = document.getElementById("qrcode");
+            qrCodeDisplayDiv.innerHTML = ""; 
+
+            let rawIntentPayloadURI = `upi://pay?pa=${merchantVPA}&pn=KhushanaStudio&am=${absoluteGrandTotalCostAmount.toFixed(2)}&cu=INR&tn=StudioSecureCheckout`;
+
+            if(/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+                window.location.href = rawIntentPayloadURI;
+            }
+
+            new QRCode(qrCodeDisplayDiv, {
+                text: rawIntentPayloadURI,
+                width: 210,
+                height: 210,
+                colorDark : "#2c2528",
+                colorLight : "#ffffff",
+                correctLevel : QRCode.CorrectLevel.M
+            });
+            document.getElementById('upiPaymentModal').classList.add('active');
+        }
+
+        // FIXED STOCK PERSISTENCE DEDUCTION SUBSYSTEM
+        function mockSimulatePaymentClearance() {
+            const phone = document.getElementById('custPhone').value.trim();
+            const address = document.getElementById('custAddress').value.trim();
+            const city = document.getElementById('custCity').value.trim();
+            const pin = document.getElementById('custPin').value.trim();
+            
+            let finalGrandTotal = parseFloat(document.getElementById('summaryGrandTotal').getAttribute('data-computed-raw-total'));
+            let computedShippingFee = parseFloat(document.getElementById('summaryShipping').getAttribute('data-computed-shipping'));
+
+            let summaryItemsDescriptionArray = shoppingCartState.map(item => `${item.name} (x${item.quantity})`);
+
+            // Deduct the quantities from the core inventory store
+            shoppingCartState.forEach(cartItem => {
+                const liveWarehouseSKURecord = productCatalogStore.find(p => p.id === cartItem.id);
+                if(liveWarehouseSKURecord) { 
+                    liveWarehouseSKURecord.stock -= cartItem.quantity; 
+                    if(liveWarehouseSKURecord.stock < 0) liveWarehouseSKURecord.stock = 0; // Guard clause against negative inventories
+                }
+            });
+
+            // Commit the stock deduction immediately to storage arrays
+            saveCatalogToLocalStorage();
+
+            const completedOrderInvoiceObject = {
+                orderId: "KS-" + Math.floor(100000 + Math.random() * 900000),
+                timestamp: new Date().toLocaleString(),
+                customerContact: phone,
+                shippingAddress: `${address}, ${city}, PIN: ${pin}`,
+                itemsList: summaryItemsDescriptionArray.join(" | "), 
+                grandTotalCost: finalGrandTotal.toFixed(0),
+                shippingCharges: computedShippingFee === 0 ? "FREE" : `₹${computedShippingFee}`
+            };
+
+            let temporaryDatabaseBufferArray = JSON.parse(localStorage.getItem('khushana_orders_ledger')) || [];
+            temporaryDatabaseBufferArray.unshift(completedOrderInvoiceObject);
+            localStorage.setItem('khushana_orders_ledger', JSON.stringify(temporaryDatabaseBufferArray));
+
+            alert("Payment Confirmed! Inventory Stock Permanently Updated.");
+
+            shoppingCartState = [];
+            document.getElementById('custPhone').value = '';
+            document.getElementById('custAddress').value = '';
+            document.getElementById('custCity').value = '';
+            document.getElementById('custPin').value = '';
+
+            closePaymentModal();
+            renderCartLayout();
+            renderStorefrontDisplay(); // Redraw catalog with new lower quantities values
+            renderLedgerTableLogs(); 
+        }
+
+        function renderLedgerTableLogs() {
+            const tableBodyContainerNode = document.getElementById('ordersLedgerRowsContainer');
+            let structuredSavedRecordsArray = JSON.parse(localStorage.getItem('khushana_orders_ledger')) || [];
+
+            if(structuredSavedRecordsArray.length === 0) {
+                tableBodyContainerNode.innerHTML = `
+                    <tr>
+                        <td colspan="5" style="text-align: center; color: #a4b0be; padding: 30px 0;">No purchase events committed to storage arrays yet.</td>
+                    </tr>`;
+                return;
+            }
+
+            tableBodyContainerNode.innerHTML = '';
+            structuredSavedRecordsArray.forEach(record => {
+                let itemsFormattedColumnCellHTML = record.itemsList.split(" | ").map(item => `<div class="items-badge-list">• ${item}</div>`).join('');
+                
+                const tableRowHTML = `
+                    <tr>
+                        <td>
+                            <strong>${record.orderId}</strong>
+                            <div class="meta-text">${record.timestamp}</div>
+                        </td>
+                        <td>
+                            <span style="font-weight:600; font-size:13px; color:#2c3e50;">📞 ${record.customerContact}</span>
+                        </td>
+                        <td class="meta-text" style="max-width:250px;">
+                            ${record.shippingAddress}
+                        </td>
+                        <td>
+                            ${itemsFormattedColumnCellHTML}
+                        </td>
+                        <td>
+                            <strong style="color:var(--primary-dark); font-size:15px;">₹${record.grandTotalCost}</strong>
+                            <div class="meta-text" style="color:var(--success);">Delivery: ${record.shippingCharges}</div>
+                        </td>
+                    </tr>
+                `;
+                tableBodyContainerNode.insertAdjacentHTML('beforeend', tableRowHTML);
+            });
+        }
+
+        function exportLedgerToExcelCSV() {
+            let recordsDataArray = JSON.parse(localStorage.getItem('khushana_orders_ledger')) || [];
+            if(recordsDataArray.length === 0) {
+                alert("There are no sales logs to export yet!");
+                return;
+            }
+
+            let csvContentHeader = ["Order ID", "Date & Time", "Customer Contact", "Shipping Address", "Products Ordered", "Grand Total (INR)", "Shipping Fee Paid"];
+            let csvRowsContainer = [csvContentHeader.join(",")];
+
+            recordsDataArray.forEach(order => {
+                let rowData = [
+                    `"${order.orderId}"`,
+                    `"${order.timestamp}"`,
+                    `"${order.customerContact}"`,
+                    `"${order.shippingAddress.replace(/"/g, '""')}"`, 
+                    `"${order.itemsList.replace(/"/g, '""')}"`,
+                    `"${order.grandTotalCost}"`,
+                    `"${order.shippingCharges}"`
+                ];
+                csvRowsContainer.push(rowData.join(","));
+            });
+
+            let csvStringDataContent = csvRowsContainer.join("\n");
+            let fileBlobPackageBytes = new Blob([csvStringDataContent], { type: 'text/csv;charset=utf-8;' });
+            let physicalVirtualAnchorNode = document.createElement("a");
+            
+            let downloadUrlSourceStream = URL.createObjectURL(fileBlobPackageBytes);
+            physicalVirtualAnchorNode.setAttribute("href", downloadUrlSourceStream);
+            physicalVirtualAnchorNode.setAttribute("download", `Khushana_Studio_Sales_Log_${new Date().toISOString().split('T')[0]}.csv`);
+            
+            document.body.appendChild(physicalVirtualAnchorNode);
+            physicalVirtualAnchorNode.click(); 
+            document.body.removeChild(physicalVirtualAnchorNode);
+        }
+
+        function wipeAllDatabaseLogs() {
+            if(confirm("CRITICAL WARNING: This will permanently wipe all customer order histories and reset the inventory stock catalog back to baseline configurations. Proceed?")) {
+                localStorage.removeItem('khushana_orders_ledger');
+                localStorage.removeItem('khushana_inventory_catalog');
+                
+                // Reload configuration states arrays values fields
+                productCatalogStore = [...BASE_CATALOG_STARTER];
+                saveCatalogToLocalStorage();
+                shoppingCartState = [];
+                
+                renderStorefrontDisplay();
+                renderCartLayout();
+                renderLedgerTableLogs();
+            }
+        }
+
+        function closePaymentModal() { document.getElementById('upiPaymentModal').classList.remove('active'); }
+        function scrollToCart() { document.getElementById('cartSection').scrollIntoView({ behavior: 'smooth' }); }
+
+        renderStorefrontDisplay();
+        renderLedgerTableLogs();
+    </script>
+</body>
+</html>
