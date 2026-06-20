@@ -81,19 +81,21 @@
         .btn-nav.cart { background: var(--primary); }
         .btn-nav:hover { opacity: 0.9; }
 
-        /* Secure Admin Dashboard Panel */
-        .admin-panel {
+        /* Secure Admin Dashboard Panels */
+        .admin-panel, .orders-ledger-section {
             background: white;
             border: 2px solid var(--primary);
             border-radius: 12px;
             padding: 25px;
             margin: 30px 0;
-            display: none;
+            display: none; /* Secretly hidden by default */
             box-shadow: 0 8px 24px rgba(212, 65, 125, 0.1);
             position: relative;
         }
 
-        .admin-panel.active { display: block; }
+        .admin-panel.active, .orders-ledger-section.active { 
+            display: block; /* Visible ONLY when authorized */
+        }
         
         .admin-lock-badge {
             position: absolute;
@@ -139,7 +141,7 @@
             box-shadow: 0 0 0 3px rgba(212, 65, 125, 0.1);
         }
 
-        /* Split Screen Workspace Layout */
+        /* Split Screen Layout */
         .main-layout {
             display: grid;
             grid-template-columns: 1fr;
@@ -151,7 +153,7 @@
             .main-layout { grid-template-columns: 1.8fr 1.2fr; }
         }
 
-        /* Product Showcase Cards Layout */
+        /* Product Showcase Cards */
         .product-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
@@ -281,7 +283,7 @@
             color: var(--primary-dark);
         }
 
-        /* Logistics Address Section */
+        /* Delivery Address Details */
         .shipping-section {
             margin-top: 25px;
             padding-top: 20px;
@@ -297,7 +299,7 @@
 
         .shipping-form-grid .full-span { grid-column: span 2; }
 
-        /* Invoice Breakdown Calculations Box */
+        /* Invoice Summaries */
         .cart-summary {
             margin-top: 20px;
             background: var(--light);
@@ -337,16 +339,6 @@
             margin-top: 15px;
         }
 
-        /* Permanent Ledger/Order Storage Panel */
-        .orders-ledger-section {
-            background: white;
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 25px;
-            margin-top: 40px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
-        }
-
         .ledger-table-wrapper {
             width: 100%;
             overflow-x: auto;
@@ -375,7 +367,7 @@
         .meta-text { font-size: 12px; color: #747d8c; line-height: 1.4; }
         .items-badge-list { font-size: 13px; color: #2f3640; }
 
-        /* UI System Modal */
+        /* Modals */
         .modal {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -527,9 +519,9 @@
             </section>
         </div>
 
-        <section class="orders-ledger-section">
+        <section class="orders-ledger-section" id="adminOrdersLedger">
             <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--light); padding-bottom: 12px; flex-wrap: wrap; gap: 10px;">
-                <h3>📦 Studio Order Manifest & Sales Records</h3>
+                <h3>📦 Studio Order Manifest & Sales Records (Admin View)</h3>
                 <div style="display: flex; gap: 10px;">
                     <button class="btn-nav" style="background: var(--success);" onclick="exportLedgerToExcelCSV()">📥 Export Logs to Excel (.csv)</button>
                     <button class="btn-nav" style="background:#e74c3c; padding: 6px 12px; font-size: 12px;" onclick="wipeAllDatabaseLogs()">Reset App & Clear Logs</button>
@@ -571,11 +563,9 @@
     </div>
 
     <script>
-        // MASKED KEY: Encoded layout representation of "admin123"
         const MASKED_ADMIN_KEY = "YWRtaW4xMjM=";
         let isAdminAuthenticatedSession = false;
 
-        // Default Starting Items Catalog
         const BASE_CATALOG_STARTER = [
             { id: 501, name: "Velvet Matte Lipstick (Ruby Red)", price: 1200, discount: 25, stock: 15, img: "https://images.unsplash.com/photo-1586495777744-4413f21062fa?auto=format&fit=crop&w=400&q=80" },
             { id: 502, name: "Argan Oil Repair & Shine Shampoo", price: 600, discount: 10, stock: 20, img: "https://images.unsplash.com/photo-1535585209827-a15fcdbc4c2d?auto=format&fit=crop&w=400&q=80" },
@@ -583,7 +573,6 @@
             { id: 504, name: "Long-Wear Glossy Nail Paint Set", price: 400, discount: 15, stock: 12, img: "https://images.unsplash.com/photo-1604654894610-df63bc536371?auto=format&fit=crop&w=400&q=80" }
         ];
 
-        // PERSISTENT DATA CORE: Load existing array data from storage, or initialize the baseline store
         let productCatalogStore = JSON.parse(localStorage.getItem('khushana_inventory_catalog'));
         if (!productCatalogStore) {
             productCatalogStore = [...BASE_CATALOG_STARTER];
@@ -601,13 +590,17 @@
             return item.price - (item.price * (item.discount / 100));
         }
 
-        // High-Compatibility Admin Portal Login Verification System
+        // Toggle visibility controls on authorization changes
         function tryAccessAdminPanel() {
             const panelElementNode = document.getElementById('adminPanel');
+            const ledgerElementNode = document.getElementById('adminOrdersLedger');
+            
             if (panelElementNode.classList.contains('active')) {
                 panelElementNode.classList.remove('active');
+                ledgerElementNode.classList.remove('active');
                 return;
             }
+            
             if (!isAdminAuthenticatedSession) {
                 const inputPasswordRaw = prompt("🔒 Enter Studio Master Admin Password:");
                 if (!inputPasswordRaw) return;
@@ -615,12 +608,15 @@
                 if (inputPasswordRaw === atob(MASKED_ADMIN_KEY)) {
                     isAdminAuthenticatedSession = true;
                     panelElementNode.classList.add('active');
+                    ledgerElementNode.classList.add('active'); // Reveal orders tracking logs exclusively here
                     panelElementNode.scrollIntoView({ behavior: 'smooth' });
+                    renderLedgerTableLogs();
                 } else {
                     alert("🚫 Access Denied. Incorrect Password.");
                 }
             } else {
                 panelElementNode.classList.add('active');
+                ledgerElementNode.classList.add('active');
                 panelElementNode.scrollIntoView({ behavior: 'smooth' });
             }
         }
@@ -634,13 +630,13 @@
             let img = document.getElementById('prodImgUrl').value.trim();
 
             if(!name || isNaN(price) || isNaN(stock) || stock < 0 || price <= 0 || discount < 0 || discount > 99) {
-                alert("Provide valid input parameters mappings.");
+                alert("Provide valid input configurations parameter variables.");
                 return;
             }
             if(!img) img = "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=400&q=80";
 
             productCatalogStore.push({ id: Date.now(), name, price, discount, stock, img });
-            saveCatalogToLocalStorage(); // Commit addition immediately to persistence matrix
+            saveCatalogToLocalStorage();
 
             document.getElementById('prodName').value = '';
             document.getElementById('prodPrice').value = '';
@@ -769,7 +765,7 @@
             if(!cartItemRecord) return;
 
             if(directionalStepDelta > 0 && cartItemRecord.quantity >= catalogProductItemRef.stock) {
-                alert("Cannot exceed layout allocation limits.");
+                alert("Cannot exceed layout allocation parameters.");
                 return;
             }
             cartItemRecord.quantity += directionalStepDelta;
@@ -787,7 +783,7 @@
             const pin = document.getElementById('custPin').value.trim();
 
             if(!phone || !address || !city || !pin || phone.length < 10 || pin.length < 6) {
-                alert("Complete all client fields properly before checkout.");
+                alert("Complete all profile details fully before generating invoice payment channels.");
                 return;
             }
 
@@ -815,7 +811,6 @@
             document.getElementById('upiPaymentModal').classList.add('active');
         }
 
-        // FIXED STOCK PERSISTENCE DEDUCTION SUBSYSTEM
         function mockSimulatePaymentClearance() {
             const phone = document.getElementById('custPhone').value.trim();
             const address = document.getElementById('custAddress').value.trim();
@@ -827,16 +822,14 @@
 
             let summaryItemsDescriptionArray = shoppingCartState.map(item => `${item.name} (x${item.quantity})`);
 
-            // Deduct the quantities from the core inventory store
             shoppingCartState.forEach(cartItem => {
                 const liveWarehouseSKURecord = productCatalogStore.find(p => p.id === cartItem.id);
                 if(liveWarehouseSKURecord) { 
                     liveWarehouseSKURecord.stock -= cartItem.quantity; 
-                    if(liveWarehouseSKURecord.stock < 0) liveWarehouseSKURecord.stock = 0; // Guard clause against negative inventories
+                    if(liveWarehouseSKURecord.stock < 0) liveWarehouseSKURecord.stock = 0; 
                 }
             });
 
-            // Commit the stock deduction immediately to storage arrays
             saveCatalogToLocalStorage();
 
             const completedOrderInvoiceObject = {
@@ -853,7 +846,7 @@
             temporaryDatabaseBufferArray.unshift(completedOrderInvoiceObject);
             localStorage.setItem('khushana_orders_ledger', JSON.stringify(temporaryDatabaseBufferArray));
 
-            alert("Payment Confirmed! Inventory Stock Permanently Updated.");
+            alert("Order Submitted Successfully! Thank you for choosing Khushana Makeup Studio.");
 
             shoppingCartState = [];
             document.getElementById('custPhone').value = '';
@@ -863,11 +856,13 @@
 
             closePaymentModal();
             renderCartLayout();
-            renderStorefrontDisplay(); // Redraw catalog with new lower quantities values
-            renderLedgerTableLogs(); 
+            renderStorefrontDisplay(); 
+            if (isAdminAuthenticatedSession) renderLedgerTableLogs(); // Update the log securely only if the admin is currently viewing it
         }
 
         function renderLedgerTableLogs() {
+            if (!isAdminAuthenticatedSession) return; // Exit logic if not admin
+            
             const tableBodyContainerNode = document.getElementById('ordersLedgerRowsContainer');
             let structuredSavedRecordsArray = JSON.parse(localStorage.getItem('khushana_orders_ledger')) || [];
 
@@ -909,6 +904,7 @@
         }
 
         function exportLedgerToExcelCSV() {
+            if (!isAdminAuthenticatedSession) return;
             let recordsDataArray = JSON.parse(localStorage.getItem('khushana_orders_ledger')) || [];
             if(recordsDataArray.length === 0) {
                 alert("There are no sales logs to export yet!");
@@ -945,11 +941,11 @@
         }
 
         function wipeAllDatabaseLogs() {
+            if (!isAdminAuthenticatedSession) return;
             if(confirm("CRITICAL WARNING: This will permanently wipe all customer order histories and reset the inventory stock catalog back to baseline configurations. Proceed?")) {
                 localStorage.removeItem('khushana_orders_ledger');
                 localStorage.removeItem('khushana_inventory_catalog');
                 
-                // Reload configuration states arrays values fields
                 productCatalogStore = [...BASE_CATALOG_STARTER];
                 saveCatalogToLocalStorage();
                 shoppingCartState = [];
@@ -964,7 +960,6 @@
         function scrollToCart() { document.getElementById('cartSection').scrollIntoView({ behavior: 'smooth' }); }
 
         renderStorefrontDisplay();
-        renderLedgerTableLogs();
     </script>
 </body>
 </html>
