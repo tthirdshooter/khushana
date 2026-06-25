@@ -4,15 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     
-    <!-- SEO OPTIMIZATION: High-Intent Visual Portfolio Title -->
     <title>Bridal Makeover Portfolio | Khushana Makeup Studio Jammu</title>
     
-    <!-- SEO OPTIMIZATION: Rich Meta Description & Canonical Link -->
     <meta name="description" content="Explore the official visual lookbook of Khushana Makeup Studio. View real bridal makeovers, premium airbrush finishes, and luxury hair transformations in Jammu.">
     <link rel="canonical" href="https://www.khushana.com/kgallery.html">
     <meta name="robots" content="index, follow">
     
-    <!-- Open Graph for Social Media Portfolios -->
     <meta property="og:title" content="Bridal Makeover Gallery | Khushana Makeup Studio">
     <meta property="og:description" content="Stunning real bridal transformations, luxury event makeup, and custom nail art designs by Khushana in Jammu.">
     <meta property="og:type" content="article">
@@ -21,7 +18,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <!-- Schema Markup: Image Gallery & ItemList for Image Search Dominance -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -78,10 +74,13 @@
         .gallery-header p { font-size: 0.9rem; max-width: 600px; margin: 10px auto 0; opacity: 0.8; line-height: 1.6; }
         
         .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; padding: 40px 20px; max-width: 1200px; margin: 0 auto; }
-        .gallery-item { position: relative; overflow: hidden; border: 1px solid var(--satin-gold); background: white; padding: 6px; box-shadow: 0 4px 15px rgba(0,0,0,0.03); }
+        .gallery-item { position: relative; overflow: hidden; border: 1px solid var(--satin-gold); background: white; padding: 6px; box-shadow: 0 4px 15px rgba(0,0,0,0.03); display: flex; flex-direction: column; justify-content: space-between; }
         .gallery-item img { width: 100%; height: 380px; object-fit: cover; display: block; transition: transform 0.5s ease; }
         .gallery-item:hover img { transform: scale(1.03); }
         .img-caption { padding: 12px 5px 5px; text-align: center; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: var(--olive-green); }
+
+        /* Smooth scaling for embedded Reels inside grid slots */
+        .gallery-item iframe { width: 100% !important; min-width: 100% !important; border: none !important; border-radius: 0 !important; margin: 0 !important; }
 
         footer { background: var(--olive-dark); color: var(--soft-white); padding: 40px 20px; text-align: center; margin-top: 60px; border-top: 4px solid var(--satin-gold); }
         @media (min-width: 992px) { .nav-links { display: flex; } .menu-toggle { display: none; } }
@@ -111,13 +110,11 @@
         <a href="aboutus.html" onclick="toggleDrawer()">About Us</a>
     </div>
 
-    <!-- SEO FIX: Explicit Semantic Title and Context Rich Copy -->
     <header class="gallery-header">
         <h1>The Bridal Lookbook</h1>
         <p>A refined collection of high-definition bridal transformations, custom luxury hairstyles, and signature aesthetics tailored meticulously at our Jammu studio.</p>
     </header>
 
-    <!-- SEO FIX: Complete, descriptive, contextual image ALT tags for image indexation -->
     <main class="gallery-grid">
         <div class="gallery-item">
             <img src="https://raw.githubusercontent.com/tthirdshooter/khushana/main/images/tan.png" alt="Bridal cosmetics makeover profile look by Khushana Studio Jammu">
@@ -127,6 +124,12 @@
             <img src="https://raw.githubusercontent.com/tthirdshooter/khushana/main/images/tan1.png" alt="Premium airbrush wedding cosmetics layout by Khushana">
             <div class="img-caption">Airbrush Precision Finishing</div>
         </div>
+
+        <div class="gallery-item">
+            <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reels/C7Xf-YOUR_REEL_ID_1/" data-instgrm-version="14"></blockquote>
+            <div class="img-caption"><i class="fab fa-instagram"></i> Inside the Studio</div>
+        </div>
+
         <div class="gallery-item">
             <img src="https://raw.githubusercontent.com/tthirdshooter/khushana/main/images/arshnail.jpeg" alt="Luxury bridal nail extension gel extensions design artwork">
             <div class="img-caption">Luxury Gel Extensions</div>
@@ -135,6 +138,12 @@
             <img src="https://raw.githubusercontent.com/tthirdshooter/khushana/main/images/kha.jpeg" alt="South Indian traditional bridal cosmetics look Jammu">
             <div class="img-caption">Traditional South Indian Bride</div>
         </div>
+
+        <div class="gallery-item">
+            <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reels/C7Xf-YOUR_REEL_ID_2/" data-instgrm-version="14"></blockquote>
+            <div class="img-caption"><i class="fab fa-instagram"></i> Bridal Transformation Reel</div>
+        </div>
+
         <div class="gallery-item">
             <img src="https://raw.githubusercontent.com/tthirdshooter/khushana/main/images/priya.png" alt="High fashion party glam makeovers by Khushana studio">
             <div class="img-caption">High-Fashion Party Glam</div>
@@ -148,6 +157,8 @@
     <footer>
         <p style="font-size: 0.75rem; letter-spacing: 1px;">&copy; 2026 KHUSHANA MAKEUP STUDIO | SECTOR E, SAINIK COLONY, JAMMU</p>
     </footer>
+
+    <script async src="//www.instagram.com/embed.js"></script>
 
     <script>
         function toggleDrawer() { document.getElementById('sideDrawer').classList.toggle('active'); }
