@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Khushana Makeup Studio - About Us</title>
+    <!-- Google Fonts for Luxury Aesthetic -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-olive: #2b382b;
+            --card-olive: #354435;
+            --accent-gold: #d4af37;
+            --accent-gold-light: #f3e5ab;
+            --text-light: #e8ebe8;
+            --text-muted: #b5c2b5;
+            --border-gold: rgba(212, 175, 55, 0.35);
+            --font-heading: 'Cormorant Garamond', serif;
+            --font-body: 'Montserrat', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-olive);
+            color: var(--text-light);
+            font-family: var(--font-body);
+            line-height: 1.7;
+            padding: 4rem 1.5rem;
+            display: flex;
+            justify-content: center;
+        }
+
+        .about-container {
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        /* Header Section */
+        .header-section {
+            text-align: center;
+            margin-bottom: 3.5rem;
+        }
+
+        .subtitle {
+            font-size: 0.85rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--accent-gold);
+            font-weight: 600;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .main-title {
+            font-family: var(--font-heading);
+            font-size: clamp(2.5rem, 5vw, 3.8rem);
+            color: #ffffff;
+            font-weight: 600;
+            line-height: 1.2;
+        }
+
+        .gold-divider {
+            width: 80px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent-gold), transparent);
+            margin: 1.5rem auto 0;
+        }
+
+        /* Introduction Narrative */
+        .intro-banner {
+            background-color: var(--card-olive);
+            border: 1px solid var(--border-gold);
+            padding: 2.5rem 3rem;
+            border-radius: 4px;
+            margin-bottom: 4rem;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+        }
+
+        .intro-banner p {
+            font-size: 1.05rem;
+            color: var(--text-light);
+            font-weight: 300;
+            max-width: 950px;
+            margin: 0 auto 1.2rem;
+        }
+
+        .intro-banner p:last-child {
+            margin-bottom: 0;
+        }
+
+        .highlight {
+            color: var(--accent-gold-light);
+            font-weight: 500;
+        }
+
+        /* Section Title */
+        .services-header {
+            text-align: center;
+            font-family: var(--font-heading);
+            font-size: 2.2rem;
+            color: #ffffff;
+            margin-bottom: 3rem;
+        }
+
+        /* Balanced 3-Column Layout */
+        .pillars-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            align-items: stretch;
+        }
+
+        .pillar-card {
+            background-color: var(--card-olive);
+            border: 1px solid var(--border-gold);
+            padding: 2rem;
+            border-radius: 4px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .pillar-card:hover {
+            transform: translateY(-6px);
+            border-color: var(--accent-gold);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+        }
+
+        .pillar-header {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .pillar-tag {
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--accent-gold);
+            font-weight: 600;
+            display: block;
+            margin-bottom: 0.4rem;
+        }
+
+        .pillar-card h2 {
+            font-family: var(--font-heading);
+            font-size: 1.75rem;
+            color: #ffffff;
+            font-weight: 600;
+            line-height: 1.3;
+        }
+
+        .img-wrapper {
+            width: 100%;
+            height: 240px;
+            overflow: hidden;
+            border: 1px solid var(--border-gold);
+            border-radius: 2px;
+            margin-bottom: 1.5rem;
+        }
+
+        .img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .pillar-card:hover .img-wrapper img {
+            transform: scale(1.05);
+        }
+
+        .pillar-body p {
+            font-size: 0.93rem;
+            color: var(--text-light);
+            font-weight: 300;
+            margin-bottom: 1.2rem;
+            line-height: 1.6;
+        }
+
+        /* Uniform Bullet Points Across All Columns */
+        .feature-list {
+            list-style: none;
+            padding-top: 1rem;
+            border-top: 1px dashed rgba(212, 175, 55, 0.25);
+            margin-top: auto;
+        }
+
+        .feature-list li {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 0.6rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .feature-list li::before {
+            content: "✦";
+            color: var(--accent-gold);
+            font-size: 0.7rem;
+            margin-right: 8px;
+        }
+
+        /* Footer Info */
+        footer {
+            text-align: center;
+            margin-top: 5rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-gold);
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            color: var(--accent-gold);
+            text-transform: uppercase;
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 900px) {
+            .pillars-grid {
+                grid-template-columns: 1fr;
+            }
+            .intro-banner {
+                padding: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <main class="about-container">
+        <!-- Page Header -->
+        <header class="header-section">
+            <span class="subtitle">Our Philosophy</span>
+            <h1 class="main-title">Redefining Regional Aesthetics</h1>
+            <div class="gold-divider"></div>
+        </header>
+
+        <!-- Brand Narrative Section -->
+        <section class="intro-banner">
+            <p>
+                Founded on the principles of immaculate precision and timeless luxury, <span class="highlight">Khushana Makeup Studio</span> bridges the gap between classic global artistry and modern high-tech client solutions. Located in the heart of Sainik Colony, Jammu, we provide an upscale private retreat for discerning brides, beauty enthusiasts, and modern trendsetters alike.
+            </p>
+            <p>
+                Our philosophy treats beauty not as a mask, but as an <span class="highlight">elegant, fluid architecture</span> designed to highlight and balance your physical geometry.
+            </p>
+        </section>
+
+        <!-- Equal 3-Pillar Section -->
+        <h2 class="services-header">The Three Pillars of Studio Excellence</h2>
+        
+        <div class="pillars-grid">
+            
+            <!-- Pillar 1: Beauty & Makeup -->
+            <article class="pillar-card">
+                <div>
+                    <div class="pillar-header">
+                        <span class="pillar-tag">Pillar 01 — Beauty</span>
+                        <h2>Bespoke Bridal & Event Makeup</h2>
+                    </div>
+                    <div class="img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1596704017254-9b121068fb31?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8YnJpZGFsLHNob3B8fHx8fHwxNjg2NDA0ODgy&ixlib=rb-4.0.3&q=80&w=600" alt="Bridal & Event Makeup">
+                    </div>
+                    <div class="pillar-body">
+                        <p>
+                            We craft personalized makeup profiles based on custom facial geometry and skin analytics. Using global luxury palettes, we ensure every look is featherlight, breathable, and camera-ready under any lighting.
+                        </p>
+                    </div>
+                </div>
+                <ul class="feature-list">
+                    <li>Custom Face Structural Geometry Analytics</li>
+                    <li>Global Luxury Cosmetics & Skin Prep</li>
+                    <li>HD Camera-Ready Bridal Artistry</li>
+                    <li>Long-Wear, Weightless Sweatproof Formulas</li>
+                </ul>
+            </article>
+
+            <!-- Pillar 2: Hair Artistry -->
+            <article class="pillar-card">
+                <div>
+                    <div class="pillar-header">
+                        <span class="pillar-tag">Pillar 02 — Hair</span>
+                        <h2>Hair Sculpting & Color Craft</h2>
+                    </div>
+                    <div class="img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1595152772835-219674b2a8a6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8aGFpcmRyeXNpbmcsaGFpciUyMGNvbG9yLHNob3B8fHx8fHwxNjg2NDA0ODk4&ixlib=rb-4.0.3&q=80&w=600" alt="Hair Styling and Coloring">
+                    </div>
+                    <div class="pillar-body">
+                        <p>
+                            From precision architecture cuts to advanced dimensional styling, our hair services are engineered to enhance texture and health. We specialize in custom color, highlights, and restorative treatments for high shine.
+                        </p>
+                    </div>
+                </div>
+                <ul class="feature-list">
+                    <li>Precision Haircuts & Structural Styling</li>
+                    <li>Multidimentional Streaks & Highlights</li>
+                    <li>Full Global Hair Coloring Solutions</li>
+                    <li>Deep Restorative Keratin Treatments</li>
+                </ul>
+            </article>
+
+            <!-- Pillar 3: Nail Artistry -->
+            <article class="pillar-card">
+                <div>
+                    <div class="pillar-header">
+                        <span class="pillar-tag">Pillar 03 — Nails</span>
+                        <h2>Luxury Nail Design & Care</h2>
+                    </div>
+                    <div class="img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1604654894610-df490668711c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8bmFpbCUyMGFydCxtYW5pY3VyZSxzaG9wfHx8fHx8MTY4NjQwNDkxMA&ixlib=rb-4.0.3&q=80&w=600" alt="Luxury Nail Art Design">
+                    </div>
+                    <div class="pillar-body">
+                        <p>
+                            Complete your aesthetic transformation with custom, handcrafted nail art tailored to mirror your theme or individual style. We use premium non-damaging products to prioritize nail health and endurance.
+                        </p>
+                    </div>
+                </div>
+                <ul class="feature-list">
+                    <li>Bespoke Handcrafted Nail Art Design</li>
+                    <li>High-End Extensions & Overlay Crafting</li>
+                    <li>Long-Lasting Gel & Acrylic Systems</li>
+                    <li>Nail Care & Cuticle Restoration Therapy</li>
+                </ul>
+            </article>
+
+        </div>
+    </main>
+
+    <footer>
+        Khushana Makeup Studio &bull; Sainik Colony, Jammu &bull; Est. 2023
+    </footer>
+
+</body>
+</html>
