@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Khuhana Privilege Card Booking</title>
+  <style>
+    :root {
+      --bg-olive: #556B2F;       /* Olive Green */
+      --dark-olive: #3B4B20;     /* Darker Olive for card background */
+      --accent-gold: #FFD700;    /* Gold highlight */
+      --light-text: #ffffff;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; }
+    body { 
+      background-color: var(--bg-olive); 
+      color: var(--light-text); 
+      display: flex; 
+      justify-content: center; 
+      align-items: center; 
+      min-height: 100vh; 
+      padding: 20px; 
+    }
+
+    .booking-card {
+      background: var(--dark-olive);
+      border: 2px solid var(--accent-gold);
+      border-radius: 12px;
+      max-width: 480px;
+      width: 100%;
+      padding: 24px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .header { text-align: center; border-bottom: 1px solid rgba(255, 255, 255, 0.2); padding-bottom: 16px; margin-bottom: 20px; }
+    .header h1 { color: var(--accent-gold); font-size: 1.5rem; text-transform: uppercase; letter-spacing: 1px; }
+    .header p { color: #e0e0e0; font-size: 0.85rem; margin-top: 4px; }
+
+    .offer-box {
+      background: rgba(0, 0, 0, 0.25);
+      border-left: 4px solid var(--accent-gold);
+      padding: 12px;
+      margin-bottom: 20px;
+      font-size: 0.85rem;
+      border-radius: 0 6px 6px 0;
+    }
+    .offer-box ul { margin-left: 18px; margin-top: 6px; }
+
+    .form-group { margin-bottom: 15px; }
+    label { display: block; font-size: 0.85rem; margin-bottom: 5px; color: #f0f0f0; }
+    input, textarea {
+      width: 100%; padding: 10px; border-radius: 6px;
+      border: 1px solid rgba(255, 255, 255, 0.3); background: #2b3717; color: #fff; font-size: 0.9rem;
+    }
+    input:focus, textarea:focus { border-color: var(--accent-gold); outline: none; }
+
+    .btn {
+      width: 100%; padding: 12px; background: var(--accent-gold); color: #000;
+      font-weight: bold; border: none; border-radius: 6px; cursor: pointer;
+      font-size: 1rem; text-transform: uppercase; margin-top: 10px;
+    }
+    .btn:hover { background: #e6c200; }
+
+    /* Payment & Status Sections */
+    #payment-section, #confirmation-section { display: none; text-align: center; }
+    .qr-container { background: #fff; padding: 15px; display: inline-block; border-radius: 8px; margin: 15px 0; }
+    .qr-container img { width: 180px; height: 180px; }
+    .status-badge {
+      display: inline-block; background: #27ae60; color: #fff;
+      padding: 6px 16px; border-radius: 20px; font-weight: bold; margin-top: 15px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="booking-card">
+  <!-- Header -->
+  <div class="header">
+    <h1>Beauty Privilege Card</h1>
+    <p>Flat 30% Off Beauty Services & FREE Treatments</p>
+  </div>
+
+  <!-- STEP 1: Booking Form -->
+  <form id="bookingForm" onsubmit="handleFormSubmit(event)">
+    <div class="offer-box">
+      <strong>Card Benefits:</strong>
+      <ul>
+        <li>Validity: 1 Year from issue date</li>
+        <li>Flat 30% Off on Hair Services</li>
+        <li>Free Threading, Hair Cut, Facial & Bleach services</li>
+      </ul>
+    </div>
+
+    <div class="form-group">
+      <label>Full Name *</label>
+      <input type="text" id="clientName" placeholder="Enter your name" required>
+    </div>
+
+    <div class="form-group">
+      <label>Phone Number *</label>
+      <input type="tel" id="clientPhone" placeholder="Enter 10-digit mobile number" pattern="[0-9]{10}" required>
+    </div>
+
+    <div class="form-group">
+      <label>Address *</label>
+      <textarea id="clientAddress" rows="2" placeholder="Enter address for card delivery" required></textarea>
+    </div>
+
+    <div class="form-group">
+      <label>Activation Fee (Payable Now)</label>
+      <input type="text" value="₹1100.00" disabled style="color: var(--accent-gold); font-weight: bold;">
+    </div>
+
+    <button type="submit" class="btn">Proceed to Pay via UPI</button>
+  </form>
+
+  <!-- STEP 2: UPI Payment -->
+  <div id="payment-section">
+    <p>Scan & Pay via any UPI App (GPay, PhonePe, Paytm)</p>
+    
+    <div class="qr-container">
+      <img id="upiQrCode" src="" alt="UPI QR Code">
+    </div>
+
+    <p style="font-size: 0.85rem; color: #ddd;">UPI ID: <strong>vihanakhushboo999@oksbi</strong></p>
+    <p style="margin-top: 5px; font-size: 0.9rem;">Amount: <strong>₹1100.00</strong></p>
+
+    <div class="form-group" style="margin-top: 15px; text-align: left;">
+      <label>Enter 12-Digit UPI Transaction ID / Reference No. *</label>
+      <input type="text" id="txnId" placeholder="e.g. 321456789012" pattern="[0-9]{12}" required>
+    </div>
+
+    <button type="button" onclick="confirmPayment()" class="btn">Confirm Payment & Book Card</button>
+  </div>
+
+  <!-- STEP 3: Order Confirmation -->
+  <div id="confirmation-section">
+    <div class="status-badge">✓ Order Booked Successfully!</div>
+    <h3 style="margin-top: 15px; color: var(--accent-gold);">Card Activation Confirmed</h3>
+    
+    <div style="text-align: left; background: rgba(0,0,0,0.25); padding: 15px; border-radius: 8px; margin-top: 15px; font-size: 0.85rem;">
+      <p><strong>Booking Ref ID:</strong> <span id="refId"></span></p>
+      <p><strong>Client Name:</strong> <span id="summaryName"></span></p>
+      <p><strong>Phone:</strong> <span id="summaryPhone"></span></p>
+      <p><strong>Transaction ID:</strong> <span id="summaryTxn"></span></p>
+      <p style="margin-top: 8px; color: #ddd;">* Your card details have been submitted. Show this receipt on your 1st service visit.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+  const UPI_ID = "vihanakhushboo999@oksbi"; 
+  const PAYEE_NAME = "Khushana Makeup Studio";
+  const CARD_AMOUNT = "1100.00"; 
+
+  function handleFormSubmit(e) {
+    e.preventDefault();
+    document.getElementById('bookingForm').style.display = 'none';
+    document.getElementById('payment-section').style.display = 'block';
+
+    const upiUri = `upi://pay?pa=${encodeURIComponent(UPI_ID)}&pn=${encodeURIComponent(PAYEE_NAME)}&am=${CARD_AMOUNT}&cu=INR`;
+    const qrApiUrl = `https://quickchart.io/qr?text=${encodeURIComponent(upiUri)}&size=200`;
+    document.getElementById('upiQrCode').src = qrApiUrl;
+  }
+
+  function confirmPayment() {
+    const txnId = document.getElementById('txnId').value;
+    if (txnId.length !== 12) {
+      alert('Please enter a valid 12-digit UPI Reference Number.');
+      return;
+    }
+
+    document.getElementById('refId').innerText = 'CARD-' + Math.floor(100000 + Math.random() * 900000);
+    document.getElementById('summaryName').innerText = document.getElementById('clientName').value;
+    document.getElementById('summaryPhone').innerText = document.getElementById('clientPhone').value;
+    document.getElementById('summaryTxn').innerText = txnId;
+
+    document.getElementById('payment-section').style.display = 'none';
+    document.getElementById('confirmation-section').style.display = 'block';
+  }
+</script>
+
+</body>
+</html>
